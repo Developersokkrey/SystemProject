@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rkx9thkSUnTo1DI0GBHdook3dLemv/GS4cpFJvgODfvNO0r6unZhqXUuELrIp4mBT3RcZZKZ9RQ0fOSUb629YQ==",
+  "dgSpecHash": "aO0tScFkEXbhYdbAIseyLKqFn2YaQwjxLyRD5lJNhKa7/CuyiHbPE3M/nqbBzkr9Dub4BwHKGkjKuwdtnmyntA==",
   "success": true,
-  "projectFilePath": "D:\\PERSONAL RPOJECT\\Vue JS\\SystemProject\\SystemProject\\SystemProject.csproj",
+  "projectFilePath": "D:\\PERSONAL RPOJECT\\System\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SOKKREY.NET\\.nuget\\packages\\microsoft.aspnetcore.nodeservices\\3.0.0\\microsoft.aspnetcore.nodeservices.3.0.0.nupkg.sha512",
     "C:\\Users\\SOKKREY.NET\\.nuget\\packages\\microsoft.aspnetcore.spaservices\\3.0.0\\microsoft.aspnetcore.spaservices.3.0.0.nupkg.sha512",
