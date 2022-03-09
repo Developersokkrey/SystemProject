@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PERSONAL RPOJECT\\System\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj": {}
+    "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj": {}
   },
   "projects": {
-    "D:\\PERSONAL RPOJECT\\System\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj": {
+    "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PERSONAL RPOJECT\\System\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+        "projectUniqueName": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
         "projectName": "SystemProject",
-        "projectPath": "D:\\PERSONAL RPOJECT\\System\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+        "projectPath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
         "packagesPath": "C:\\Users\\SOKKREY.NET\\.nuget\\packages\\",
-        "outputPath": "D:\\PERSONAL RPOJECT\\System\\SystemProject\\SystemProject\\SystemProject\\obj\\",
+        "outputPath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
@@ -20,7 +20,6 @@
         ],
         "configFilePaths": [
           "C:\\Users\\SOKKREY.NET\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -29,7 +28,6 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
