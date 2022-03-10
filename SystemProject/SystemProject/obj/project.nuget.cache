@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5Si5W5VE4fO86FA0f0OkYPfRG680su0d3HNYEhVFnwMvowykWd3H/4OO+iQ7XkapXnV7n6NIuRxTiXYCWxh0eQ==",
+  "dgSpecHash": "D0jv2Ca857UGaaNrjUneL3Y7EA8Pg7JV/If6tS+hhbqCKd5LOGpBfD1rz2pFS/JSgqcC5H/EcaLuotd412kFuA==",
   "success": true,
-  "projectFilePath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+  "projectFilePath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SOKKREY.NET\\.nuget\\packages\\microsoft.aspnetcore.nodeservices\\3.0.0\\microsoft.aspnetcore.nodeservices.3.0.0.nupkg.sha512",
     "C:\\Users\\SOKKREY.NET\\.nuget\\packages\\microsoft.aspnetcore.spaservices\\3.0.0\\microsoft.aspnetcore.spaservices.3.0.0.nupkg.sha512",

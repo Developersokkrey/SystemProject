@@ -571,11 +571,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+      "projectUniqueName": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
       "projectName": "SystemProject",
-      "projectPath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+      "projectPath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
       "packagesPath": "C:\\Users\\SOKKREY.NET\\.nuget\\packages\\",
-      "outputPath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\Vue\\SystemProject\\SystemProject\\SystemProject\\obj\\",
+      "outputPath": "D:\\PERSONAL RPOJECT\\ASP.NET CORE\\EDI.Core\\SystemProject\\SystemProject\\SystemProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages",
