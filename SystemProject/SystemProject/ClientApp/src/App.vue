@@ -1,35 +1,35 @@
-<script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import menu from '@/menu.js'
-import NavBar from '@/components/NavBar.vue'
-import AsideMenu from '@/components/AsideMenu.vue'
-import FooterBar from '@/components/FooterBar.vue'
-import Overlay from '@/components/Overlay.vue'
+<template>
+  <component :is="resolveLayout">
+    <router-view></router-view>
+  </component>
+</template>
 
-const store = useStore()
+<script>
+import { computed } from '@vue/composition-api'
+import { useRouter } from '@/utils'
+import LayoutBlank from '@/layouts/Blank.vue'
+import LayoutContent from '@/layouts/Content.vue'
 
-store.commit('user', {
-  name: 'John Doe',
-  email: 'john@example.com',
-  avatar: 'https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93'
-})
+export default {
+  components: {
+    LayoutBlank,
+    LayoutContent,
+  },
+  setup() {
+    const { route } = useRouter()
 
-const isAsideLgActive = computed(() => store.state.isAsideLgActive)
+    const resolveLayout = computed(() => {
+      // Handles initial route
+      if (route.value.name === null) return null
 
-const overlayClick = () => {
-  store.dispatch('asideLgToggle', false)
+      if (route.value.meta.layout === 'blank') return 'layout-blank'
+
+      return 'layout-content'
+    })
+
+    return {
+      resolveLayout,
+    }
+  },
 }
 </script>
-
-<template>
-  <nav-bar />
-  <aside-menu :menu="menu" />
-  <router-view />
-  <footer-bar />
-  <overlay
-    v-show="isAsideLgActive"
-    z-index="z-30"
-    @overlay-click="overlayClick"
-  />
-</template>

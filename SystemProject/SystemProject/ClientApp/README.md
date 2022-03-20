@@ -1,164 +1,176 @@
-# [Admin One &mdash; Free Vue 3 Tailwind 3 Admin Dashboard with dark mode](https://justboil.me/tailwind-admin-templates/free-vue-dashboard/)
+<p align="center"></p>
 
-[![version](https://img.shields.io/github/v/release/justboil/admin-one-vue-tailwind)](https://justboil.me/tailwind-admin-templates/free-vue-dashboard/)  [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://justboil.me/tailwind-admin-templates/free-vue-dashboard/)
+<p align="center">
+   <a href="https://themeselection.com/products/materio-free-vuetify-vuejs-admin-template" target="_blank">
+      <img src="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free/blob/main/src/assets/images/logos/logo.svg" alt="materio-logo" width="60px" height="auto">
+   </a>
+</p>
 
-[![Free Vue 3 Tailwind 3 admin dashboard with dark mode](https://static.justboil.me/templates/one/repo-tailwind-vue.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+<h1 align="center">
+   <a href="https://themeselection.com/products/materio-free-vuetify-vuejs-admin-template" target="_blank" align="center">
+      Materio - Vuetify VueJS Free Admin Template
+   </a>
+</h1>
 
-[![Vue Tailwind white & dark styles](https://static.justboil.me/templates/one/repo-styles.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+<p align="center">Production ready carefully crafted most comprehensive admin template</p>
 
-**Admin One** is simple, beautiful and free Vue.js 3.x Tailwind CSS 3.x admin dashboard.
+<p align="center">
+   <a href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/themeselection/materio-vuetify-vuejs-admin-template-free" alt="license">
+   </a>
+   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/themeselection/materio-vuetify-vuejs-admin-template-free/Deploy">
+   <a href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free/releases">
+    <img src="https://img.shields.io/github/release/themeselection/materio-vuetify-vuejs-admin-template-free.svg" alt="GitHub release">
+  </a>
+   <a href="https://twitter.com/Theme_Selection" target="_blank">
+      <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Theme_Selection">
+   </a>
+</p>
 
-* Built with **Vue.js 3**, **Tailwind CSS 3** framework & **Composition API** 
-* **Vite** and **Vue CLI** build tools
-* **SFC** `<script setup>` [Info](https://v3.vuejs.org/api/sfc-script-setup.html)
-* **Dark mode**
-* **Styled** scrollbars
-* SPA with **Vuex** & **Router**
-* **Production CSS** is only **38kb**
-* Reusable components
-* Free under MIT License
-* [Premium version](https://justboil.me/tailwind-admin-templates/vue-dashboard/) available
+[![Materio - Vuetify VueJS Free Admin Template Demo Screenshot](https://user-images.githubusercontent.com/47495003/129342383-2816d6fe-3a88-4189-b08f-f30b9abac2b0.png)](https://themeselection.com/products/materio-free-vuetify-vuejs-admin-template)
 
-## Table of Contents
+## Introduction
 
-* [Responsive layout](#responsive-layout)
-  * [Mobile & tablet](#mobile--tablet)
-  * [Small laptops](#small-laptops-1024px)
-  * [Laptops & desktops](#laptops--desktops)
-* [Demo](#demo)
-  * [Free dashboard demo](#free-dashboard-demo)
-  * [Premium dashboard demo](#premium-dashboard-demo)
-* [Quick Start](#quick-start)
-  * [Get code & install](#get-code--install)
-  * [Vue CLI builds](#vue-cli-builds)
-  * [Vite builds](#vite-builds)
-  * [Linting](#linting)
-* [Browser Support](#browser-support)
-* [Reporting Issues](#reporting-issues)
-* [Licensing](#licensing)
-* [Useful Links](#useful-links)
+If you’re a developer looking for an admin dashboard that is developer-friendly, rich with features, and highly customizable look no further than Materio. We’ve followed the highest industry standards to bring you the very best admin template that is not only fast and easy to use but highly scalable. Offering ultimate convenience and flexibility, you’ll be able to build whatever application you want with very little hassle.
 
-## Responsive layout
+Build premium quality applications with ease. Use our innovative admin template to create eye-catching, high-quality, and high-performing single-page applications. Your apps will be completely responsive, ensuring they’ll look stunning and function flawlessly on desktops, tablets, and mobile devices.
 
-### Mobile & tablet
+[View Demo](https://themeselection.com/demo/materio-vuetify-vuejs-admin-template-free/demo/)
 
-Mobile layout with hidden aside menu and collapsable cards & tables
+## Installation ⚒️
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-mobile.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+> We recommend you use yarn
 
-### Small laptops 1024px
+1. Install all packages
 
-Small laptop layout with show/hide aside menu option
+   ```bash
+   yarn
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-1024.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+   # npm install [for npm]
+   ```
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-1024-menu-open.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+2. Run development server
 
-### Laptops & desktops
+   ```bash
+   yarn serve
 
-Classic layout with aside menus on the left
+   # npm run serve [for npm]
+   ```
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-widescreen.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+3. Generate build files for deployment
 
-## Demo
+   ```bash
+   yarn build
 
-### Free Dashboard Demo
+   # npm run build [for npm]
+   ```
 
-https://justboil.github.io/admin-one-vue-tailwind/
+## What's Included 📦
 
-### Premium Dashboard Demo
+- Dashboard
+- Account Settings
+- Pages
+  - Login
+  - Register
+  - Error
+- User Interface
+  - Typography
+  - Icons
+  - Basic Cards
+  - Tables
+  - Form Layouts
 
-https://tailwind-vue.justboil.me/
+## What's in Premium Version 💎
 
-## Quick Start
+| Materio Free Version                                                                             | Materio Premium Version                                                                        |
+| ------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------- |
+| [Demo](https://themeselection.com/demo/materio-vuetify-vuejs-admin-template-free/demo/)          | [Demo](https://themeselection.com/demo/materio-vuetify-vuejs-admin-template/landing)           |
+| [Download](https://themeselection.com/products/materio-free-vuetify-vuejs-admin-template)        | [Purchase](https://themeselection.com/products/materio-vuetify-vuejs-admin-template)           |
+| Single vertical menu                                                                             | Vertical (+ vertical collapsed) & Horizontal menu                                              |
+| Simple Light/Dark theme                                                                          | 3 Skin variants w/ light/dark theme support: Default, Bordered & Semi-dark                     |
+| 1 Simple Dashboard                                                                               | 3 Niche Dashboards                                                                             |
+| -                                                                                                | 5 API ready applications                                                                       |
+| Simple From Elements                                                                             | Advance form elemens, validation & form wizard                                                 |
+| Basic Cards                                                                                      | Basic Cards + Advanced Cards + Statistics Cards                                                |
+| -                                                                                                | API ready JWT Authentication flow                                                              |
+| -                                                                                                | Access Control (even on CRUD operations)                                                       |
+| -                                                                                                | Quick Search - Quickly navigate between pages (w/ hotkey support)                              |
+| Basic Pages                                                                                      | Authentication Pages in 2 variants + Ready to use pages like Pricing, FAQ, Knowledge base, etc |
+| -                                                                                                | 3D Characters + Illustrations                                                                  |
+| Basic tables                                                                                     | Advanced tables                                                                                |
+| Manual customization                                                                             | Quick customization using theme config file                                                    |
+| -                                                                                                | Advanced Charts                                                                                |
+| 1 Chart Library                                                                                  | 2 Chart Libraries                                                                              |
+| -                                                                                                | Multiple Navbar & Menu Options                                                                 |
+| -                                                                                                | Starter-kit                                                                                    |
+| -                                                                                                | Internationalization support in components                                                     |
+| Regular Support                                                                                  | Priority Support                                                                               |
+| Basic Documentation                                                                              | Detailed Documentation                                                                         |
 
-Get code & install. Then use either [Vue CLI](#vue-cli-builds) or [Vite](#vite-builds) builds.
+## Documentation 📜
 
-* [Get code & install](#get-code--install)
-* [Vue CLI builds](#vue-cli-builds)
-* [Vite builds](#vite-builds)
+Check GitHub [Wiki](https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free/wiki) of this repo
 
-### Get code & install
+## Browser Support 🖥️
 
-#### Get the repo
+- Materio Vuetify VueJS Free Admin Template is built to work best in the latest desktop and mobile and tablet browsers
 
-* [Create new repo](https://github.com/justboil/admin-one-vue-tailwind/generate) with this template
-* &hellip; or clone this repo on GitHub
-* &hellip; or [download .zip](https://github.com/justboil/admin-one-vue-tailwind/archive/master.zip) from GitHub
+- Chrome (latest)
+- FireFox (latest)
+- Safari (latest)
+- Opera (latest)
 
-#### Install
+## Contributing 🦸
 
-`cd` to project's dir and run `npm install`
+Contribution are always welcome and recommended! Here is how:
 
-### Vue CLI builds
+- Fork the repository ([here is the guide](https://docs.github.com/en/get-started/quickstart/fork-a-repo)).
+- Clone to your machine `git clone https://github.com/YOUR_USERNAME/REPO_URL` Make your changes
+- Create a pull request
 
-#### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Contribution Requirements 🧰
 
-#### Compiles and minifies for production
-```
-npm run build
-```
+- When you contribute, you agree to give a non-exclusive license to ThemeSelection to use that contribution in any context as we (ThemeSelection) see appropriate.
+- If you use content provided by another party, it must be appropriately licensed using an open source license.
+- Contributions are only accepted through Github pull requests.
+- Finally, contributed code must work in all supported browsers (see above for browser support).
 
-### Vite builds
+## Creators 😇
 
-[Vite](https://vitejs.dev) is next Generation Frontend Tooling featuring unbundled web-development
+- [ThemeSelection](https://themeselection.com)
 
-#### Hot-reloads for development
-```
-npm run dev
-```
+## Changelog 📆
 
-#### Builds and minifies for production
-```
-npm run build:vite
-```
+Please refer to the [CHANGELOG](CHANGELOG.md) file. We will add a detailed release notes to each new release.
 
-#### Serves recently built app
-```
-npm run serve:vite
-```
+## Credits 🙏
 
-### Linting
+- [Vuetify](https://vuetifyjs.com/)
+- [Material Design Icons](https://materialdesignicons.com/)
+- [ApexCharts](https://apexcharts.com/)
+- [Humans Illustrations](https://humans.wannathis.one/)
+- [Freepik](https://www.freepik.com/)
+- [Unsplash](https://unsplash.com/)
 
-#### Lint
-```
-npm run lint
-```
+## NOTE 🏷️
 
-#### Lints and fixes files
-```
-npm run lint:fix
-```
+**We request you to keep ThemeSelection credit link in the footer section.**
 
-## Browser Support
+## Looking For Premium Admin Templates ?? 👀
 
-We try to make sure Dashboard works well in the latest versions of all major browsers
+[ThemeSelection](https://themeselection.com) provides Selected high quality, modern design, professional and easy-to-use Free Admin Dashboard Template, HTML Themes and UI Kits to create your applications faster!.
 
-<img src="https://justboil.me/images/browsers-svg/chrome.svg" width="64" height="64" alt="Chrome"> <img src="https://justboil.me/images/browsers-svg/firefox.svg" width="64" height="64" alt="Firefox"> <img src="https://justboil.me/images/browsers-svg/edge.svg" width="64" height="64" alt="Edge"> <img src="https://justboil.me/images/browsers-svg/safari.svg" width="64" height="64" alt="Safari"> <img src="https://justboil.me/images/browsers-svg/opera.svg" width="64" height="64" alt="Opera">
+If you are looking for more free templates like Materio - Vuetify VueJS Free Admin Template, please visit [ThemeSelection](https://themeselection.com).
 
-## Reporting Issues
+## Useful Links 🔗
 
-JustBoil's free items are limited to community support on GitHub.
+- More products from [ThemeSelection](https://themeselection.com)
+- Freebies from [ThemeSelection](https://themeselection.com/products/category/download-free-admin-templates/)
+- [Blog](https://themeselection.com/blog/)
 
-The issue list is reserved exclusively for bug reports and feature requests. That means we do not accept usage questions. If you open an issue that does not conform to the requirements, it will be closed.
+## Social Media 🌍
 
-1. Make sure that you are using the latest version of the Dashboard. Issues for outdated versions are irrelevant
-2. Provide steps to reproduce
-3. Provide an expected behavior
-4. Describe what is actually happening
-5. Platform, Browser & version as some issues may be browser specific
-
-## Licensing
-
-- Copyright &copy; 2019-2021 JustBoil.me (https://justboil.me)
-- Licensed under MIT
-
-## Useful Links
-
-- [JustBoil.me](https://justboil.me/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vue.js 3](https://v3.vuejs.org/)
-- [Vite](https://vitejs.dev)
+- Twitter : [https://twitter.com/themeselect](https://twitter.com/themeselect)
+- Facebook : [https://www.facebook.com/ThemeSelections/](https://www.facebook.com/ThemeSelections/)
+- Pintrest : [https://pinterest.com/themeselect/](https://pinterest.com/themeselect/)
+- Instagram : [https://www.instagram.com/themeselect_official/](https://www.instagram.com/themeselect_official/)
