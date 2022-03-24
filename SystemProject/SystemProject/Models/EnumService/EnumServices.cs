@@ -2,7 +2,7 @@
 {
     public class EnumServices
     {
-        public enum UserRoles
+        public enum UserRules
         {
             SuperAdmin,
             Admin,
