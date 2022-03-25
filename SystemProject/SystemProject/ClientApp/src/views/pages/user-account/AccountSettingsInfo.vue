@@ -1,5 +1,8 @@
 <template>
   <div class="text-center">
+    <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
     <v-btn dark
            color="orange darken-2"
            @click="snackbar_success = true">
@@ -29,9 +32,6 @@
         </v-btn>
       </template>
     </v-snackbar>
-
-
-
     <v-snackbar v-model="snackbar_error"
                 right
                 color="error"
@@ -53,8 +53,8 @@
     <v-alert width="400" type="success" right>
       I'm a success alert.
     </v-alert>
-
   </div>
+  
 </template>
 <script>
   export default {
