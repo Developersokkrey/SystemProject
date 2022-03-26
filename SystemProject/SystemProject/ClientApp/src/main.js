@@ -8,7 +8,9 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './main.css'
+import Notifications from "vt-notifications";
 
+Vue.use(Notifications);
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 new Vue({
