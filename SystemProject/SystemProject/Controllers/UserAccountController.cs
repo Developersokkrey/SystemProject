@@ -1,4 +1,5 @@
-﻿using KSystemProject.References;
+﻿using KEDI.Core.Repository;
+using KSystemProject.References;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -12,9 +13,11 @@ namespace SystemProject.Controllers
     public class UserAccountController : ControllerBase
     {
         private readonly DataContext _dataContext;
-        public UserAccountController(DataContext dataContext)
+        readonly SecurityManager _securityManager;
+        public UserAccountController(DataContext dataContext, SecurityManager securityManager)
         {
             _dataContext = dataContext;
+            _securityManager = securityManager;
         }
         [HttpPost]
         public async Task<ActionResult> CreateUserAccount  (UserAccount userAccount )
@@ -25,6 +28,11 @@ namespace SystemProject.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    _securityManager.TryComputeHash(userAccount.Password, out string _hash, out string _salt);
+                    var hash = $"{_hash}.{_salt}";
+                    userAccount.PasswordHash = hash;
+                    _dataContext.OUSR.Update(userAccount);
+                    _dataContext.SaveChanges();
                     t.Commit();
                     ModelState.AddModelError("success", "Item save successfully.");
                     msg.Approve();                      

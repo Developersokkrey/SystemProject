@@ -7,6 +7,6 @@ namespace SystemProject.DataApp
     {
         public DataContext() : base() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        public DbSet<UserAccount> Users { get; set; }
+        public DbSet<UserAccount> OUSR { get; set; }
     }
 }
