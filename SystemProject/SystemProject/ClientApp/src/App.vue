@@ -1,35 +1,27 @@
 <template>
-  <component :is="resolveLayout">
-    <router-view></router-view>
-  </component>
+  <div id="app">
+    <router-view/>
+  </div>
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
-import { useRouter } from '@/utils'
-import LayoutBlank from '@/layouts/Blank.vue'
-import LayoutContent from '@/layouts/Content.vue'
-
 export default {
-  components: {
-    LayoutBlank,
-    LayoutContent,
-  },
-  setup() {
-    const { route } = useRouter()
-
-    const resolveLayout = computed(() => {
-      // Handles initial route
-      if (route.value.name === null) return null
-
-      if (route.value.meta.layout === 'blank') return 'layout-blank'
-
-      return 'layout-content'
-    })
-
-    return {
-      resolveLayout,
-    }
-  },
+  name: 'App'
 }
 </script>
+
+<style lang="less">
+.size{
+  width: 100%;
+  height: 100%;
+}
+html,body{
+  .size;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  .size;
+}
+</style>
