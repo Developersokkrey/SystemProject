@@ -50,6 +50,120 @@ export default [
       }
     ]
   },
+      // Admin Center
+      {
+        path: '/admin-center',
+        name: 'Admin Center',
+        meta: {
+          icon: 'md-menu',
+          title: 'Admin Center'
+        },
+        component: Main,
+        children: [
+          {
+            path: 'general',
+            name: 'General',
+            meta: {
+              access: ['super_admin'],
+              icon: 'md-funnel',
+              showAlways: true,
+              title: 'General'
+            },
+            component: parentView,
+            children: [
+              {
+                path: 'company',
+                name: 'Company',
+                meta: {
+                  icon: 'md-funnel',
+                  title: 'Company'
+                },
+                component: () => import('@/view/admin-center/general/company.vue')
+              },   
+              {
+                path: 'barnch',
+                name: 'Branch',
+                meta: {
+                  icon: 'md-funnel',
+                  title: 'Barnch'
+                },
+                component: () => import('@/view/admin-center/general/branch.vue')
+              }, 
+              {
+                path: 'useraccount',
+                name: 'User Account',
+                meta: {
+                  icon: 'md-funnel',
+                  title: 'User Account'
+                },
+                component: () => import('@/view/admin-center/general/useraccount.vue')
+              },        
+            ]
+          },
+          {
+            path: 'inventory',
+            name: 'Inventory',
+            meta: {
+              access: ['super_admin'],
+              icon: 'md-funnel',
+              showAlways: true,
+              title: 'inventory'
+            },
+            component: parentView,
+            children: [
+              {
+                path: 'level_2_2_1',
+                name: 'level_2_2_1',
+                meta: {
+                  icon: 'md-funnel',
+                  title: '三级'
+                },
+                component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+              },
+              {
+                path: 'level_2_2',
+                name: 'level_2_2',
+                meta: {
+                  access: ['super_admin'],
+                  icon: 'md-funnel',
+                  showAlways: true,
+                  title: '二级-2'
+                },
+                component: parentView,
+                children: [
+                  {
+                    path: 'level_2_2_1',
+                    name: 'level_2_2_1',
+                    meta: {
+                      icon: 'md-funnel',
+                      title: '三级'
+                    },
+                    component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+                  },
+                  {
+                    path: 'level_2_2_2',
+                    name: 'level_2_2_2',
+                    meta: {
+                      icon: 'md-funnel',
+                      title: '三级'
+                    },
+                    component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+                  }
+                ]
+              },
+              {
+                path: 'level_2_2_2',
+                name: 'level_2_2_2',
+                meta: {
+                  icon: 'md-funnel',
+                  title: '三级'
+                },
+                component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+              }
+            ]
+          },
+        ]
+      },
   {
     path: '',
     name: 'doc',
@@ -96,27 +210,6 @@ export default [
         },
         component: () => import('@/view/single-page/message/index.vue')
       }
-    ]
-  },
-  // User Account
-  {
-    path: '/user',
-    name: 'user',
-    meta: {
-      icon: 'ios-people',
-      title: 'User'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'user_account',
-        name: 'user_account',
-        meta: {
-          icon: 'ios-people',
-          title: 'User Account'
-        },
-        component: () => import('@/view/user/user-account.vue')
-      },      
     ]
   },
   {
@@ -393,66 +486,66 @@ export default [
       }
     ]
   },
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'md-menu',
-      title: '多级菜单'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'level_2_1',
-        name: 'level_2_1',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-1'
-        },
-        component: () => import('@/view/multilevel/level-2-1.vue')
-      },
-      {
-        path: 'level_2_2',
-        name: 'level_2_2',
-        meta: {
-          access: ['super_admin'],
-          icon: 'md-funnel',
-          showAlways: true,
-          title: '二级-2'
-        },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
-          },
-          {
-            path: 'level_2_2_2',
-            name: 'level_2_2_2',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-          }
-        ]
-      },
-      {
-        path: 'level_2_3',
-        name: 'level_2_3',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-3'
-        },
-        component: () => import('@/view/multilevel/level-2-3.vue')
-      }
-    ]
-  },
+  // {
+  //   path: '/multilevel',
+  //   name: 'multilevel',
+  //   meta: {
+  //     icon: 'md-menu',
+  //     title: '多级菜单'
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: 'level_2_1',
+  //       name: 'level_2_1',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         title: '二级-1'
+  //       },
+  //       component: () => import('@/view/multilevel/level-2-1.vue')
+  //     },
+  //     {
+  //       path: 'level_2_2',
+  //       name: 'level_2_2',
+  //       meta: {
+  //         access: ['super_admin'],
+  //         icon: 'md-funnel',
+  //         showAlways: true,
+  //         title: '二级-2'
+  //       },
+  //       component: parentView,
+  //       children: [
+  //         {
+  //           path: 'level_2_2_1',
+  //           name: 'level_2_2_1',
+  //           meta: {
+  //             icon: 'md-funnel',
+  //             title: '三级'
+  //           },
+  //           component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+  //         },
+  //         {
+  //           path: 'level_2_2_2',
+  //           name: 'level_2_2_2',
+  //           meta: {
+  //             icon: 'md-funnel',
+  //             title: '三级'
+  //           },
+  //           component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'level_2_3',
+  //       name: 'level_2_3',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         title: '二级-3'
+  //       },
+  //       component: () => import('@/view/multilevel/level-2-3.vue')
+  //     }
+  //   ]
+  // },
   {
     path: '/argu',
     name: 'argu',

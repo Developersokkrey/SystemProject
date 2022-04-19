@@ -16,6 +16,7 @@ import TreeTable from 'tree-table-vue'
 import VOrgTree from 'v-org-tree'
 import 'v-org-tree/dist/v-org-tree.css'
 import './main.css'
+import Notifications from "vt-notifications";
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
@@ -42,7 +43,7 @@ Vue.prototype.$config = config
  */
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
-
+Vue.use(Notifications);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

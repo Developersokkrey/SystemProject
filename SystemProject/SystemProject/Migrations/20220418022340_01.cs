@@ -4,7 +4,7 @@
 
 namespace SystemProject.Migrations
 {
-    public partial class _1 : Migration
+    public partial class _01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace SystemProject.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rule = table.Column<int>(type: "int", nullable: false),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ComID = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },

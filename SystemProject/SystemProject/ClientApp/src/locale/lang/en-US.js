@@ -43,6 +43,9 @@ export default {
   org_tree_page: 'Org Tree',
   drag_drawer_page: 'Draggable Drawer',
   tree_select_page: 'Tree Selector',
-  user_account: 'User Account',
+  'useraccount': 'UserAccount',
   user: 'User',
+  'Admin Center': 'Admin Center',
+  general: 'General',
+  inventory: 'Inventory',
 }

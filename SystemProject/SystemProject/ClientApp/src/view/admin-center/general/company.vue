@@ -3,45 +3,49 @@
     <form class="bg-white p-5 rounded-lg shadow-lg min-w-full">
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Username</label>
-				  <input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" type="text" name="email" id="email" placeholder="Username" />
+          <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Username') }}</label>
+				  <input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="data" type="text" :placeholder="$t('Username')" />
         </div>
         <div class="w-full px-2 md:w-1/2">
-          <div class="form-check">        
-              <input type="radio" name="flexRadioDefault">
+          <div>
+            <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Gender')}}</label>
+            </div>
+            <div class="form-check">        
+              <input type="radio" v-model="data" name="flexRadioDefault">
               <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
-                  Male
+                  {{ $t('Male')}}
               </label>
-              <input type="radio" name="flexRadioDefault">
+              <input type="radio" v-model="data" name="flexRadioDefault">
               <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
-                  Female
+                  {{$t('Female')}}
               </label>
-              <input type="radio" name="flexRadioDefault">
+              <input type="radio" v-model="data" name="flexRadioDefault">
               <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
-                  Orther
+                  {{$t('Other')}}
               </label>
+            </div>
         </div>
       </div>
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="username">Password</label>
-				  <input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" type="Password" name="email" id="email" placeholder="Username" />
+          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Password')}}</label>
+				  <input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="data" type="Password" :placeholder="$t('Password')" />
         </div>
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Confirm Password</label>
-					<input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" type="Password" name="email" id="email" placeholder="Company" />
+          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Confirm Password')}}</label>
+					<input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="data" type="Password" :placeholder="$t('Confirm Password')" />
         </div>
       </div>
        <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Rules</label>
-					<select class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none">
+          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Rules')}}</label>
+					<select class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none" v-model="data">
             <option :value="rule.id" v-for="rule in user_rules" :key="rule.id">{{ rule.title }}</option>
           </select>
         </div>
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Status</label>
-					<select class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none">
+          <label class="text-gray-800 font-semibold block my-3 text-md" for="email">{{$t('Status')}}</label>
+					<select class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none" v-model="data">
             <option :value="status.id" v-for="status in statuss" :key="status.id ">{{ status.title }}</option>
           </select>
         </div>
@@ -49,31 +53,12 @@
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 pt-7 md:w-1/2 flex space-x-4">
             <div>
-                <button type="button" @click="onClickTop" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Save</button>
+                <button type="button" @click="saveData" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Save')}}</button>
             </div> 
             <div>                
-                <button type="button" @click="onClickBot" class="inline-block px-4 py-1.5 bg-yellow-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Clear</button>  
+                <button type="button" @click="clearData" class="inline-block px-4 py-1.5 bg-yellow-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Clear')}}</button>  
             </div>                  
-        </div>
-        <div class="w-full px-2 md:w-1/2">
-          <div>
-            <label class="text-gray-800 font-semibold block my-3 text-md">Gender</label>
-            </div>
-            <div class="form-check">        
-              <input type="radio" name="flexRadioDefault">
-              <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
-                  Male
-              </label>
-              <input type="radio" name="flexRadioDefault">
-              <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
-                  Female
-              </label>
-              <input type="radio" name="flexRadioDefault">
-              <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
-                  Orther
-              </label>
-            </div>
-        </div>
+        </div>        
       </div> 
 		</form>
     <!-- notificationGroup -->
@@ -138,9 +123,11 @@
 </template>
 <script>
 import axios from 'axios'
+var error_title = "error"
+var error_text= ""
 export default {
   name: "App",
-  data: () => ({
+  data: () => ({          
     statuss: [
         { title: ' ', id: 0 },
         { title: 'Active', id: 1 },
@@ -154,28 +141,46 @@ export default {
         { title: 'Admin', id: 2},
         { title: 'Manager', id: 3 },
         { title: 'User', id: 4 },                 
-    ],
+    ],   
   }),
-    methods: {      
-    onClickTop() {
+    methods: {                          
+    saveData() {
+      if(this._i18n.locale == 'en-US'){
+         error_title = "Success";
+         error_text = "Your email is already used!"
+      }
+      else if(this._i18n.locale == 'zh-TW'){
+          error_title = "ជោគជ័យ";
+          error_text = "គណនីរបស់អ្នកត្រូវបានចុះឈ្មោះ!"
+      }  
       this.$notify(
         {
           group: "top",
-          title: "Success",
-          text: "Your account was registered!"
+          title: error_title,
+          text: error_text
         },
         5000
       );
-    },
-    onClickBot() {
+    },    
+    clearData() { 
+      if(this._i18n.locale == 'en-US'){
+         error_title = "Erorr";
+         error_text = "Your email is already used!"
+      }
+      else if(this._i18n.locale == 'zh-TW'){
+          error_title = "កំហុស";
+          error_text = "អ៊ីមែលរបស់អ្នកត្រូវបានប្រើប្រាស់រួចហើយ!"
+      }            
       this.$notify(
         {
           group: "bottom",
-          title: "Error",
-          text: "Your email is already used! Your email"
+          title: error_title,
+          text: error_text
         },
-        8000
+        10000
       );
+      console.log(this._i18n.locale);    
+      console.log(this);  
     }
     },
     mounted() {
@@ -185,6 +190,7 @@ export default {
           this.posts = response.data
           console.log(response.data);
         })
-    }
+    },     
+  
 };
 </script>

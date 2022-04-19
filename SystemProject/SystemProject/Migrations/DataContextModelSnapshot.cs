@@ -29,8 +29,8 @@ namespace SystemProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<string>("Company")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ComID")
+                        .HasColumnType("int");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");

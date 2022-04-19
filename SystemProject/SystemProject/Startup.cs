@@ -1,3 +1,4 @@
+using KEDI.Core.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,7 @@ namespace SystemProject
             option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
             services.AddMvc().AddNewtonsoftJson(options => 
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            services.AddTransient<SecurityManager>();
             
         }
 

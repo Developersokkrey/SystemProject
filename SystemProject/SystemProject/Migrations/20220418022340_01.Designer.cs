@@ -11,8 +11,8 @@ using SystemProject.DataApp;
 namespace SystemProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220402053708_1")]
-    partial class _1
+    [Migration("20220418022340_01")]
+    partial class _01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,8 +31,8 @@ namespace SystemProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<string>("Company")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ComID")
+                        .HasColumnType("int");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");

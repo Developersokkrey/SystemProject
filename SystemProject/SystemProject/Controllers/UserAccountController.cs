@@ -2,6 +2,7 @@
 using KSystemProject.References;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SystemProject.DataApp;
 using SystemProject.Models.UserAccount;
@@ -19,6 +20,14 @@ namespace SystemProject.Controllers
             _dataContext = dataContext;
             _securityManager = securityManager;
         }
+
+        [HttpGet("userAccountForm")]
+        public IActionResult UserAccountForm()
+        {
+            UserAccount userAccount = new();             
+            return Ok(userAccount);
+        }
+
         [HttpPost]
         public async Task<ActionResult> CreateUserAccount  (UserAccount userAccount )
         {   
@@ -47,14 +56,14 @@ namespace SystemProject.Controllers
             {
                 ModelState.AddModelError("Username", "Username is required 5 charater !");
             }
+            if (Regex.IsMatch(usacc.Username, "\\s+"))
+            {
+                ModelState.AddModelError("Username", "Username is not allow whitespace!");
+            }
             if (string.IsNullOrWhiteSpace(usacc.Password) || usacc.Password.Length > 5)
             {
                 ModelState.AddModelError("Password", "Password is required 5 charater !");
             }               
-            if (string.IsNullOrEmpty(usacc.Company))
-            {
-                ModelState.AddModelError("Company", "Company is required !"); 
-            }
             if(usacc.Rule == 0)
             {
                 ModelState.AddModelError("Rules", "Rules is required !");
