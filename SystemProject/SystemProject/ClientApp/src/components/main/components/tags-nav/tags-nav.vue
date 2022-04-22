@@ -1,49 +1,61 @@
 <template>
-  <div class="tags-nav">
-    <div class="close-con">
-      <Dropdown transfer @on-click="handleTagsOption" style="margin-top:7px;">
-        <Button size="small" type="text">
-          <Icon :size="18" type="ios-close-circle-outline" />
+  <div class="tags-nav w-full flex">
+    <div class="tags-nav w-full md:w-1/2 flex bg-Zinc-50 z-10" style="background-color: #f5f5f5">
+      <div class="ml-4 mt-1.5">
+        <button type="button" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Create')}}</button>
+      </div>
+      <div class="ml-1 mt-1.5">
+        <button type="button" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Search')}}</button>
+      </div>
+      <div class="ml-1 mt-1.5">
+        <button type="button" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="tags-nav w-full md:w-1/2 flex">
+      <div class="close-con">
+        <Dropdown transfer @on-click="handleTagsOption" style="margin-top:7px;">
+          <Button size="small" type="text">
+            <Icon :size="18" type="ios-close-circle-outline" />
+          </Button>
+          <DropdownMenu slot="list">
+            <DropdownItem name="close-all">Close all</DropdownItem>
+            <DropdownItem name="close-others">Close others</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+      <ul v-show="visible" :style="{left: contextMenuLeft + 'px', top: contextMenuTop + 'px'}" class="contextmenu">
+        <li v-for="(item, key) of menuList" @click="handleTagsOption(key)" :key="key">{{item}}</li>
+      </ul>
+      <div class="btn-con left-btn">
+        <Button type="text" @click="handleScroll(240)">
+          <Icon :size="18" type="ios-arrow-back" />
         </Button>
-        <DropdownMenu slot="list">
-          <DropdownItem name="close-all">关闭所有</DropdownItem>
-          <DropdownItem name="close-others">关闭其他</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    </div>
-    <ul v-show="visible" :style="{left: contextMenuLeft + 'px', top: contextMenuTop + 'px'}" class="contextmenu">
-      <li v-for="(item, key) of menuList" @click="handleTagsOption(key)" :key="key">{{item}}</li>
-    </ul>
-    <div class="btn-con left-btn">
-      <Button type="text" @click="handleScroll(240)">
-        <Icon :size="18" type="ios-arrow-back" />
-      </Button>
-    </div>
-    <div class="btn-con right-btn">
-      <Button type="text" @click="handleScroll(-240)">
-        <Icon :size="18" type="ios-arrow-forward" />
-      </Button>
-    </div>
-    <div class="scroll-outer" ref="scrollOuter" @DOMMouseScroll="handlescroll" @mousewheel="handlescroll">
-      <div ref="scrollBody" class="scroll-body" :style="{left: tagBodyLeft + 'px'}">
-        <transition-group name="taglist-moving-animation">
-          <Tag
-            type="dot"
-            v-for="(item, index) in list"
-            ref="tagsPageOpened"
-            :key="`tag-nav-${index}`"
-            :name="item.name"
-            :data-route-item="item"
-            @on-close="handleClose(item)"
-            @click.native="handleClick(item)"
-            :closable="item.name !== $config.homeName"
-            :color="isCurrentTag(item) ? 'primary' : 'default'"
-            @contextmenu.prevent.native="contextMenu(item, $event)"
-          >{{ showTitleInside(item) }}</Tag>
-        </transition-group>
+      </div>
+      <div class="btn-con right-btn">
+        <Button type="text" @click="handleScroll(-240)">
+          <Icon :size="18" type="ios-arrow-forward" />
+        </Button>
+      </div>
+      <div class="scroll-outer" ref="scrollOuter" @DOMMouseScroll="handlescroll" @mousewheel="handlescroll">
+        <div ref="scrollBody" class="scroll-body" :style="{right: tagBodyLeft + 'px'}">
+          <transition-group name="taglist-moving-animation">
+            <Tag type="dot"
+                 v-for="(item, index) in list"
+                 ref="tagsPageOpened"
+                 :key="`tag-nav-${index}`"
+                 :name="item.name"
+                 :data-route-item="item"
+                 @on-close="handleClose(item)"
+                 @click.native="handleClick(item)"
+                 :closable="item.name !== $config.homeName"
+                 :color="isCurrentTag(item) ? 'primary' : 'default'"
+                 @contextmenu.prevent.native="contextMenu(item, $event)">{{ showTitleInside(item) }}</Tag>
+          </transition-group>
+        </div>
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>

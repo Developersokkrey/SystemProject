@@ -13,7 +13,7 @@ namespace SystemProject.Models.UserAccount
         public string Password { get; set; }
         [NotMapped]
         [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
-        public string ComfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
         public string PasswordHash { get; set; }
         public UserRules Rule { get; set; }
         public int  ComID { get; set; }   = 0;

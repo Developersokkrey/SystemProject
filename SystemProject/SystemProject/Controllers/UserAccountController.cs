@@ -28,8 +28,8 @@ namespace SystemProject.Controllers
             return Ok(userAccount);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> CreateUserAccount  (UserAccount userAccount )
+        [HttpPost("CreateUserAccount/userAccount")]
+        public async Task<ActionResult> CreateUserAccount  ([FromBody] UserAccount userAccount )
         {   
             ValidateSummary(userAccount);
             ModelMessage msg = new();
@@ -52,11 +52,11 @@ namespace SystemProject.Controllers
 
         private void ValidateSummary(UserAccount usacc)
         {
-            if (string.IsNullOrWhiteSpace(usacc.Username) || usacc.Username.Length > 5)
+            if (string.IsNullOrWhiteSpace(usacc.Username) || usacc.Username.Length < 5)
             {
                 ModelState.AddModelError("Username", "Username is required 5 charater !");
             }
-            if (Regex.IsMatch(usacc.Username, "\\s+"))
+            if (Regex.IsMatch(usacc.Username?? "", "\\s+"))
             {
                 ModelState.AddModelError("Username", "Username is not allow whitespace!");
             }

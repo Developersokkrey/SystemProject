@@ -3,7 +3,7 @@
     <Card shadow>
       <Row>
         <i-col span="4">
-          <Button @click="createTagParams">添加一个标签</Button>
+          <Button @click="createTagParams">createTagParams</Button>
         </i-col>
         <i-col span="20">
           <p>动态路由，添加params</p>
@@ -13,7 +13,7 @@
     <Card shadow style="margin-top: 10px;">
       <Row>
         <i-col span="4">
-          <Button @click="createTagQuery">添加一个标签</Button>
+          <Button @click="createTagQuery">createTagQuery</Button>
         </i-col>
         <i-col span="20">
           <p>动态路由，添加query</p>
@@ -66,6 +66,7 @@ export default {
         }
       }
       this.$router.push(route)
+      console.log(this.$router);
     },
     handleCloseTag () {
       this.closeTag({
