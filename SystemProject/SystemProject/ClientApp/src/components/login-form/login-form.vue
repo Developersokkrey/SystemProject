@@ -27,7 +27,7 @@ export default {
       type: Array,
       default: () => {
         return [
-          { required: true, message: '账号不能为空', trigger: 'blur' }
+          { required: true, message: '', trigger: 'blur' }
         ]
       }
     },
@@ -35,7 +35,7 @@ export default {
       type: Array,
       default: () => {
         return [
-          { required: true, message: '密码不能为空', trigger: 'blur' }
+          { required: true, message: '', trigger: 'blur' }
         ]
       }
     }
@@ -62,7 +62,7 @@ export default {
         if (valid) {
           this.$emit('on-success-valid', {
             userName: this.form.userName,
-            password: this.form.password
+            password: this.form.password            
           })
         }
       })

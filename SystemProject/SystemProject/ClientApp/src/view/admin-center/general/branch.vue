@@ -1,25 +1,33 @@
 <template>
 <div>
-    <form class="bg-white p-5 rounded-lg shadow-lg min-w-full">
+    <Form class="bg-white p-5 rounded-lg shadow-lg min-w-full" ref="loginForm" :model="form" :rules="rules" @keydown.enter.native="saveData" >
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Username') }}</label>
-				  <input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="data" type="text" :placeholder="$t('Username')" />
+          <FormItem prop="userName">
+            <Input v-model="form.userName" type="text" :placeholder="$t('Username')">
+              slot="prepend"
+            </Input>
+          </FormItem>				  
         </div>
         <div class="w-full px-2 md:w-1/2">
           <div>
             <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Gender')}}</label>
             </div>
-            <div class="form-check">        
-              <input type="radio" v-model="data" name="flexRadioDefault">
+            <div class="form-check">   
+              <FromItem prop="gender">     
+                <Input type="radio" v-model="form.gender" id="1" value="1" name="flexRadioDefault">
+                slot="prepend"
+                </Input>
+              </FromItem>
               <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
                   {{ $t('Male')}}
               </label>
-              <input type="radio" v-model="data" name="flexRadioDefault">
+              <input type="radio" name="flexRadioDefault">
               <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
                   {{$t('Female')}}
               </label>
-              <input type="radio" v-model="data" name="flexRadioDefault">
+              <input type="radio" name="flexRadioDefault">
               <label class="form-check-label inline-block text-gray-800 pl-1 pr-5" for="flexRadioDefault1">
                   {{$t('Other')}}
               </label>
@@ -29,7 +37,11 @@
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Password')}}</label>
-				  <input class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="data" type="Password" :placeholder="$t('Password')" />
+          <FormItem prop="password">
+          <Input v-model="form.password" type="Password" :placeholder="$t('Password')">
+           slot="prepend"
+          </Input>
+          </FormItem>
         </div>
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Confirm Password')}}</label>
@@ -39,9 +51,12 @@
        <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Rules')}}</label>
-					<select class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none" v-model="data">
-            <option :value="rule.id" v-for="rule in user_rules" :key="rule.id">{{ rule.title }}</option>
-          </select>
+          <FormItem prop="rule">
+					<Select v-model="form.rule">
+            <Option :value="rule.id" v-for="rule in user_rules" :key="rule.id">{{ rule.title }}</Option>
+            slot="prepend"
+          </Select>
+          </FormItem>
         </div>
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md" for="email">{{$t('Status')}}</label>
@@ -51,7 +66,7 @@
         </div>
       </div>
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
-        <div class="w-full px-2 pt-7 md:w-1/2 flex space-x-4">
+        <div class="w-full px-2 pt-7 md:w-1/2 flex space-x-4">           
             <div>
                 <button type="button" @click="saveData" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Save')}}</button>
             </div> 
@@ -126,7 +141,7 @@ import axios from 'axios'
 var error_title = "error"
 var error_text= ""
 export default {
-  name: "App",
+  name: 'LoginForm',
   data: () => ({          
     statuss: [
         { title: ' ', id: 0 },
@@ -143,24 +158,88 @@ export default {
         { title: 'User', id: 4 },                 
     ],   
   }),
+  props: {
+    userNameRules: {
+      type: Array,
+      default: () => {
+        return [
+          { required: true, message: ' ', trigger: 'blur' }
+        ]
+      }
+    },
+    passwordRules: {
+      type: Array,
+      default: () => {
+        return [
+          { required: true, message: ' ', trigger: 'blur' }
+        ]
+      }
+    },
+    ruleRules: {
+      type: Array,
+      default: () => {
+        return [
+          { required: true, message: ' ', trigger: 'blur' }
+        ]
+      }
+    },
+    genderRules: {
+      type: Array,
+      default: () => {
+        return [
+          { required: true, message: ' ', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  data () {
+    return {
+      form: {
+        userName: '',
+        password: '',
+        rule:'',
+        gender:''
+      }
+    }
+  },
+  computed: {
+    rules () {
+      return {
+        userName: this.userNameRules,
+        password: this.passwordRules,
+        rule: this.ruleRules,
+        gender: this.genderRules
+      }
+    }
+  },
     methods: {                          
     saveData() {
-      if(this._i18n.locale == 'en-US'){
-         error_title = "Success";
-         error_text = "Your email is already used!"
-      }
-      else if(this._i18n.locale == 'zh-TW'){
-          error_title = "ជោគជ័យ";
-          error_text = "គណនីរបស់អ្នកត្រូវបានចុះឈ្មោះ!"
-      }  
-      this.$notify(
-        {
-          group: "top",
-          title: error_title,
-          text: error_text
-        },
-        5000
-      );
+      // if(this._i18n.locale == 'en-US'){
+      //    error_title = "Success";
+      //    error_text = "Your email is already used!"
+      // }
+      // else if(this._i18n.locale == 'zh-TW'){
+      //     error_title = "ជោគជ័យ";
+      //     error_text = "គណនីរបស់អ្នកត្រូវបានចុះឈ្មោះ!"
+      // }  
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          this.$emit('on-success-valid', {
+            userName: this.form.userName,
+            password: this.form.password            
+          })
+        }
+      })      
+      // this.$notify(
+      //   {
+      //     group: "top",
+      //     title: error_title,
+      //     text: error_text
+      //   },
+      //   5000
+      // );
+      
+      
     },    
     clearData() { 
       if(this._i18n.locale == 'en-US'){

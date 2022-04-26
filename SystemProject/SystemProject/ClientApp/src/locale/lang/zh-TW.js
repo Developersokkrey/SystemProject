@@ -62,6 +62,19 @@ export default {
   Success:'ជោគជ័យ',
   description:'ការពិពណ៌នា',
   Company: 'ក្រុមហ៊ុន',
-  Branch:'សាខា'
+  Branch:'សាខា',
+  'Create New': 'បង្កើតថ្មី',
+  Search:'ស្វែងរក',
+  Refresh: 'ធ្វើឡើងវិញ',
+  Filter: 'សម្រង់',
+  Notification: 'ការជូនដំណឹង',
+  Calendar: 'ប្រតិទិន',
+  Print:'ព្រីន',
+  'First Record':'កំណត់ត្រាដំបូង',
+  'Previous Record':'កំណត់ត្រាមុន',
+  'Next Record':'កំណត់ត្រាបន្ទាប់',
+  'Last Record':'កំណត់ត្រាចុងក្រោយ',
+  'Create User Account': 'បង្កើតគណនីអ្នកប្រើប្រាស់'
+
 }
  

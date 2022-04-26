@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     handleCollpasedChange (state) {
-      this.$emit('on-coll-change', state)
+      this.$emit('on-coll-change', state)     
     }
   }
 }

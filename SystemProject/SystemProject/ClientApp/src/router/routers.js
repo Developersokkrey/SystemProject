@@ -90,6 +90,16 @@ export default [
                 component: () => import('@/view/admin-center/general/branch.vue')
               }, 
               {
+                path: 'useraccount-create',
+                name: 'Create User Account',
+                meta: {
+                  hideInMenu: true,                  
+                  icon: 'md-funnel',
+                  title: 'Create User Account'
+                },
+                component: () => import('@/view/admin-center/general/useraccount-create.vue')
+              }, 
+              {
                 path: 'useraccount',
                 name: 'User Account',
                 meta: {
@@ -169,7 +179,7 @@ export default [
     name: 'doc',
     meta: {
       title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
+      href: '/#/',
       icon: 'ios-book'
     }
   },
