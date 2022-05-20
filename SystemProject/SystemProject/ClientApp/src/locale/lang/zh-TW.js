@@ -74,7 +74,8 @@ export default {
   'Previous Record':'កំណត់ត្រាមុន',
   'Next Record':'កំណត់ត្រាបន្ទាប់',
   'Last Record':'កំណត់ត្រាចុងក្រោយ',
-  'Create User Account': 'បង្កើតគណនីអ្នកប្រើប្រាស់'
-
+  'Form User Account': 'បង្កើតគណនីអ្នកប្រើប្រាស់',
+  'Exchange Rate': "អត្រា​ប្តូ​រ​ប្រាក់",
+  currency:"រូបិយប័ណ្ណ"
 }
  

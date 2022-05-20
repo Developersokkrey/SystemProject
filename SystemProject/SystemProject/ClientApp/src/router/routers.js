@@ -81,23 +81,43 @@ export default [
                 component: () => import('@/view/admin-center/general/company.vue')
               },   
               {
-                path: 'barnch',
+                path: 'company-form',
+                name: 'Form Company',
+                meta: {
+                  hideInMenu: true,
+                  icon: 'md-funnel',
+                  title: 'Form Company'
+                },
+                component: () => import('@/view/admin-center/general/company-form.vue')
+              },
+              {
+                path: 'branch',
                 name: 'Branch',
                 meta: {
                   icon: 'md-funnel',
-                  title: 'Barnch'
+                  title: 'Branch'
                 },
                 component: () => import('@/view/admin-center/general/branch.vue')
               }, 
               {
-                path: 'useraccount-create',
-                name: 'Create User Account',
+                path: 'branch-form',
+                name: 'Form Branch',
+                meta: {
+                  hideInMenu: true,
+                  icon: 'md-funnel',
+                  title: 'Form Branch'
+                },
+                component: () => import('@/view/admin-center/general/branch-form.vue')
+              }, 
+              {
+                path: 'useraccount-form',
+                name: 'Form User Account',
                 meta: {
                   hideInMenu: true,                  
                   icon: 'md-funnel',
-                  title: 'Create User Account'
+                  title: 'Form User Account'
                 },
-                component: () => import('@/view/admin-center/general/useraccount-create.vue')
+                component: () => import('@/view/admin-center/general/useraccount-form.vue')
               }, 
               {
                 path: 'useraccount',
@@ -106,8 +126,17 @@ export default [
                   icon: 'md-funnel',
                   title: 'User Account'
                 },
-                component: () => import('@/view/admin-center/general/useraccount.vue')
-              },        
+                component: () => import('@/view/admin-center/general/useraccount.vue')                 
+              },  
+              {
+                path: 'exchangerate',
+                name: 'Exchange Rate',
+                meta: {
+                  icon: 'md-funnel',
+                  title: 'Currency'
+                },
+                component: () => import('@/view/admin-center/general/exchangerate.vue')
+              },      
             ]
           },
           {
@@ -122,13 +151,22 @@ export default [
             component: parentView,
             children: [
               {
-                path: 'level_2_2_1',
-                name: 'level_2_2_1',
+                path: 'warehouse',
+                name: 'warehouse',
                 meta: {
                   icon: 'md-funnel',
                   title: '三级'
                 },
-                component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+                component: () => import('@/view/admin-center/inventory/warehouse.vue')
+              },
+              {
+                path: 'warehouse1',
+                name: 'warehouse1',
+                meta: {
+                  icon: 'md-funnel',
+                  title: '三级'
+                },
+                component: () => import('@/view/admin-center/inventory/warehouse1.vue')
               },
               {
                 path: 'level_2_2',
@@ -420,25 +458,6 @@ export default [
     ]
   },
   {
-    path: '/i18n',
-    name: 'i18n',
-    meta: {
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'i18n_page',
-        name: 'i18n_page',
-        meta: {
-          icon: 'md-planet',
-          title: 'i18n - {{ i18n_page }}'
-        },
-        component: () => import('@/view/i18n/i18n-page.vue')
-      }
-    ]
-  },
-  {
     path: '/error_store',
     name: 'error_store',
     meta: {
@@ -477,85 +496,6 @@ export default [
       }
     ]
   },
-  {
-    path: '/directive',
-    name: 'directive',
-    meta: {
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'directive_page',
-        name: 'directive_page',
-        meta: {
-          icon: 'ios-navigate',
-          title: '指令'
-        },
-        component: () => import('@/view/directive/directive.vue')
-      }
-    ]
-  },
-  // {
-  //   path: '/multilevel',
-  //   name: 'multilevel',
-  //   meta: {
-  //     icon: 'md-menu',
-  //     title: '多级菜单'
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'level_2_1',
-  //       name: 'level_2_1',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         title: '二级-1'
-  //       },
-  //       component: () => import('@/view/multilevel/level-2-1.vue')
-  //     },
-  //     {
-  //       path: 'level_2_2',
-  //       name: 'level_2_2',
-  //       meta: {
-  //         access: ['super_admin'],
-  //         icon: 'md-funnel',
-  //         showAlways: true,
-  //         title: '二级-2'
-  //       },
-  //       component: parentView,
-  //       children: [
-  //         {
-  //           path: 'level_2_2_1',
-  //           name: 'level_2_2_1',
-  //           meta: {
-  //             icon: 'md-funnel',
-  //             title: '三级'
-  //           },
-  //           component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
-  //         },
-  //         {
-  //           path: 'level_2_2_2',
-  //           name: 'level_2_2_2',
-  //           meta: {
-  //             icon: 'md-funnel',
-  //             title: '三级'
-  //           },
-  //           component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'level_2_3',
-  //       name: 'level_2_3',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         title: '二级-3'
-  //       },
-  //       component: () => import('@/view/multilevel/level-2-3.vue')
-  //     }
-  //   ]
-  // },
   {
     path: '/argu',
     name: 'argu',

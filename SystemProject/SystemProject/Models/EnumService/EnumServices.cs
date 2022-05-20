@@ -10,7 +10,7 @@
             Manager=3,
             User=4
         }
-        public enum UeerStatus
+        public enum UserStatus
         {
             None=0,
             Active=1,
@@ -25,5 +25,6 @@
             Female=2,
             Other=3
         }
+
     }
 }

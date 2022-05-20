@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SystemProject.DataApp;
 using SystemProject.Models.UserAccount;
+using System.Linq;
+using static SystemProject.Model.EnumService.EnumServices;
 
 namespace SystemProject.Controllers
 {
@@ -22,10 +24,17 @@ namespace SystemProject.Controllers
         }
 
         [HttpGet("userAccountForm")]
-        public IActionResult UserAccountForm()
+        public IActionResult UserAccountForm(int usid)
         {
-            UserAccount userAccount = new();             
-            return Ok(userAccount);
+            if (usid == 0)
+            {
+                UserAccount userAccount = new();
+                return Ok(userAccount);
+            }
+            else
+            {
+               return Ok(_dataContext.OUSR.FirstOrDefault(w => w.ID == usid));
+            }                    
         }
 
         [HttpPost("CreateUserAccount/userAccount")]
@@ -40,6 +49,7 @@ namespace SystemProject.Controllers
                     _securityManager.TryComputeHash(userAccount.Password, out string _hash, out string _salt);
                     var hash = $"{_hash}.{_salt}";
                     userAccount.PasswordHash = hash;
+                    userAccount.ComID = _dataContext.COMP.FirstOrDefault().ID;
                     _dataContext.OUSR.Update(userAccount);
                     _dataContext.SaveChanges();
                     t.Commit();
@@ -60,7 +70,7 @@ namespace SystemProject.Controllers
             {
                 ModelState.AddModelError("Username", "Username is not allow whitespace!/ឈ្មោះអ្នកប្រើប្រាស់មិនអនុញ្ញាតឱ្យដកឃ្លាទេ!");
             }
-            if (string.IsNullOrWhiteSpace(usacc.Password) || usacc.Password.Length > 5)
+            if (string.IsNullOrWhiteSpace(usacc.Password) || usacc.Password.Length < 5)
             {
                 ModelState.AddModelError("Password", "Password is required 5 charater !/ត្រូវការលេខសម្ងាត់ 5 តួអក្សរ!");
             }else if(Regex.IsMatch(usacc.Password ?? "", "\\s+"))
@@ -87,6 +97,26 @@ namespace SystemProject.Controllers
             {
                 ModelState.AddModelError("Status", "Status is required select !/ស្ថានភាពត្រូវបានទាមទារជ្រើសរើស!");
             }
+            if (usacc.BranID == 0)
+            {
+                ModelState.AddModelError("BranID", "Branch is required select !/ស្ថានភាពត្រូវបានទាមទារជ្រើសរើស!");
+            }
+        }
+        [HttpGet("getUserAccount")]
+        public IActionResult GetUserAccount()
+        {
+            var userobjs = from u in _dataContext.OUSR
+                           join b in _dataContext.BRAN on u.BranID equals b.ID
+                           select new
+                           {
+                               ID = u.ID,
+                               UserName = u.Username,
+                               Rule =  ((UserRules)u.Rule).ToString(),
+                               Gender = ((Genders)u.Gender).ToString(),
+                               Status = ((UserStatus)u.Status).ToString(),
+                               Branch = b.Name,
+                           };
+            return Ok(userobjs);
         }
     }
 }

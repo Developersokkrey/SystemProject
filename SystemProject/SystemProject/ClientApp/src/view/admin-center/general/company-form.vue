@@ -20,13 +20,13 @@
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('System Currency')}}</label>
-          <select v-model="compobjs.sc" id="border-system" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none" disabled>
+          <select v-model="compobjs.sc" id="border-system" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
             <option :value="currobj.value" v-for="currobj in currobjs" :key="currobj.value">{{ currobj.title }}</option>
           </select>
         </div>
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md" for="email">{{$t('Local Currency')}}</label>
-          <select v-model="compobjs.lc" id="border-Local" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none" disabled>
+          <select v-model="compobjs.lc" id="border-Local" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
             <option :value="currobj.value" v-for="currobj in currobjs" :key="currobj.value">{{ currobj.title }}</option>
           </select>
         </div>
@@ -36,9 +36,9 @@
           <div>
             <button type="button" @click="saveData" class="px-4 py-1.5 bg-blue-600 font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Save')}}</button>
           </div>
-          <!-- <div>
+          <div>
             <button type="button" @click="clearData" class="px-4 py-1.5 bg-yellow-600 font-medium text-xs leading-tight rounded shadow-md hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Clear')}}</button>
-          </div> -->
+          </div>
         </div>        
       </div>
     </form>
@@ -182,7 +182,7 @@
   }
   function resetUser(axios, self) { 
     axios.get('/api/company/GetCompany').then(response => {        
-        self.compobjs = response.data.company;
+        // self.compobjs = response.data.company;
         self.currobjs = response.data.currencies;   
         console.log(response.data);     
       })  

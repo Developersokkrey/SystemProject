@@ -1,10 +1,10 @@
 <template>
   <div>
-    <form class="bg-white p-5 rounded-lg shadow-lg min-w-full">
+    <form class="bg-white p-5 rounded-lg shadow-lg min-w-full" @keyup.enter="saveData">
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Username') }}</label>
-          <input id="border-username" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="user.username" type="text" :placeholder="$t('Username')" autocomplete="off"/>
+          <input id="border-username" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="user.username" type="text" :placeholder="$t('Username')" autocomplete="off"/>
         </div>
         <div class="w-full px-2 md:w-1/2">
           <div>
@@ -29,35 +29,41 @@
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Password')}}</label>
-          <input id="border-password" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="user.password" type="Password" :placeholder="$t('Password')" />
+          <input id="border-password" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="user.password" type="Password" :placeholder="$t('Password')" />
         </div>
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Confirm Password')}}</label>
-          <input id="border-confirm" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border" v-model="user.confirmPassword" type="Password" :placeholder="$t('Confirm Password')" />
+          <input id="border-confirm" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="user.confirmPassword" type="Password" :placeholder="$t('Confirm Password')" />
         </div>
       </div>
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Rules')}}</label>
-          <select v-model="user.rule" id="border-rule" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none">
+          <select v-model="user.rule" id="border-rule" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
             <option :value="rule.value" v-for="rule in user_rules" :key="rule.value">{{ rule.title }}</option>
           </select>
         </div>
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md" for="email">{{$t('Status')}}</label>
-          <select v-model="user.status" id="border-status" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border rounded-lg focus:outline-none">
+          <select v-model="user.status" id="border-status" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
             <option :value="status.value" v-for="status in statuss" :key="status.value">{{ status.title }}</option>
           </select>
         </div>
       </div>
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
-        <div class="w-full px-2 pt-7 md:w-1/2 flex space-x-4">
+        <div class="w-full px-2 pt-12 md:w-1/2 flex space-x-4">
           <div>
-            <button type="button" @click="saveData" class="nline-block px-4 py-1.5 bg-blue-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Save')}}</button>
+            <button type="button" @click="saveData" class="px-4 py-1.5 bg-blue-600 font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Save')}}</button>
           </div>
           <div>
-            <button type="button" @click="clearData()" class="inline-block px-4 py-1.5 bg-yellow-600 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{{$t('Clear')}}</button>
+            <button type="button" @click="clearData" class="px-4 py-1.5 bg-yellow-600 font-medium text-xs leading-tight rounded shadow-md hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Clear')}}</button>
           </div>
+        </div>
+        <div class="w-full px-2 md:w-1/2">
+          <label class="text-gray-800 font-semibold block my-3 text-md" for="email">{{$t('Branch')}}</label>
+          <select v-model="user.branid" id="border-branch" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
+            <option :value="branobj.id" v-for="branobj in branobjs" :key="branobj.id">{{ branobj.title }}</option>
+          </select>
         </div>
       </div>
     </form>
@@ -88,7 +94,7 @@
           </div>
         </div>
       </notificationGroup>
-      <notificationGroup group="bottom" position="bottom">
+    <notificationGroup group="bottom" position="bottom">
     <div class="vt-bot fixed inset-x-2 bottom-5 z-50 flex px-4 py-6 pointer-events-none p-4 items-start justify-end">
       <div class="max-w-sm max-h-96">
         <notification v-slot="{notifications}">
@@ -123,6 +129,7 @@
     name: "App",
     data: () => ({
       user:{},
+      branobjs:[],
       statuss: [
         { title: ' ', value: 0 },
         { title: 'Active', value: 1 },
@@ -139,15 +146,6 @@
       ],
     }),
     methods: {
-      handleSubmit({ userName, password }) {
-        this.handleLogin({ userName, password }).then(res => {
-          this.getUserInfo().then(res => {
-            this.$router.push({
-              name: this.$config.homeName
-            })
-          })
-        })
-      },
       saveData() {
         let _this = this;         
         axios.post('/api/userAccount/CreateUserAccount/userAccount', this.user).then((response) => {
@@ -169,6 +167,9 @@
             }
             if (response.data.data.status != undefined) {
               document.getElementById("border-status").style.borderColor = "red";
+            }
+            if (response.data.data.status != undefined) {
+              document.getElementById("border-branch").style.borderColor = "red";
             }
             var keys = Object.getOwnPropertyNames(message);
             let msg = "";
@@ -194,8 +195,9 @@
             }
           }
           else {
-            //onClickTop();
-            console.log("Success");
+            localStorage.setItem('usid', JSON.stringify(0));
+            var id = localStorage.getItem('usid');            
+            //onClickTop();           
             var error_title = ""
             var keys = Object.getOwnPropertyNames(message);
             let msg = "";
@@ -215,76 +217,58 @@
                 text: msg
               },
               5000
-            );
+            );             
             resetUser(axios, this);
           }
-        });          
+        });
       },
       clearData() {           
         //clearNotify();        
         //console.log(this.user)
-        let _this = this;
-        //axios
-        //  .get('/api/userAccount/UserAccountForm')
-        //  .then(response => {
-        //    this.posts = response.data
-        //    let props = Object.getOwnPropertyNames(response.data);
-        //    let _user = Object.assign(response.data);
-        //    for (let i = 0; i < props.length; i++) {
-        //      _this.user[props[i]] = _user[props[i]] == null ? "" : _user[props[i]];
-        //      console.log(response.data);
-        //    }
-        //    _this.user = _user
-        //    console.log(_this.user);
-        //  })
-        //console.log(_this.user);
+        localStorage.setItem('usid', JSON.stringify(0));        
         resetUser(axios, this);
-        //if (this._i18n.locale == 'en-US') {
-        //  error_title = "Erorr";
-        //  error_text = "Your email is already used!"
-        //}
-        //else if (this._i18n.locale == 'zh-TW') {
-        //  error_title = "កំហុស";
-        //  error_text = "អ៊ីមែលរបស់អ្នកត្រូវបានប្រើប្រាស់រួចហើយ!"
-        //}
-        //this.$notify(
-        //  {
-        //    group: "bottom",
-        //    title: error_title,
-        //    text: error_text
-        //  },
-        //  10000
-        //);
-        //console.log(this._i18n.locale);
-        //console.log(this);
       }
     },
     mounted() {
-      resetUser(axios, this);
-      console.log(+'mounede: '+this.user);
+      // var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+      // // Put the object into storage
+      // localStorage.setItem('testObject', JSON.stringify(testObject));
+      // Retrieve the object from storage 
+      // var usid = localStorage.getItem('usid');
+      // console.log('usid: ', JSON.parse(usid));           
+      const _this = this;
+      resetUser(axios, this); 
     },
-
   };
 
+  function setBranches(self){
+     axios
+      .get('/api/branch/GetBranch')
+      .then(response => {  
+        self.branobjs = response.data;
+      });
+  }
   function resetUser(axios, self) {
+    var id = localStorage.getItem('usid');
+    console.log(id);
     document.getElementById("border-username").style.borderColor = "";
     document.getElementById("border-password").style.borderColor = "";
     document.getElementById("border-confirm").style.borderColor = "";
     document.getElementById("border-rule").style.borderColor = "";
     document.getElementById("border-status").style.borderColor = "";
+    document.getElementById("border-branch").style.borderColor = "";    
     axios
-      .get('/api/userAccount/UserAccountForm')
-      .then(response => {
+      .get('/api/userAccount/UserAccountForm/', {params:{usid: id}}).then(response => {
+        setBranches(self);
         //this.posts = response.data
+        localStorage.setItem('usid', JSON.stringify(0)); 
         let props = Object.getOwnPropertyNames(response.data);
         let _user = Object.assign(response.data);
         for (let i = 0; i < props.length; i++) {
           self.user[props[i]] = _user[props[i]];
         }
-        self.user = _user
-        console.log(+"reset: "+self.user);
-      })
-
+        self.user = _user         
+      });    
   }
 
   function clearNotify(enabled = true) {
@@ -293,8 +277,7 @@
       notify[i].classList.remove("hidden");
       if (enabled) {
         notify[i].classList.add("hidden");
-      }
-      
+      }      
     }
   }
 </script>

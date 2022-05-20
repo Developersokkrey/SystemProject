@@ -1,63 +1,68 @@
 <template>
   <div class="tags-nav w-full flex">
-    <div class="tags-nav w-full md:w-1/2 flex bg-Zinc-50 z-10" style="background-color: #e6e6e6">
-      <div class="ml-1.5 mt-1.5">
+    <div class="tags-nav w-full md:w-4/6 flex bg-Zinc-50 z-10" style="background-color: #e6e6e6">
+      <div class="ml-4 mt-1">
         <button @click="createNew"  :title="$t('Create New')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner 
          hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
          <Icon type="md-add-circle" :size="19"/></button>
       </div>
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Search')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="ios-search" :size="19"/></button>
       </div>
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('First Record')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="ios-skip-backward" :size="19"/></button>
       </div>
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Previous Record')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="md-arrow-round-back" :size="19"/></button>
       </div>
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Next Record')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="md-arrow-round-forward" :size="19"/></button>
       </div>   
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Last Record')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="ios-skip-forward" :size="19"/></button>
       </div> 
-       <div class="ml-1 mt-1.5">
+       <div class="ml-1 mt-1">
         <button :title="$t('Refresh')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="md-refresh" :size="19"/></button>
       </div> 
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Filter')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="ios-funnel" :size="19"/></button>
       </div> 
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Print')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="ios-print" :size="19"/></button>
       </div> 
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Calendar')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inner
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="md-calendar" :size="19"/></button>
       </div>  
-      <div class="ml-1 mt-1.5">
+      <div class="ml-1 mt-1">
         <button :title="$t('Notification')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inners
         hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
         <Icon type="ios-settings" :size="19"/></button>
       </div>  
+      <div class="ml-1 mt-1">
+        <button :title="$t('Preview')" type="button" class="nline-block px-4 py-1 bg-white text-zinc-800 font-medium text-xs leading-tight rounded shadow-inners
+        hover:bg-slate-100 hover:shadow-lg focus:bg-slate-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-100 active:shadow-lg transition duration-150 ease-in-out">
+        <Icon type="ios-document" :size="19"/></button>
+      </div> 
     </div>
-    <div class="tags-nav w-full md:w-1/2 flex">
+    <div class="tags-nav w-full md:w-3/6 flex">
       <div class="close-con">
         <Dropdown transfer @on-click="handleTagsOption" style="margin-top:7px;">
           <Button size="small" type="text">
@@ -119,7 +124,7 @@ export default {
     }
   },
   data () {    
-    return {
+    return {      
       tagBodyLeft: 0,
       rightOffset: 40,
       outerPadding: 4,
@@ -241,16 +246,35 @@ export default {
       this.visible = false
     },
     createNew(){      
-      if(this.currentRouteObj.name == 'User Account'){        
-       this.$router.push('useraccount-create'); 
+      if(this.currentRouteObj.name == 'User Account'){ 
+        localStorage.setItem('usid', JSON.stringify(0));       
+       this.$router.push('useraccount-form'); 
       }
-      else if (this.currentRouteObj.name == 'Create User Account'){
-        this.$router.push('useraccount-create');
+      else if (this.currentRouteObj.name == 'Form User Account'){   
+        localStorage.setItem('usid', JSON.stringify(0));         
+        this.$router.push('useraccount-form');
+      }
+      else if(this.currentRouteObj.name == 'Exchange Rate'){
+          this.$router.push('exchangerate');                   
+      }
+      else if(this.currentRouteObj.name == 'Company'){
+          this.$router.push('company-form')
+      }
+      else if(this.currentRouteObj.name == 'Form Company'){
+          this.$router.push('company-form')
+      }
+      else if(this.currentRouteObj.name == 'Branch'){           
+          this.$router.push('branch-form');         
+      }
+      else if(this.currentRouteObj.name == 'Form Branch'){
+        localStorage.setItem('branid', JSON.stringify(0));
+         this.$router.push('branch-form');
       }
       else{
         const current  = this.currentRouteObj.name;
         this.$router.push(current);
-      }      
+      }          
+      // console.log(this.currentRouteObj.name)  
     }
   },
   watch: {

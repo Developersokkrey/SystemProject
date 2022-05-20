@@ -11,7 +11,7 @@ using SystemProject.DataApp;
 namespace SystemProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220418022340_01")]
+    [Migration("20220503034644_01")]
     partial class _01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,6 +22,34 @@ namespace SystemProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("SystemProject.Models.Company.Currency", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("ComID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Des")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("OCURE");
+                });
 
             modelBuilder.Entity("SystemProject.Models.UserAccount.UserAccount", b =>
                 {
