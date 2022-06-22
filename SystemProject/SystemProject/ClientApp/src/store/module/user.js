@@ -10,8 +10,8 @@ import {
   getUnreadCount
 } from '@/api/user'
 import { setToken, getToken } from '@/libs/util'
-
-export default {
+import Axios from 'axios'
+export default {  
   state: {
     userName: '',
     userId: '',
@@ -23,7 +23,11 @@ export default {
     messageUnreadList: [],
     messageReadedList: [],
     messageTrashList: [],
-    messageContentStore: {}
+    messageContentStore: {},
+    userSignin: {
+      userName:'super_admin',
+      password:''
+    }
   },
   mutations: {
     setAvatar (state, avatarPath) {
@@ -75,14 +79,23 @@ export default {
   actions: {
     // 登录
     handleLogin ({ commit }, { userName, password }) {
-      userName = userName.trim()
+      userName = userName.trim(),      
+      // this.userSignin.userName = userName;
+      // this.userSignin.password = password;
+      console.log(this.state.user.userSignin);
       return new Promise((resolve, reject) => {
-        login({
-          userName,
-          password
-        }).then(res => {
-          const data = res.data
-          commit('setToken', data.token)
+        login({ userName, password}).then(res => { const data = res.data 
+          // Axios.get("/", function(resp){
+          //   commit('setToken', resp.data.token)
+          // }); 
+          Axios.post('/api/userAccount/SignIn', this.state.user.userSignin).then((response) => {
+            if (response.data.isRejected == true) {
+  
+            }
+            else{    
+              commit('setToken', 'super_admin') 
+            }
+          }),                  
           resolve()
         }).catch(err => {
           reject(err)

@@ -1,12 +1,21 @@
 <template>
 <div id="app">
  <v-app id="inspire">
+   <div class="pb-1" role="alert">
+      <div class="bg-gray-400 text-white font-bold rounded-t px-4 py-0.5 w-full flex">
+        <div class="w-full md:w-2/2 flex">
+          {{$t('Branch')}}
+        </div>
+         <div class="w-full md:w-2/2 flex">           
+          <input v-model="search" class="placeholder:italic text-gray-600 font-normal bg-white w-full border border-slate-300 rounded-md pt-0.5 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search..." type="text" name="search"/>
+        </div>
+      </div>            
+    </div>
     <v-card>
-      <v-card-title>
-        List Branch
+      <!-- <v-card-title>        
         <v-spacer></v-spacer>
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
-      </v-card-title>
+      </v-card-title> -->
       <v-data-table fixed-header height="450" :headers="headers" :items="branobjs" :search="search" dense>
          <template>
             <v-toolbar  flat>

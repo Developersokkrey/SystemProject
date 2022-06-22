@@ -11,8 +11,8 @@ using SystemProject.DataApp;
 namespace SystemProject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220506072913_03")]
-    partial class _03
+    [Migration("20220525154322_01")]
+    partial class _01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -156,6 +156,28 @@ namespace SystemProject.Migrations
                     b.ToTable("OCURE");
                 });
 
+            modelBuilder.Entity("SystemProject.Models.Company.ExchangeRate", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("CurrID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Rate1")
+                        .HasColumnType("decimal(36,18)");
+
+                    b.Property<decimal>("Rate2")
+                        .HasColumnType("decimal(36,18)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("EXRATE");
+                });
+
             modelBuilder.Entity("SystemProject.Models.UserAccount.UserAccount", b =>
                 {
                     b.Property<int>("ID")
@@ -163,6 +185,9 @@ namespace SystemProject.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("BranID")
+                        .HasColumnType("int");
 
                     b.Property<int>("ComID")
                         .HasColumnType("int");

@@ -116,7 +116,27 @@ namespace SystemProject.Controllers
                                Status = ((UserStatus)u.Status).ToString(),
                                Branch = b.Name,
                            };
-            return Ok(userobjs);
+            return Ok(userobjs);                                    
+        }
+        [HttpPost("SignIn")]
+        public async Task<IActionResult> SignIn([FromBody] SignInModel signIn)         
+        {
+            ModelMessage msg = new();
+            using (var t = _dataContext.Database.BeginTransaction())
+            {
+                if (ModelState.IsValid)
+                {
+                    t.Commit();
+                    ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
+                    msg.Approve();
+                }
+            }
+            return Ok(await Task.FromResult(msg.Bind(ModelState)));
+        }
+        public class UserSignIn
+        {
+            public string Name { get; set; }
+            public string User_Id { get; set; }
         }
     }
 }

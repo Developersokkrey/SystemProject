@@ -2,6 +2,7 @@
 using KSystemProject.References;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SystemProject.DataApp;
@@ -29,8 +30,38 @@ namespace SystemProject.Controllers
                 {   
                     _dataContext.OCURE.Update(currency);
                     _dataContext.SaveChanges();
+                    ExchangeRate exchangeRate = new ExchangeRate();
+                    exchangeRate.CurrID = currency.ID;
+                    exchangeRate.Rate1 = 0;
+                    exchangeRate.Rate2 = 0;
+                    _dataContext.EXRATE.Update(exchangeRate);
+                    _dataContext.SaveChanges();
                     t.Commit();
                     ModelState.AddModelError("success", "Currency save successfully./ការរក្សាទុករូបិយប័ណ្ណដោយជោគជ័យ។");
+                    msg.Approve();
+                }
+            }
+            return Ok(await Task.FromResult(msg.Bind(ModelState)));
+        }
+        [HttpPost("SaveRate/{exchange}")]
+        public async Task<IActionResult> SaveRate([FromBody] List<ExchangeRate> exchange)
+        {
+            ModelMessage msg = new();
+            using (var t = _dataContext.Database.BeginTransaction())
+            {
+                if (ModelState.IsValid)
+                {
+                    foreach (var item in exchange)
+                    {
+                        if (item.Rate1 != 0)
+                        {
+                            item.Rate2 = 1 / item.Rate1;
+                        }
+                    }
+                    _dataContext.EXRATE.UpdateRange(exchange);
+                    _dataContext.SaveChanges();
+                    t.Commit();
+                    ModelState.AddModelError("success", "ExchangeRate save successfully./ការរក្សាទុករូបិយប័ណ្ណដោយជោគជ័យ។");
                     msg.Approve();
                 }
             }
@@ -95,11 +126,45 @@ namespace SystemProject.Controllers
                                  Symbol = c.Symbol,
                              },
                 Company = _dataContext.COMP.FirstOrDefault(),
-            };
-            //companyModel.Currencies.ForEach(c => {
-            //    c.StatusName = currModel.UserStatus[(int)c.Status];
-            //});                  
+            };                                
             return Ok(companyModel);
+        }
+        [HttpGet("GetCompanyEmty")]
+        public IActionResult GetCompanyEmty()
+        {
+            var companyModel = new
+            {
+                Currencies = from c in _dataContext.OCURE
+                             select new Currency
+                             {
+                                 Value = c.ID,
+                                 Title = c.Name,
+                                 Symbol = c.Symbol,
+                             },
+                Company = new Company()
+            };
+            return Ok(companyModel);
+        }
+        [HttpGet("GetExchangeRate")]
+        public IActionResult GetExchangeRate()
+        {
+            var exchangeRateModel = new
+            {
+                Company = from c in _dataContext.COMP
+                          join s in _dataContext.OCURE on c.SC equals s.ID
+                          select new Company { ID = c.ID, SCName = s.Name },
+                Exchange = from c in _dataContext.EXRATE
+                           join x in _dataContext.OCURE on c.CurrID equals x.ID
+                               select new ExchangeRate
+                               {
+                                   ID = c.ID,
+                                   CurrID = c.ID,
+                                   Rate1 = c.Rate1,
+                                   Rate2 = c.Rate2,
+                                   CurrName = x.Name,
+                               },                   
+             }; 
+            return Ok(exchangeRateModel);
         }
     }
 }

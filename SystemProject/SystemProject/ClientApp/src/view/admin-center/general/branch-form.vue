@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div role="alert">
+      <div class="bg-gray-400 text-white font-bold rounded-t px-4 py-1">
+        {{$t('Branch')}}
+      </div>      
+    </div>
     <form class="bg-white p-5 rounded-lg shadow-lg min-w-full">
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
@@ -97,8 +102,7 @@
           if (response.data.isRejected == true) {            
           }
           else {            
-          }
-          console.log(response.data);
+          }        
         }); 
       },
       clearData() { 
@@ -106,8 +110,7 @@
         localStorage.setItem('branid', JSON.stringify(0));  
         var bid = localStorage.getItem('branid');      
         axios.get('/api/branch/GetBranchEdit',{params:{branid: bid}}).then(response => {           
-          _this.branch = response.data;
-          console.log(response.data)
+          _this.branch = response.data;         
       })
       }
     },

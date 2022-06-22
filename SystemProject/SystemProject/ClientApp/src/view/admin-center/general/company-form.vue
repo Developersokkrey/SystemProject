@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div role="alert">
+      <div class="bg-gray-400 text-white font-bold rounded-t px-4 py-0.5 w-full flex">
+        <div class="w-full md:w-2/2 flex">
+          {{$t('Company')}}
+        </div>
+         <!-- <div class="w-full md:w-2/2 flex">           
+          <input v-model="search" class="placeholder:italic text-gray-600 font-normal bg-white w-full border border-slate-300 rounded-md pt-0.5 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search..." type="text" name="search"/>
+        </div> -->
+      </div>            
+    </div>
     <form class="bg-white p-5 rounded-lg shadow-lg min-w-full" @keyup.enter="saveData">
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
@@ -108,7 +118,8 @@
     }),
     methods: {
       saveData() {
-        let _this = this;         
+        let _this = this;    
+        console.log(this.compobjs)     
         axios.post('/api/company/CreateCompany/comp', this.compobjs).then((response) => {
           clearNotify(false);
           let message = response.data.data;
@@ -181,10 +192,9 @@
       });
   }
   function resetUser(axios, self) { 
-    axios.get('/api/company/GetCompany').then(response => {        
-        // self.compobjs = response.data.company;
-        self.currobjs = response.data.currencies;   
-        console.log(response.data);     
+    axios.get('/api/company/GetCompanyEmty').then(response => {        
+        self.compobjs = response.data.company;
+        self.currobjs = response.data.currencies;  
       })  
   }
   function clearNotify(enabled = true) {

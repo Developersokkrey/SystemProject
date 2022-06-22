@@ -1,58 +1,48 @@
 <template>
 <table>
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th>No.</th>
+    <th>System Currency</th>
+    <th>To</th>
+    <th>Exchage</th>
+    <th>Rate</th>
   </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
+
+  <tr v-for="(item , index) in exrate" :key="index">
+    <td>{{index +1}}</td>
+    <td>{{comp[0].scName}}</td>
+    <td>⇒</td>
+    <td>{{item.currName}}</td>
+    <td><input v-model="item.rate1"/></td>
+  </tr>  
 </table>
 </template>
 
 <script>
+import axios from 'axios'  
 export default {
-
+  data: () =>({
+    exrate:[],
+    comp:{},
+  }),
+  mounted() {
+     axios.get('/api/company/GetExchangeRate').then(response => { 
+        this.exrate = response.data.exchange;
+        this.comp = response.data.company;               
+      });   
+  },
 }
 </script>
 <style>
 table {
   font-family: arial, sans-serif;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
   width: 100%;
 }
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  padding: 3px;
 }
 tr:nth-child(even) {
   background-color: #dddddd;

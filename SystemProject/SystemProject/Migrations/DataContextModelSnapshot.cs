@@ -149,12 +149,31 @@ namespace SystemProject.Migrations
                     b.Property<string>("Symbol")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
                     b.ToTable("OCURE");
+                });
+
+            modelBuilder.Entity("SystemProject.Models.Company.ExchangeRate", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("CurrID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Rate1")
+                        .HasColumnType("decimal(36,18)");
+
+                    b.Property<decimal>("Rate2")
+                        .HasColumnType("decimal(36,18)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("EXRATE");
                 });
 
             modelBuilder.Entity("SystemProject.Models.UserAccount.UserAccount", b =>

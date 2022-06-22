@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <form class="bg-white p-5 rounded-lg shadow-lg min-w-full" @keyup.enter="saveData">
+  <div>  
+    <div role="alert">
+      <div class="bg-gray-400 text-white font-bold rounded-t px-4 py-1">
+        {{$t('User Account')}}
+      </div>      
+    </div>    
+    <form class="bg-white p-5 rounded-lg shadow-lg min-w-full" @keyup.enter="saveData">      
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Username') }}</label>
@@ -150,8 +155,7 @@
         let _this = this;         
         axios.post('/api/userAccount/CreateUserAccount/userAccount', this.user).then((response) => {
           clearNotify(false);
-          let message = response.data.data;
-          console.log(response.data.isRejected)
+          let message = response.data.data;          
           if (response.data.isRejected == true) {
             if (response.data.data.username != undefined) {
               document.getElementById("border-username").style.borderColor = "red";
@@ -250,7 +254,6 @@
   }
   function resetUser(axios, self) {
     var id = localStorage.getItem('usid');
-    console.log(id);
     document.getElementById("border-username").style.borderColor = "";
     document.getElementById("border-password").style.borderColor = "";
     document.getElementById("border-confirm").style.borderColor = "";

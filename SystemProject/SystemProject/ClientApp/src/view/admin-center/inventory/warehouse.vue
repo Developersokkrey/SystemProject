@@ -1,6 +1,5 @@
 <template>
   <div class="container mt-4">
-
     <table class="table table-bordered mt-4">
       <thead class="thead-light">
         <tr>

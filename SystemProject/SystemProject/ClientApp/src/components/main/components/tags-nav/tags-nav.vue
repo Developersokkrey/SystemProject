@@ -255,7 +255,8 @@ export default {
         this.$router.push('useraccount-form');
       }
       else if(this.currentRouteObj.name == 'Exchange Rate'){
-          this.$router.push('exchangerate');                   
+          this.$router.push('exchangerate');    
+          localStorage.setItem('exDialog', JSON.stringify(1));               
       }
       else if(this.currentRouteObj.name == 'Company'){
           this.$router.push('company-form')

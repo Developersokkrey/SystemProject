@@ -152,7 +152,7 @@ export default [
             children: [
               {
                 path: 'warehouse',
-                name: 'warehouse',
+                name: 'Warehouse',
                 meta: {
                   icon: 'md-funnel',
                   title: '三级'
@@ -161,7 +161,7 @@ export default [
               },
               {
                 path: 'warehouse1',
-                name: 'warehouse1',
+                name: 'Warehouse1',
                 meta: {
                   icon: 'md-funnel',
                   title: '三级'

@@ -14,5 +14,6 @@ namespace SystemProject.DataApp
         public DbSet<Company> COMP { get; set; }
         public DbSet<Branch> BRAN { get; set; }
         public DbSet<BranchInfo> BRINFO { get; set; }
+        public DbSet<ExchangeRate> EXRATE { get; set; }                                                             
     }
 }
