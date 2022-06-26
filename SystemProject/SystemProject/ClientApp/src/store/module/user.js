@@ -79,21 +79,24 @@ export default {
   actions: {
     // 登录
     handleLogin ({ commit }, { userName, password }) {
-      userName = userName.trim(),      
-      // this.userSignin.userName = userName;
-      // this.userSignin.password = password;
-      console.log(this.state.user.userSignin);
+      userName = userName.trim()  
       return new Promise((resolve, reject) => {
         login({ userName, password}).then(res => { const data = res.data 
-          // Axios.get("/", function(resp){
-          //   commit('setToken', resp.data.token)
-          // }); 
+          let _this = this; 
           Axios.post('/api/userAccount/SignIn', this.state.user.userSignin).then((response) => {
             if (response.data.isRejected == true) {
-  
+              commit('setToken', '')
+              commit('setAccess', [])
+              console.log("isRejected");
             }
             else{    
               commit('setToken', 'super_admin') 
+              commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
+              commit('setUserName', 'super_admin')
+              commit('setUserId', '1')
+              commit('setAccess', ['super_admin', 'admin'])
+              commit('setHasGetInfo', true)
+              console.log(_this.state.user);
             }
           }),                  
           resolve()
@@ -124,11 +127,12 @@ export default {
         try {
           getUserInfo(state.token).then(res => {
             const data = res.data
-            commit('setAvatar', data.avatar)
-            commit('setUserName', data.name)
-            commit('setUserId', data.user_id)
-            commit('setAccess', data.access)
-            commit('setHasGetInfo', true)
+            commit('setToken', 'super_admin') 
+              commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
+              commit('setUserName', 'super_admin')
+              commit('setUserId', '1')
+              commit('setAccess', ['super_admin', 'admin'])
+              commit('setHasGetInfo', true)
             resolve(data)
           }).catch(err => {
             reject(err)

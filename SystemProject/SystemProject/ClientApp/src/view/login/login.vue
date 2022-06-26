@@ -52,16 +52,7 @@ import { mapActions } from 'vuex'
       ...mapActions([
         'handleLogin',
         'getUserInfo'
-      ]),
-      // handleSubmit({ userName, password }) {
-      //   this.handleLogin({ userName, password }).then(res => {
-      //     this.getUserInfo().then(res => {
-      //       this.$router.push({
-      //         name: this.$config.homeName
-      //       })
-      //     })
-      //   })
-      // },
+      ]),     
       signin(){    
         let userName = 'super_admin';
         let password = '1234'    
@@ -72,16 +63,6 @@ import { mapActions } from 'vuex'
             })
           })
         })
-        // let _this = this;   
-        // console.log(this.userSignin)      
-        axios.post('/api/userAccount/SignIn', this.userSignin).then((response) => {
-          if (response.data.isRejected == true) {
-
-          }
-          else{            
-          }
-        })      
-        
       }
     } 
   }   
