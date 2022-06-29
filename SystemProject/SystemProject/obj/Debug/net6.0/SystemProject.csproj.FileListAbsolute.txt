@@ -213,3 +213,5 @@ D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemPro
 D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\obj\Debug\net6.0\SystemProject.pdb
 D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\obj\Debug\net6.0\SystemProject.genruntimeconfig.cache
 D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\obj\Debug\net6.0\ref\SystemProject.dll
+D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
