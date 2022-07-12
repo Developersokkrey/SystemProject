@@ -215,3 +215,7 @@ D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemPro
 D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\obj\Debug\net6.0\ref\SystemProject.dll
 D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\OWNER PROJECT\VueJS\Asp.NetCore-Vue 2.0\SystemProject\SystemProject\SystemProject\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

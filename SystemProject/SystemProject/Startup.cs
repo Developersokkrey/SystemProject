@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using SystemProject.DataApp;
 using SystemProject.Models.Jwt.Repository;
 using VueCliMiddleware;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SystemProject
 {
@@ -33,6 +34,10 @@ namespace SystemProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Swagger
+            services.AddSwaggerGen(c => {
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.FirstOrDefault());
+            });
             //Jwt
             services.AddAuthentication(x =>
             {
@@ -63,13 +68,18 @@ namespace SystemProject
             option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
             services.AddMvc().AddNewtonsoftJson(options => 
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
-            services.AddTransient<SecurityManager>();
+            services.AddTransient<SecurityManager>();              
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "Khmer EDI API");
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

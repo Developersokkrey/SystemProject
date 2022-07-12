@@ -28,7 +28,6 @@ namespace SystemProject.Models.Jwt.Repository
 			{
 				return null;
 			}
-
 			// Else we generate JSON Web Token
 			var tokenHandler = new JwtSecurityTokenHandler();
 			var tokenKey = Encoding.UTF8.GetBytes(iconfiguration["JWT:Key"]);
@@ -43,7 +42,6 @@ namespace SystemProject.Models.Jwt.Repository
 			};
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			return new Tokens { Token = tokenHandler.WriteToken(token) };
-
 		}
 	}
 }
