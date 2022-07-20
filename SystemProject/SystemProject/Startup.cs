@@ -55,8 +55,18 @@ namespace SystemProject
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["JWT:Issuer"],
                     ValidAudience = Configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Key)
+                    IssuerSigningKey = new SymmetricSecurityKey(Key),
+                    ClockSkew = TimeSpan.Zero
                 };
+                o.Events = new JwtBearerEvents {
+			    OnAuthenticationFailed = context => {
+				if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+				{
+					context.Response.Headers.Add("IS-TOKEN-EXPIRED", "true");
+				}
+				return Task.CompletedTask;
+			}
+		};
             });
             services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
             services.AddControllers();             
@@ -65,9 +75,11 @@ namespace SystemProject
                 configuration.RootPath = "ClientApp";
             });
             services.AddDbContext<DataContext>(option =>
-            option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
+            option.UseNpgsql(Configuration["ConnectionStrings:WebApiDatabase"]));
+            //option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
+            //option.UseNpgsql(Configuration.GetConnectionString("WebApiDatabase"));
             services.AddMvc().AddNewtonsoftJson(options => 
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddTransient<SecurityManager>();              
             
         }
@@ -84,17 +96,14 @@ namespace SystemProject
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseRouting();
             app.UseSpaStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
             app.UseSpa(spa =>
             {
                 if (env.IsDevelopment())
@@ -106,7 +115,6 @@ namespace SystemProject
                 {
                     spa.UseVueCli(npmScript: "serve");
                 }
-
             });
         }
     }

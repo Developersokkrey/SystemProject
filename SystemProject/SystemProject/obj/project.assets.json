@@ -651,6 +651,33 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "Npgsql/6.0.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Npgsql.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.dll": {}
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/6.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.1",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.1",
+          "Npgsql": "6.0.2"
+        },
+        "compile": {
+          "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.3.1": {
         "type": "package",
         "dependencies": {
@@ -2012,6 +2039,43 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
+    "Npgsql/6.0.2": {
+      "sha512": "j/BJY/1lqtu5ssfGEi9D+qJ/3OMrK8ZdicsW4SldV49CahRVXVHldj636ucVcEqJPNDI0h+/PWJD7oHsQ/cFAQ==",
+      "type": "package",
+      "path": "npgsql/6.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net5.0/Npgsql.dll",
+        "lib/net5.0/Npgsql.xml",
+        "lib/net6.0/Npgsql.dll",
+        "lib/net6.0/Npgsql.xml",
+        "lib/netcoreapp3.1/Npgsql.dll",
+        "lib/netcoreapp3.1/Npgsql.xml",
+        "lib/netstandard2.0/Npgsql.dll",
+        "lib/netstandard2.0/Npgsql.xml",
+        "lib/netstandard2.1/Npgsql.dll",
+        "lib/netstandard2.1/Npgsql.xml",
+        "npgsql.6.0.2.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/6.0.2": {
+      "sha512": "2snTLONAs26dKdtInX4CAorkE//eDMOAVifh2EXZ/REzq5typb7MkENIix3Ma6ycukmAzCUw+br2AFdXmkmxbw==",
+      "type": "package",
+      "path": "npgsql.entityframeworkcore.postgresql/6.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
+        "npgsql.entityframeworkcore.postgresql.6.0.2.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.nuspec",
+        "postgresql.png"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.3.1": {
       "sha512": "JFk0+HHUPdjYuPhkpGBMLi2JtnEuWkE2pp0yXQp64DmeMe+Fb0hZyVNq/ENJ2vQNso7Zg+C758WmR/xyAl36bA==",
       "type": "package",
@@ -2600,8 +2664,10 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.6",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.3",
       "Microsoft.EntityFrameworkCore >= 6.0.3",
+      "Microsoft.EntityFrameworkCore.Design >= 6.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.3",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.2",
       "Swashbuckle.AspNetCore >= 6.3.1",
       "System.IdentityModel.Tokens.Jwt >= 6.20.0",
       "VueCliMiddleware >= 3.0.0"
@@ -2665,6 +2731,12 @@
             "target": "Package",
             "version": "[6.0.3, )"
           },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.0.3, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[6.0.3, )"
@@ -2674,6 +2746,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.3, )"
+          },
+          "Npgsql.EntityFrameworkCore.PostgreSQL": {
+            "target": "Package",
+            "version": "[6.0.2, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

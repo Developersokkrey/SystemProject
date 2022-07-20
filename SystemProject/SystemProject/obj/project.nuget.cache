@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oNcvt4IGHYwaFW7qK1nHF7CWV8XrEI6NMBDEQnRKISPUznswRazwdmVWLg08E2Akbi95zwQWewIpCs1oynuG3A==",
+  "dgSpecHash": "jp5bCoy0ZdUB2IbWjAGJTB4SrN6XG0LlzqMV29yhcTLVW9GGUjwrHlmdtLCSYmkkhzRphI7EnAog2fls7yCDJw==",
   "success": true,
   "projectFilePath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue 2.0\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
   "expectedPackageFiles": [
@@ -52,6 +52,8 @@
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\npgsql\\6.0.2\\npgsql.6.0.2.nupkg.sha512",
+    "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.2\\npgsql.entityframeworkcore.postgresql.6.0.2.nupkg.sha512",
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\swashbuckle.aspnetcore\\6.3.1\\swashbuckle.aspnetcore.6.3.1.nupkg.sha512",
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.3.1\\swashbuckle.aspnetcore.swagger.6.3.1.nupkg.sha512",
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.3.1\\swashbuckle.aspnetcore.swaggergen.6.3.1.nupkg.sha512",
