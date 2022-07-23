@@ -122,15 +122,14 @@ namespace SystemProject.Controllers
         public async Task<IActionResult> SignIn([FromBody] SignInModel signIn)         
         {
             ModelMessage msg = new();
-            using (var t = _dataContext.Database.BeginTransaction())
-            {
-                if (ModelState.IsValid)
-                {
-                    t.Commit();
-                    ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
-                    msg.Approve();
-                }
+            if(string.IsNullOrWhiteSpace(signIn.Username) || string.IsNullOrWhiteSpace(signIn.Password)){
+                ModelState.AddModelError("Username", "Username or Password is invele !/ឈ្មោះអ្នកប្រើត្រូវបានទាមទារ 5 តួអក្សរ !");
+                msg.Reject();
             }
+            else{
+                ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
+                msg.Approve();
+            }           
             return Ok(await Task.FromResult(msg.Bind(ModelState)));
         }
         public class UserSignIn

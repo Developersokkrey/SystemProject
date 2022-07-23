@@ -25,7 +25,7 @@ export default {
     messageTrashList: [],
     messageContentStore: {},
     userSignin: {
-      userName:'super_admin',
+      userName:'',
       password:''
     }
   },
@@ -81,24 +81,14 @@ export default {
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()  
       return new Promise((resolve, reject) => {
-        login({ userName, password}).then(res => { const data = res.data 
-          let _this = this; 
-          Axios.post('/api/userAccount/SignIn', this.state.user.userSignin).then((response) => {
-            if (response.data.isRejected == true) {
-              commit('setToken', '')
-              commit('setAccess', [])
-              console.log("isRejected");
-            }
-            else{    
+        login({ userName, password}).then(res => { const data = res.data  
               commit('setToken', 'super_admin') 
               commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
               commit('setUserName', 'super_admin')
               commit('setUserId', '1')
               commit('setAccess', ['super_admin', 'admin'])
-              commit('setHasGetInfo', true)
-              console.log(_this.state.user);
-            }
-          }),                  
+              commit('setHasGetInfo', true)    
+              console.log('Approve');                            
           resolve()
         }).catch(err => {
           reject(err)
@@ -122,18 +112,19 @@ export default {
       })
     },
     // 获取用户相关信息
-    getUserInfo ({ state, commit }) {
+    getUserInfo ({ state, commit },{userName, password}) {
       return new Promise((resolve, reject) => {
         try {
           getUserInfo(state.token).then(res => {
             const data = res.data
-            commit('setToken', 'super_admin') 
-              commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
-              commit('setUserName', 'super_admin')
-              commit('setUserId', '1')
-              commit('setAccess', ['super_admin', 'admin'])
-              commit('setHasGetInfo', true)
-            resolve(data)
+            console.log(userName,password);
+            // commit('setToken', 'super_admin') 
+            //   commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
+            //   commit('setUserName', 'super_admin')
+            //   commit('setUserId', '1')
+            //   commit('setAccess', ['super_admin', 'admin'])
+            //   commit('setHasGetInfo', true)
+            resolve(data)            
           }).catch(err => {
             reject(err)
           })
