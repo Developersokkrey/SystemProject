@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SystemProject.Models.Branch;
 using SystemProject.Models.Company;
+using SystemProject.Models.Other;
 using SystemProject.Models.UserAccount;
+using SystemProject.Models.UsersPrivilege;
 
 namespace SystemProject.DataApp
 {
@@ -14,6 +16,11 @@ namespace SystemProject.DataApp
         public DbSet<Company> COMP { get; set; }
         public DbSet<Branch> BRAN { get; set; }
         public DbSet<BranchInfo> BRINFO { get; set; }
-        public DbSet<ExchangeRate> EXRATE { get; set; }                                                             
+        public DbSet<ExchangeRate> EXRATE { get; set; }   
+        public DbSet<Roles> ROLES { get; set; } 
+        public DbSet<RolesPrivilege> ROLEPRIVI { get; set; }
+        public DbSet<Function> FUNCTI { get; set; }
+        public DbSet<UsersPrivilege> USERPRIVI { get; set; }
+        public DbSet<PrimaryKey> PRIMARYKEYS { get; set; }
     }
 }

@@ -41,7 +41,6 @@
 <script>
 import axios from 'axios' 
 import { mapActions } from 'vuex'
-import dayjs from 'dayjs';
   export default {
     data: () => ({
       userSignin: {
@@ -54,19 +53,26 @@ import dayjs from 'dayjs';
         'handleLogin',
         'getUserInfo'
       ]),     
-      signin(){   
-         let userName = this._data.userSignin.userName;
-         let password = this._data.userSignin.password; 
+      signin(){    
+        let userName = this._data.userSignin.userName;
+        let password = this._data.userSignin.password;   
         axios.post('/api/userAccount/SignIn', this._data.userSignin).then((response) => {
             if (response.data.isRejected == true) {              
               console.log('isRejected');
               return;
             }
-            else{ 
-              this.handleLogin({ userName, password }).then(res => {          
+            else{     
+              console.log(response.data.items.userMap);
+              let userMap = response.data.items.userMap;
+              this.handleLogin({ userName, password }).then(res => { 
+                localStorage.setItem('name', userMap.username);
+                localStorage.setItem('user_id', userMap.userID);
+                localStorage.setItem('access', userMap.access);
+                localStorage.setItem('token', userMap.token);
+                localStorage.setItem('avatar', userMap.avatar);                
                 this.getUserInfo().then(res => {
                   this.$router.push({
-                    name: this.$config.homeName
+                    name: this.$config.homeName     
                   })
                 })
               })                        

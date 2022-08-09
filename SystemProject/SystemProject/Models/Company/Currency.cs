@@ -7,18 +7,18 @@ namespace SystemProject.Models.Company
 {
     public class Currency
     {
-        [Key]
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string ID { get; set; }
         public string Name { get; set; }
         public string Des { get; set; }
         public string Symbol { get; set; }
-        public int ComID { get; set; } = 1;
+        public string ComID { get; set; } 
         public UserStatus Status { get; set; }
         [NotMapped]
         public string StatusName { get; set; }
         [NotMapped]
         public string Title { get; set; }
         [NotMapped]
-        public int Value { get; set; }
+        public string Value { get; set; }
     }
 }

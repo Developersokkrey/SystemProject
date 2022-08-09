@@ -81,14 +81,8 @@ export default {
     handleLogin ({ commit }, { userName, password }) {
       userName = userName.trim()  
       return new Promise((resolve, reject) => {
-        login({ userName, password}).then(res => { const data = res.data  
-              commit('setToken', 'super_admin') 
-              commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
-              commit('setUserName', 'super_admin')
-              commit('setUserId', '1')
-              commit('setAccess', ['super_admin', 'admin'])
-              commit('setHasGetInfo', true)    
-              console.log('Approve');                            
+        login({ userName, password}).then(res => { const data = res.data 
+          commit('setToken', data.token) 
           resolve()
         }).catch(err => {
           reject(err)
@@ -112,19 +106,17 @@ export default {
       })
     },
     // 获取用户相关信息
-    getUserInfo ({ state, commit },{userName, password}) {
+    getUserInfo ({ state, commit }) {      
       return new Promise((resolve, reject) => {
         try {
           getUserInfo(state.token).then(res => {
             const data = res.data
-            console.log(userName,password);
-            // commit('setToken', 'super_admin') 
-            //   commit('setAvatar', 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png')
-            //   commit('setUserName', 'super_admin')
-            //   commit('setUserId', '1')
-            //   commit('setAccess', ['super_admin', 'admin'])
-            //   commit('setHasGetInfo', true)
-            resolve(data)            
+            commit('setAvatar', data.avatar)
+            commit('setUserName', data.name)
+            commit('setUserId', data.user_id)
+            commit('setAccess', data.access)
+            commit('setHasGetInfo', true)
+            resolve(data)
           }).catch(err => {
             reject(err)
           })
@@ -157,7 +149,7 @@ export default {
           resolve()
         }).catch(error => {
           reject(error)
-        })
+        }) 
       })
     },
     // 根据当前点击的消息的id获取内容

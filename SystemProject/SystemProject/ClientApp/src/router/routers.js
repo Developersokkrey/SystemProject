@@ -63,8 +63,7 @@ export default [
           {
             path: 'general',
             name: 'General',
-            meta: {
-              access: ['super_admin'],
+            meta: {              
               icon: 'md-funnel',
               showAlways: true,
               title: 'General'
@@ -75,6 +74,7 @@ export default [
                 path: 'company',
                 name: 'Company',
                 meta: {
+                  access: ['AGC01'],
                   icon: 'md-funnel',
                   title: 'Company'
                 },
@@ -84,6 +84,7 @@ export default [
                 path: 'company-form',
                 name: 'Form Company',
                 meta: {
+                  access: ['AGC01'],
                   hideInMenu: true,
                   icon: 'md-funnel',
                   title: 'Form Company'
@@ -94,6 +95,7 @@ export default [
                 path: 'branch',
                 name: 'Branch',
                 meta: {
+                  access: ['AGB01'],
                   icon: 'md-funnel',
                   title: 'Branch'
                 },
@@ -103,6 +105,7 @@ export default [
                 path: 'branch-form',
                 name: 'Form Branch',
                 meta: {
+                  access: ['AGB01'],
                   hideInMenu: true,
                   icon: 'md-funnel',
                   title: 'Form Branch'
@@ -113,6 +116,7 @@ export default [
                 path: 'useraccount-form',
                 name: 'Form User Account',
                 meta: {
+                  access: ['AGU01'],
                   hideInMenu: true,                  
                   icon: 'md-funnel',
                   title: 'Form User Account'
@@ -123,6 +127,7 @@ export default [
                 path: 'useraccount',
                 name: 'User Account',
                 meta: {
+                  access: ['AGU01'],
                   icon: 'md-funnel',
                   title: 'User Account'
                 },
@@ -132,6 +137,7 @@ export default [
                 path: 'exchangerate',
                 name: 'Exchange Rate',
                 meta: {
+                  access: ['AGE01'],
                   icon: 'md-funnel',
                   title: 'Currency'
                 },
@@ -143,7 +149,7 @@ export default [
             path: 'inventory',
             name: 'Inventory',
             meta: {
-              access: ['super_admin'],
+              access: ['AGC01'],
               icon: 'md-funnel',
               showAlways: true,
               title: 'inventory'

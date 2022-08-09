@@ -6,8 +6,9 @@ namespace SystemProject.Models.Company
     public class ExchangeRate
     {
         [Key]
-        public int ID { get; set; }
-        public int CurrID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string ID { get; set; }
+        public string CurrID { get; set; }
         [Column(TypeName = "decimal(36,18)")]
         public decimal Rate1 { get; set; }
         [Column(TypeName = "decimal(36,18)")]

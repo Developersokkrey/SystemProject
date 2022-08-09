@@ -651,7 +651,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
-      "Npgsql/6.0.2": {
+      "Npgsql/6.0.3": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -663,13 +663,13 @@
           "lib/net6.0/Npgsql.dll": {}
         }
       },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/6.0.2": {
+      "Npgsql.EntityFrameworkCore.PostgreSQL/6.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.1",
           "Microsoft.EntityFrameworkCore.Abstractions": "6.0.1",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.1",
-          "Npgsql": "6.0.2"
+          "Npgsql": "6.0.3"
         },
         "compile": {
           "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
@@ -2039,10 +2039,10 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
-    "Npgsql/6.0.2": {
-      "sha512": "j/BJY/1lqtu5ssfGEi9D+qJ/3OMrK8ZdicsW4SldV49CahRVXVHldj636ucVcEqJPNDI0h+/PWJD7oHsQ/cFAQ==",
+    "Npgsql/6.0.3": {
+      "sha512": "yt/3XFRhHsJ01a4+qHM9+0mtitQ3DY2wJLyGP9vtvZa1cB1nSAw762GJGdSX3Bbc7wZKzeo4dc4drD3yvQe7gA==",
       "type": "package",
-      "path": "npgsql/6.0.2",
+      "path": "npgsql/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2057,21 +2057,21 @@
         "lib/netstandard2.0/Npgsql.xml",
         "lib/netstandard2.1/Npgsql.dll",
         "lib/netstandard2.1/Npgsql.xml",
-        "npgsql.6.0.2.nupkg.sha512",
+        "npgsql.6.0.3.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
     },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/6.0.2": {
-      "sha512": "2snTLONAs26dKdtInX4CAorkE//eDMOAVifh2EXZ/REzq5typb7MkENIix3Ma6ycukmAzCUw+br2AFdXmkmxbw==",
+    "Npgsql.EntityFrameworkCore.PostgreSQL/6.0.3": {
+      "sha512": "4FJ4ww7EdMKlg0Bdug783V5+OVTczu7HF1ra7FOWin/3w1v/EplVGXUQlW/4JPVloe6nnsnvmfzKCY4JiHspHw==",
       "type": "package",
-      "path": "npgsql.entityframeworkcore.postgresql/6.0.2",
+      "path": "npgsql.entityframeworkcore.postgresql/6.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
         "lib/net6.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
-        "npgsql.entityframeworkcore.postgresql.6.0.2.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.6.0.3.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
       ]
@@ -2664,10 +2664,9 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.6",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.3",
       "Microsoft.EntityFrameworkCore >= 6.0.3",
-      "Microsoft.EntityFrameworkCore.Design >= 6.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.3",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.2",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 6.0.3",
       "Swashbuckle.AspNetCore >= 6.3.1",
       "System.IdentityModel.Tokens.Jwt >= 6.20.0",
       "VueCliMiddleware >= 3.0.0"
@@ -2681,11 +2680,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue 2.0\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+      "projectUniqueName": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj",
       "projectName": "SystemProject",
-      "projectPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue 2.0\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
+      "projectPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj",
       "packagesPath": "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\",
-      "outputPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue 2.0\\SystemProject\\SystemProject\\SystemProject\\obj\\",
+      "outputPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -2731,12 +2730,6 @@
             "target": "Package",
             "version": "[6.0.3, )"
           },
-          "Microsoft.EntityFrameworkCore.Design": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "[6.0.3, )"
-          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[6.0.3, )"
@@ -2749,7 +2742,7 @@
           },
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
-            "version": "[6.0.2, )"
+            "version": "[6.0.3, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -1,21 +1,26 @@
 ﻿using KSystemProject.References;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 using SystemProject.DataApp;
 using SystemProject.Models.Branch;
+using SystemProject.Repository.ServicesClass;
 
 namespace SystemProject.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]     
     public class BranchController : ControllerBase
     {
         private readonly DataContext _dataContect;
-        public BranchController(DataContext dataContext)
+        private readonly ServicesInsertOrUpdate _servicesInsertOrUpdate;
+        public BranchController(DataContext dataContext, ServicesInsertOrUpdate servicesInsertOrUpdate)
         {
             _dataContect = dataContext;
+            _servicesInsertOrUpdate = servicesInsertOrUpdate;
         }
         [HttpPost("CreateBranch/branch")]
         public async Task<IActionResult> CreateBranch([FromBody] Branch branch)
@@ -26,9 +31,7 @@ namespace SystemProject.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    branch.ComID = _dataContect.COMP.FirstOrDefault().ID;
-                    _dataContect.BRAN.Update(branch);
-                    _dataContect.SaveChanges();
+                    _servicesInsertOrUpdate.InsertOrUpdateBRAN(branch);
                     t.Commit();
                     ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
                     msg.Approve();
@@ -52,9 +55,9 @@ namespace SystemProject.Controllers
             return Ok(bran);
         }
         [HttpGet("GetBranchEdit")]
-        public IActionResult GetBranchEdit(int branid)
+        public IActionResult GetBranchEdit(string branid)
         {  
-            if(branid == 0)
+            if(branid == "0")
             {
                Branch branch = new Branch();
                return Ok(branch);

@@ -25,6 +25,19 @@
             Female=2,
             Other=3
         }
+        public enum TableName
+        {
+            OUSR=1,
+            OCURE=2,
+            COMP=3,
+            BRAN=4,
+            BRINFO = 5,
+            EXRATE = 6,
+            ROLES = 7,
+            ROLEPRIVI = 8,
+            FUNCTI = 9,
+            USERPRIVI = 10,
+        }
 
     }
 }

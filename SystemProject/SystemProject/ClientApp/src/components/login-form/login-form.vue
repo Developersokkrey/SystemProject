@@ -42,10 +42,10 @@ export default {
   },
   data () {
     return {
-      // form: {
-      //   userName: 'super_admin',
-      //   password: ''
-      // }
+      form: {
+        userName: 'super_admin',
+        password: ''
+      }
     }
   },
   computed: {

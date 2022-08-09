@@ -12,11 +12,7 @@
       </div>            
     </div>
     <v-card>
-      <!-- <v-card-title>        
-        <v-spacer></v-spacer>
-        <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
-      </v-card-title> -->
-      <v-data-table fixed-header height="450" :headers="headers" :items="branobjs" :search="search" dense>
+      <v-data-table fixed-header height="450" :headers="datas" :items="branobjs" :search="search" dense>
          <template>
             <v-toolbar  flat>
               <v-dialog v-model="dialogDelete">
@@ -24,8 +20,8 @@
                   <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                    <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                    <!-- <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn> -->
+                    <!-- <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn> -->
                     <v-spacer></v-spacer>
                   </v-card-actions>
                 </v-card>
@@ -49,11 +45,15 @@
     import axios from 'axios' 
     export default {
    data () {
-    return {      
+    return {  
+      headers: {
+
+         Authorization : localStorage.getItem('token'),
+      },    
       branobjs:[],
       search: '',
       dialogDelete: false,
-      headers: [
+      datas: [
         { text: 'Name', align: 'start', sortable: false, value: 'name',},
         { text: 'Address', value: 'address' },
         { text: 'Location', value: 'location'},              
@@ -61,16 +61,15 @@
       ],
     }
   },
-      watch: {    
-        dialogDelete (val) {
-          val || this.closeDelete()
-        },        
-      },
-      mounted(){  
-        localStorage.setItem('branid', JSON.stringify(0));       
-        const _this = this;        
-        axios.get('/api/branch/GetBranch').then(response => { 
-          console.log(response.data)
+      // watch: {    
+      //   dialogDelete (val) {
+      //     val || this.closeDelete()
+      //   },        
+      // },
+      mounted(){         
+        localStorage.setItem('branid', JSON.stringify(0));              
+        const _this = this;                  
+        axios.get('/api/branch/GetBranch',{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
           _this.branobjs = response.data;
       })
       },

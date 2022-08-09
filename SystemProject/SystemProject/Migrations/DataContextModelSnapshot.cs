@@ -23,25 +23,19 @@ namespace SystemProject.Migrations
 
             modelBuilder.Entity("SystemProject.Models.Branch.Branch", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
+                    b.Property<string>("ID")
                         .HasColumnType("text");
 
-                    b.Property<int>("ComID")
-                        .HasColumnType("integer");
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ComID")
+                        .HasColumnType("text");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("ID");
@@ -51,17 +45,14 @@ namespace SystemProject.Migrations
 
             modelBuilder.Entity("SystemProject.Models.Branch.BranchInfo", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
 
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
-                    b.Property<int>("BranID")
-                        .HasColumnType("integer");
+                    b.Property<string>("BranID")
+                        .HasColumnType("text");
 
                     b.Property<string>("Des1")
                         .HasColumnType("text");
@@ -78,20 +69,20 @@ namespace SystemProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int>("Tel1")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tel1")
+                        .HasColumnType("text");
 
-                    b.Property<int>("Tel2")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tel2")
+                        .HasColumnType("text");
 
-                    b.Property<int>("Tel3")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tel3")
+                        .HasColumnType("text");
 
-                    b.Property<int>("Tel4")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tel4")
+                        .HasColumnType("text");
 
-                    b.Property<int>("Tel5")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tel5")
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 
@@ -100,17 +91,14 @@ namespace SystemProject.Migrations
 
             modelBuilder.Entity("SystemProject.Models.Company.Company", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
 
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
-                    b.Property<int>("LC")
-                        .HasColumnType("integer");
+                    b.Property<string>("LC")
+                        .HasColumnType("text");
 
                     b.Property<string>("Location")
                         .HasColumnType("text");
@@ -121,8 +109,8 @@ namespace SystemProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int>("SC")
-                        .HasColumnType("integer");
+                    b.Property<string>("SC")
+                        .HasColumnType("text");
 
                     b.HasKey("ID");
 
@@ -131,14 +119,11 @@ namespace SystemProject.Migrations
 
             modelBuilder.Entity("SystemProject.Models.Company.Currency", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("ComID")
-                        .HasColumnType("integer");
+                    b.Property<string>("ComID")
+                        .HasColumnType("text");
 
                     b.Property<string>("Des")
                         .HasColumnType("text");
@@ -159,14 +144,11 @@ namespace SystemProject.Migrations
 
             modelBuilder.Entity("SystemProject.Models.Company.ExchangeRate", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("CurrID")
-                        .HasColumnType("integer");
+                    b.Property<string>("CurrID")
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Rate1")
                         .HasColumnType("numeric(36,18)");
@@ -179,7 +161,7 @@ namespace SystemProject.Migrations
                     b.ToTable("EXRATE");
                 });
 
-            modelBuilder.Entity("SystemProject.Models.UserAccount.UserAccount", b =>
+            modelBuilder.Entity("SystemProject.Models.Other.PrimaryKey", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -187,11 +169,27 @@ namespace SystemProject.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("BranID")
+                    b.Property<string>("KeyNumber")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TableName")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ComID")
-                        .HasColumnType("integer");
+                    b.HasKey("ID");
+
+                    b.ToTable("PRIMARYKEYS");
+                });
+
+            modelBuilder.Entity("SystemProject.Models.UserAccount.UserAccount", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BranID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ComID")
+                        .HasColumnType("text");
 
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
@@ -199,8 +197,8 @@ namespace SystemProject.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
-                    b.Property<int>("Rule")
-                        .HasColumnType("integer");
+                    b.Property<string>("RoleID")
+                        .HasColumnType("text");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -211,6 +209,82 @@ namespace SystemProject.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("OUSR");
+                });
+
+            modelBuilder.Entity("SystemProject.Models.UsersPrivilege.Function", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("FUNCTI");
+                });
+
+            modelBuilder.Entity("SystemProject.Models.UsersPrivilege.Roles", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ComID")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Enable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ROLES");
+                });
+
+            modelBuilder.Entity("SystemProject.Models.UsersPrivilege.RolesPrivilege", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Enable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("FuncID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RoleID")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ROLEPRIVI");
+                });
+
+            modelBuilder.Entity("SystemProject.Models.UsersPrivilege.UsersPrivilege", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Enable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("FuncID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RolePriviID")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("USERPRIVI");
                 });
 #pragma warning restore 612, 618
         }

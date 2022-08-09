@@ -1,5 +1,6 @@
 ﻿using KEDI.Core.Helpers.Enumerations;
 using KSystemProject.References;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SystemProject.DataApp;
 using SystemProject.Models.Company;
+using SystemProject.Repository.ServicesClass;
 using static SystemProject.Model.EnumService.EnumServices;
 
 namespace SystemProject.Controllers
@@ -16,26 +18,22 @@ namespace SystemProject.Controllers
     public class CompanyController : ControllerBase
     {
         private readonly DataContext _dataContext;
-        public CompanyController(DataContext dataContext)
+        private readonly ServicesInsertOrUpdate _servicesInsertOrUpdate;
+        public CompanyController(DataContext dataContext, ServicesInsertOrUpdate servicesInsertOrUpdate)
         {
             _dataContext = dataContext;
+            _servicesInsertOrUpdate = servicesInsertOrUpdate;
         }
-        [HttpPost("Currency/currency")]
-        public async Task<IActionResult> Currency([FromBody] Currency currency)
+        [HttpPost("CreateCurrency")]
+        public async Task<IActionResult> CreateCurrency([FromBody] Currency currency)
         {
             ModelMessage msg = new();
             using (var t = _dataContext.Database.BeginTransaction())
             {
                 if (ModelState.IsValid)
-                {   
-                    _dataContext.OCURE.Update(currency);
-                    _dataContext.SaveChanges();
-                    ExchangeRate exchangeRate = new ExchangeRate();
-                    exchangeRate.CurrID = currency.ID;
-                    exchangeRate.Rate1 = 0;
-                    exchangeRate.Rate2 = 0;
-                    _dataContext.EXRATE.Update(exchangeRate);
-                    _dataContext.SaveChanges();
+                {                      
+                    _servicesInsertOrUpdate.InsertOrUpdateOCURE(currency);                                                               
+                    _servicesInsertOrUpdate.InsertOrUpdateEXRATE(currency.ID,true);
                     t.Commit();
                     ModelState.AddModelError("success", "Currency save successfully./ការរក្សាទុករូបិយប័ណ្ណដោយជោគជ័យ។");
                     msg.Approve();
@@ -52,14 +50,9 @@ namespace SystemProject.Controllers
                 if (ModelState.IsValid)
                 {
                     foreach (var item in exchange)
-                    {
-                        if (item.Rate1 != 0)
-                        {
-                            item.Rate2 = 1 / item.Rate1;
-                        }
+                    {                         
+                        _servicesInsertOrUpdate.InsertOrUpdateEXRATE(item.CurrID,false);
                     }
-                    _dataContext.EXRATE.UpdateRange(exchange);
-                    _dataContext.SaveChanges();
                     t.Commit();
                     ModelState.AddModelError("success", "ExchangeRate save successfully./ការរក្សាទុករូបិយប័ណ្ណដោយជោគជ័យ។");
                     msg.Approve();
@@ -89,9 +82,8 @@ namespace SystemProject.Controllers
             using (var t = _dataContext.Database.BeginTransaction())
             {
                 if (ModelState.IsValid)
-                {
-                    _dataContext.COMP.Update(comp);
-                    _dataContext.SaveChanges();
+                {                              
+                    _servicesInsertOrUpdate.InsertOrUpdateCOMP(comp, true);
                     t.Commit();
                     ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
                     msg.Approve();
@@ -105,11 +97,11 @@ namespace SystemProject.Controllers
             {
                 ModelState.AddModelError("Name", "Username is required 5 charater !/ឈ្មោះអ្នកប្រើត្រូវបានទាមទារ 5 តួអក្សរ !");
             }
-            if(comp.SC == 0)
+            if(comp.SC == "0")
             {
                 ModelState.AddModelError("SC", "System Currency is required select !/ឈ្មោះអ្នកប្រើត្រូវបានទាមទារ 5 តួអក្សរ !");
             }
-            if (comp.LC == 0)
+            if (comp.LC == "0")
             {
                 ModelState.AddModelError("LC", "Local Currency is required select !/ឈ្មោះអ្នកប្រើត្រូវបានទាមទារ 5 តួអក្សរ !");
             }

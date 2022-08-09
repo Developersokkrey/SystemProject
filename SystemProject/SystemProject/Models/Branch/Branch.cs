@@ -1,20 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SystemProject.Models.Branch
 {
     public class Branch
     {
         [Key]
-        [Required]
-        public int ID { get; set; }
-        [Required]                   
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string ID { get; set; }
         public string Name { get; set; }
-        [Required]
         public string Address { get; set; }
-        [Required]
         public string Location { get; set; }
-        [Required]
-        public int ComID { get; set; }
-        
+        public string ComID { get; set; }          
     }
 }

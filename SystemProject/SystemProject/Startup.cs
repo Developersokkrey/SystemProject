@@ -19,6 +19,7 @@ using SystemProject.DataApp;
 using SystemProject.Models.Jwt.Repository;
 using VueCliMiddleware;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using SystemProject.Repository.ServicesClass;
 
 namespace SystemProject
 {
@@ -55,18 +56,8 @@ namespace SystemProject
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["JWT:Issuer"],
                     ValidAudience = Configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Key),
-                    ClockSkew = TimeSpan.Zero
+                    IssuerSigningKey = new SymmetricSecurityKey(Key)
                 };
-                o.Events = new JwtBearerEvents {
-			    OnAuthenticationFailed = context => {
-				if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-				{
-					context.Response.Headers.Add("IS-TOKEN-EXPIRED", "true");
-				}
-				return Task.CompletedTask;
-			}
-		};
             });
             services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
             services.AddControllers();             
@@ -77,11 +68,11 @@ namespace SystemProject
             services.AddDbContext<DataContext>(option =>
             option.UseNpgsql(Configuration["ConnectionStrings:WebApiDatabase"]));
             //option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
-            //option.UseNpgsql(Configuration.GetConnectionString("WebApiDatabase"));
-            services.AddMvc().AddNewtonsoftJson(options => 
-            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
-            services.AddTransient<SecurityManager>();              
-            
+            services.AddMvc().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            services.AddTransient<SecurityManager>();
+            services.AddTransient<ServicesGeneratePrimaryKey>();
+            services.AddTransient<ServicesInsertOrUpdate>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,14 +87,17 @@ namespace SystemProject
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseRouting();
             app.UseSpaStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
             app.UseSpa(spa =>
             {
                 if (env.IsDevelopment())
@@ -115,6 +109,7 @@ namespace SystemProject
                 {
                     spa.UseVueCli(npmScript: "serve");
                 }
+
             });
         }
     }

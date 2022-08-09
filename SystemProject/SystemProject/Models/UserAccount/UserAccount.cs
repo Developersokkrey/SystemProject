@@ -7,16 +7,17 @@ namespace SystemProject.Models.UserAccount
     public class UserAccount
     {
         [Key]
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string ID { get; set; }
         public string Username { get; set; }
         [NotMapped]
         public string Password { get; set; }
         [NotMapped]
         public string ConfirmPassword { get; set; }
         public string PasswordHash { get; set; }
-        public UserRules Rule { get; set; }
-        public int ComID { get; set; }
-        public int BranID { get; set; }
+        public string RoleID { get; set; }
+        public string ComID { get; set; }
+        public string BranID { get; set; }
         public Genders Gender{ get; set; }
         public UserStatus Status { get; set; }
     }      

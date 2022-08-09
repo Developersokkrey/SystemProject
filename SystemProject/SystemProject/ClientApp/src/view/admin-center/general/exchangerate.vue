@@ -220,12 +220,12 @@
       currobj:[],
       userStatus:{},
       currency:{
-        id: 0,
+        id: '0',
         name: '',
         des: '',
         symbol: '',
         status: 0,
-        comid: 1,
+        comid: '1',
       },      
     }),
 
@@ -278,8 +278,9 @@
         })
       },
       save () { 
-        let _this = this;         
-          axios.post('/api/company/Currency/currency', this.currency).then((response) => { 
+        let _this = this;      
+          console.log(this.currency)   
+          axios.post('/api/company/CreateCurrency', this.currency).then((response) => { 
             let message = response.data.data;
             if (response.data.isRejected == true) {              
             }

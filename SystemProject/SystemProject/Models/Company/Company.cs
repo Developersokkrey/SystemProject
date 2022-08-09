@@ -6,13 +6,14 @@ namespace SystemProject.Models.Company
     public class Company
     {
         [Key]
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string ID { get; set; }
         public string Name { get; set; }
         public string Logo { get; set; }
         public string Address { get; set; }
         public string Location { get; set; }
-        public int SC { get; set; }          
-        public int LC { get; set; }
+        public string SC { get; set; }          
+        public string LC { get; set; }
         [NotMapped]
         public string SCName { get; set; }
         [NotMapped]
