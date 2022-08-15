@@ -81,7 +81,7 @@
           // console.log(item);
           // var usid = { '_uerid': item,};
           // Put the object into storage
-          localStorage.setItem('usid', JSON.stringify(item));
+          localStorage.setItem('usid', item);
           this.$router.push('useraccount-form');
         },
         // deleteItem (item) {         

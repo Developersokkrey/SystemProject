@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t7sKKT59MeAEQYjD6vPePJtjqTap/DrrjzuH1FAJRr1N3Z4fm6CU4qOj3HUZSr3M6j9DY2y5pjf3hLBieuCuyw==",
+  "dgSpecHash": "w1sJ6J5/n8XgMunEnkf3jspz8I88ILaDF+QQC+H7h59qwM9arSqnY9qguzjMDB8Mwapfr7WUbscFqU9SxJ9AxA==",
   "success": true,
-  "projectFilePath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj",
+  "projectFilePath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.6\\microsoft.aspnetcore.authentication.jwtbearer.6.0.6.nupkg.sha512",

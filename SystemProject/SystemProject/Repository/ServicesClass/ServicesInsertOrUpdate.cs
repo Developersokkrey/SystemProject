@@ -33,6 +33,9 @@ namespace SystemProject.Repository.ServicesClass
             }
             else
             {
+                _securityManager.TryComputeHash(userAccount.Password, out string _hash, out string _salt);
+                var hash = $"{_hash}.{_salt}";
+                userAccount.PasswordHash = hash;
                 _dataContext.OUSR.Update(userAccount);
             }
             _dataContext.SaveChanges();

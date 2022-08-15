@@ -41,12 +41,15 @@ namespace SystemProject.Controllers
         {
             if (usid == "0")
             {
-                UserAccount userAccount = new();
+                UserAccount userAccount = new();                
+                userAccount.Roles = _dataContext.ROLES.ToList();
                 return Ok(userAccount);
             }
             else
-            {
-                return Ok(_dataContext.OUSR.FirstOrDefault(w => w.ID == usid));
+            {                
+                var userAccount = _dataContext.OUSR.FirstOrDefault(w => w.ID == usid)?? new UserAccount();
+                userAccount.Roles = _dataContext.ROLES.ToList();
+                return Ok(userAccount);
             }
         }
         [AllowAnonymous]
@@ -116,11 +119,12 @@ namespace SystemProject.Controllers
         {
             var userobjs = from u in _dataContext.OUSR
                            join b in _dataContext.BRAN on u.BranID equals b.ID
-                           select new
+                           join r in _dataContext.ROLES on u.RoleID equals r.ID
+                           select new 
                            {
                                ID = u.ID,         
                                UserName = u.Username,
-                               //Rule = ((UserRules)u.Rule).ToString(),
+                               Rule = r.Name,                                   
                                Gender = ((Genders)u.Gender).ToString(),
                                Status = ((UserStatus)u.Status).ToString(),
                                Branch = b.Name,

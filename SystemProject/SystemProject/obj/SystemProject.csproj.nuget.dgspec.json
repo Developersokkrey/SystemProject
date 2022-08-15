@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj": {}
+    "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj": {}
   },
   "projects": {
-    "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj": {
+    "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj",
+        "projectUniqueName": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
         "projectName": "SystemProject",
-        "projectPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\SystemProject.csproj",
+        "projectPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject\\SystemProject\\SystemProject\\SystemProject.csproj",
         "packagesPath": "C:\\Users\\SOKKREY_NET\\.nuget\\packages\\",
-        "outputPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject-d7efbeb13a7c39261b45ccecfe22c72ae36ca87b\\SystemProject\\SystemProject\\obj\\",
+        "outputPath": "D:\\OWNER PROJECT\\VueJS\\Asp.NetCore-Vue\\SystemProject\\SystemProject\\SystemProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

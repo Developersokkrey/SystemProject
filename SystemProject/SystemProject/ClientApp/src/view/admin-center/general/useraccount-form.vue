@@ -44,8 +44,8 @@
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Rules')}}</label>
-          <select v-model="user.rule" id="border-rule" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
-            <option :value="rule.value" v-for="rule in user_rules" :key="rule.value">{{ rule.title }}</option>
+          <select v-model="user.roleID" id="border-rule" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">            
+            <option :value="rule.id" v-for="rule in user_rules" :key="rule.id">{{ rule.name }}</option>
           </select>
         </div>
         <div class="w-full px-2 md:w-1/2">
@@ -66,7 +66,7 @@
         </div>
         <div class="w-full px-2 md:w-1/2">
           <label class="text-gray-800 font-semibold block my-3 text-md" for="email">{{$t('Branch')}}</label>
-          <select v-model="user.branid" id="border-branch" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
+          <select v-model="user.branID" id="border-branch" class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border border-solid rounded-lg focus:outline-none">
             <option :value="branobj.id" v-for="branobj in branobjs" :key="branobj.id">{{ branobj.title }}</option>
           </select>
         </div>
@@ -130,6 +130,9 @@
 </template>
 <script>
   import axios from 'axios'   
+import { setMaxListeners } from 'events';
+import { forEach } from '../../../libs/tools';
+import { resolveObjectURL } from 'buffer';
   export default {
     name: "App",
     data: () => ({
@@ -142,13 +145,7 @@
         { title: 'Pending', value: 3 },
         { title: 'Close', value: 4 },
       ],
-      user_rules: [
-        { title: ' ', value: 0 },
-        { title: 'Super Admin', value: 1 },
-        { title: 'Admin', value: 2 },
-        { title: 'Manager', value: 3 },
-        { title: 'User', value: 4 },
-      ],
+      user_rules: [],
     }),
     methods: {
       saveData() {
@@ -199,7 +196,7 @@
             }
           }
           else {
-            localStorage.setItem('usid', JSON.stringify(0));
+            localStorage.setItem('usid', 0);
             var id = localStorage.getItem('usid');            
             //onClickTop();           
             var error_title = ""
@@ -229,7 +226,7 @@
       clearData() {           
         //clearNotify();        
         //console.log(this.user)
-        localStorage.setItem('usid', JSON.stringify(0));        
+        localStorage.setItem('usid', 0);        
         resetUser(axios, this);
       }
     },
@@ -260,17 +257,19 @@
     document.getElementById("border-rule").style.borderColor = "";
     document.getElementById("border-status").style.borderColor = "";
     document.getElementById("border-branch").style.borderColor = "";    
-    axios
-      .get('/api/userAccount/UserAccountForm/', {params:{usid: id}}).then(response => {
+    axios.get('/api/userAccount/UserAccountForm/', {params:{usid: id}}).then(response => {
         setBranches(self);
         //this.posts = response.data
-        localStorage.setItem('usid', JSON.stringify(0)); 
-        let props = Object.getOwnPropertyNames(response.data);
+        localStorage.setItem('usid', 0); 
+        let props = Object.getOwnPropertyNames(response.data);   
+        let roles = Object.assign(response.data.roles);          
         let _user = Object.assign(response.data);
         for (let i = 0; i < props.length; i++) {
           self.user[props[i]] = _user[props[i]];
         }
-        self.user = _user         
+        self.user = _user;   
+        self.user_rules = response.data.roles;
+        console.log(self.user);
       });    
   }
 
