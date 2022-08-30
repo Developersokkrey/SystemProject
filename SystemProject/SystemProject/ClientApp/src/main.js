@@ -17,7 +17,8 @@ import VOrgTree from 'v-org-tree'
 import 'v-org-tree/dist/v-org-tree.css'
 import './main.css'
 import Notifications from "vt-notifications";
-import vuetify from './plugins/vuetify'
+import vuetify from './plugins/vuetify';
+import '@mdi/font/css/materialdesignicons.css'
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')

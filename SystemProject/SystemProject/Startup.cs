@@ -20,6 +20,8 @@ using SystemProject.Models.Jwt.Repository;
 using VueCliMiddleware;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using SystemProject.Repository.ServicesClass;
+using KEDI.Core.Premise;
+using KEDI.Core.Premise.DependencyInjection;
 
 namespace SystemProject
 {
@@ -60,7 +62,8 @@ namespace SystemProject
                 };
             });
             services.AddSingleton<IJWTManagerRepository, JWTManagerRepository>();
-            services.AddControllers();             
+            services.AddControllers();         
+            
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp";
@@ -72,7 +75,9 @@ namespace SystemProject
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddTransient<SecurityManager>();
             services.AddTransient<ServicesGeneratePrimaryKey>();
-            services.AddTransient<ServicesInsertOrUpdate>();
+            services.AddTransient<ServicesInsertOrUpdate>();         
+            services.AddSingleton<IScopeFactory<DataContext>, ScopeFactory<DataContext>>();
+            services.AddHostedService<ContextTracker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

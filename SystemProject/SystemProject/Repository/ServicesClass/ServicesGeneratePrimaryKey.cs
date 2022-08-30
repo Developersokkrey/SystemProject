@@ -1,5 +1,7 @@
-﻿using System;
+﻿using KEDI.Core.Premise.DependencyInjection;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using SystemProject.DataApp;
 using static SystemProject.Model.EnumService.EnumServices;
 
@@ -8,10 +10,11 @@ namespace SystemProject.Repository.ServicesClass
     public class ServicesGeneratePrimaryKey
     {
         private readonly DataContext _dataContect;
-        public ServicesGeneratePrimaryKey(DataContext dataContext)
+        public ServicesGeneratePrimaryKey(IScopeFactory<DataContext> dataContext)
         {
-            _dataContect = dataContext;
+            _dataContect = dataContext.GetService();
         }
+
         public string GeneratePrimaryKey(TableName tableName)
         {
             var keyTable = _dataContect.PRIMARYKEYS.FirstOrDefault(x => x.TableName == tableName) ?? new Models.Other.PrimaryKey();
@@ -90,6 +93,10 @@ namespace SystemProject.Repository.ServicesClass
             _dataContect.PRIMARYKEYS.Update(keyTable);
             _dataContect.SaveChanges();
             return keyTable.KeyNumber.ToString();
+        }
+        public async Task<bool> Test()
+        {
+           return await Task.FromResult(true);
         }
     }
 }
