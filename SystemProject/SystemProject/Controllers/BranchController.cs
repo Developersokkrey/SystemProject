@@ -15,11 +15,11 @@ namespace SystemProject.Controllers
     [ApiController]     
     public class BranchController : ControllerBase
     {
-        private readonly DataContext _dataContect;
+        private readonly DataContext _dataContext;
         private readonly ServicesInsertOrUpdate _servicesInsertOrUpdate;
         public BranchController(DataContext dataContext, ServicesInsertOrUpdate servicesInsertOrUpdate)
         {
-            _dataContect = dataContext;
+            _dataContext = dataContext;
             _servicesInsertOrUpdate = servicesInsertOrUpdate;
         }
         [HttpPost("CreateBranch/branch")]
@@ -27,22 +27,22 @@ namespace SystemProject.Controllers
         {
             ModelMessage msg = new();
             ValidateSummary(branch);
-            using (var t = _dataContect.Database.BeginTransaction())
+            using (var t = _dataContext.Database.BeginTransaction())
             {
                 if (ModelState.IsValid)
                 {
-                    _servicesInsertOrUpdate.InsertOrUpdateBRAN(branch);
+                   await _servicesInsertOrUpdate.InsertOrUpdateBRAN(branch);
                     t.Commit();
                     ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
                     msg.Approve();
                 }
             }
-             return Ok(await Task.FromResult(msg.Bind(ModelState)));
+            return Ok(await Task.FromResult(msg.Bind(ModelState)));
         }
         [HttpGet("GetBranch")]
         public IActionResult GetBranch()
         {
-            var bran = from b in _dataContect.BRAN
+            var bran = from b in _dataContext.BRAN
                        select new
                        {
                            ID = b.ID,
@@ -64,7 +64,7 @@ namespace SystemProject.Controllers
             }
             else
             {
-                return Ok(_dataContect.BRAN.FirstOrDefault(w => w.ID == branid));
+                return Ok(_dataContext.BRAN.FirstOrDefault(w => w.ID == branid));
             }            
         }
         private void ValidateSummary(Branch branch)

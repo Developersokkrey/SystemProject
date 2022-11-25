@@ -37,6 +37,8 @@
             ROLEPRIVI = 8,
             FUNCTI = 9,
             USERPRIVI = 10,
+            VENDOR = 11,
+            CUSMER = 12,
         }
 
     }

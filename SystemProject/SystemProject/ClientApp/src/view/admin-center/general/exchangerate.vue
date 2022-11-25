@@ -19,7 +19,7 @@
               {{ $t('Exchange Rate') }}
             </v-tab>
              <v-tab class="text-capitalize">
-              {{ $t('currency') }}
+              {{ $t('Currency') }}
             </v-tab>
           </v-tabs>
         </template>
@@ -30,11 +30,11 @@
             <!-- exchangerate -->
             <table>
               <tr>
-                <th>No.</th>
-                <th>System Currency</th>
-                <th>To</th>
-                <th>Exchage</th>
-                <th>Rate</th>
+                <th>{{$t('No.')}}</th>
+                <th>{{$t('System Currency')}}</th>
+                <th>{{$t('To')}}</th>
+                <th>{{$t('Currency')}}</th>
+                <th>{{$t('Rate')}}</th>
               </tr>
               <tr v-for="(item , index) in exrate" :key="index">
                 <td>{{index +1}}</td>
@@ -52,7 +52,7 @@
         <v-tab-item>
           <v-card flat>
             <v-app id="inspire">
-              <v-data-table :headers="headers" :items="currobj" sort-by="calories" class="elevation-1" fixed-header height="350" dense>
+              <v-data-table :headers="datas" :items="currobj" sort-by="calories" class="elevation-1" fixed-header height="350" dense>
                 <template v-slot:top>
                   <v-toolbar  flat>
                     <v-toolbar-title>My CRUD</v-toolbar-title> 
@@ -189,7 +189,7 @@
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       dialog: false,
       dialogDelete: false,
-      headers: [ 
+      datas: [ 
         { text: 'Currency Name', value: 'name' },
         { text: 'Description', value: 'des' },
         { text: 'Symbol', value: 'symbol' },

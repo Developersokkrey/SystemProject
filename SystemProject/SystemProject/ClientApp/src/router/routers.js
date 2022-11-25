@@ -1,21 +1,6 @@
 import Main from '@/components/main'
 import parentView from '@/components/parent-view'
 
-/**
- * iview-admin中meta除了原生参数外可配置的参数:
- * meta: {
- *  title: { String|Number|Function }
- *         显示在侧边栏、面包屑和标签栏的文字
- *         使用'{{ 多语言字段 }}'形式结合多语言使用，例子看多语言的路由配置;
- *         可以传入一个回调函数，参数是当前路由对象，例子看动态路由和带参路由
- *  hideInBread: (false) 设为true后此级路由将不会出现在面包屑中，示例看QQ群路由配置
- *  hideInMenu: (false) 设为true后在左侧菜单不会显示该页面选项
- *  notCache: (false) 设为true后页面在切换标签后不会缓存，如果需要缓存，无需设置这个字段，而且需要设置页面组件name属性和路由配置的name一致
- *  access: (null) 可访问该页面的权限数组，当前路由设置的权限会影响子路由
- *  icon: (-) 该页面在左侧菜单、面包屑和标签导航处显示的图标，如果是自定义图标，需要在图标名称前加下划线'_'
- *  beforeCloseName: (-) 设置该字段，则在关闭当前tab页时会去'@/router/before-close.js'里寻找该字段名对应的方法，作为关闭前的钩子函数
- * }
- */
 
 export default [
   {
@@ -50,183 +35,286 @@ export default [
       }
     ]
   },
-      // Admin Center
+  // Admin Center
+  {
+    path: '/admin-center',
+    name: 'Admin Center',
+    meta: {
+      icon: 'md-menu',
+      title: 'Admin Center'
+    },
+    component: Main,
+    children: [
       {
-        path: '/admin-center',
-        name: 'Admin Center',
+        path: 'general',
+        name: 'General',
         meta: {
-          icon: 'md-menu',
-          title: 'Admin Center'
+          icon: 'md-funnel',
+          showAlways: true,
+          title: 'General'
         },
-        component: Main,
+        component: parentView,
         children: [
           {
-            path: 'general',
-            name: 'General',
-            meta: {              
-              icon: 'md-funnel',
-              showAlways: true,
-              title: 'General'
-            },
-            component: parentView,
-            children: [
-              {
-                path: 'company',
-                name: 'Company',
-                meta: {
-                  access: ['AGC01'],
-                  icon: 'md-funnel',
-                  title: 'Company'
-                },
-                component: () => import('@/view/admin-center/general/company.vue')
-              },   
-              {
-                path: 'company-form',
-                name: 'Form Company',
-                meta: {
-                  access: ['AGC01'],
-                  hideInMenu: true,
-                  icon: 'md-funnel',
-                  title: 'Form Company'
-                },
-                component: () => import('@/view/admin-center/general/company-form.vue')
-              },
-              {
-                path: 'branch',
-                name: 'Branch',
-                meta: {
-                  access: ['AGB01'],
-                  icon: 'md-funnel',
-                  title: 'Branch'
-                },
-                component: () => import('@/view/admin-center/general/branch.vue')
-              }, 
-              {
-                path: 'branch-form',
-                name: 'Form Branch',
-                meta: {
-                  access: ['AGB01'],
-                  hideInMenu: true,
-                  icon: 'md-funnel',
-                  title: 'Form Branch'
-                },
-                component: () => import('@/view/admin-center/general/branch-form.vue')
-              }, 
-              {
-                path: 'useraccount-form',
-                name: 'Form User Account',
-                meta: {
-                  access: ['AGU01'],
-                  hideInMenu: true,                  
-                  icon: 'md-funnel',
-                  title: 'Form User Account'
-                },
-                component: () => import('@/view/admin-center/general/useraccount-form.vue')
-              }, 
-              {
-                path: 'useraccount',
-                name: 'User Account',
-                meta: {
-                  access: ['AGU01'],
-                  icon: 'md-funnel',
-                  title: 'User Account'
-                },
-                component: () => import('@/view/admin-center/general/useraccount.vue')                 
-              },  
-              {
-                path: 'exchangerate',
-                name: 'Exchange Rate',
-                meta: {
-                  access: ['AGE01'],
-                  icon: 'md-funnel',
-                  title: 'Currency'
-                },
-                component: () => import('@/view/admin-center/general/exchangerate.vue')
-              },      
-            ]
-          },
-          {
-            path: 'inventory',
-            name: 'Inventory',
+            path: 'company',
+            name: 'Company',
             meta: {
               access: ['AGC01'],
               icon: 'md-funnel',
-              showAlways: true,
-              title: 'inventory'
+              title: 'Company'
             },
-            component: parentView,
-            children: [
-              {
-                path: 'warehouse',
-                name: 'Warehouse',
-                meta: {
-                  icon: 'md-funnel',
-                  title: '三级'
-                },
-                component: () => import('@/view/admin-center/inventory/warehouse.vue')
-              },
-              {
-                path: 'warehouse1',
-                name: 'Warehouse1',
-                meta: {
-                  icon: 'md-funnel',
-                  title: '三级'
-                },
-                component: () => import('@/view/admin-center/inventory/warehouse1.vue')
-              },
-              {
-                path: 'level_2_2',
-                name: 'level_2_2',
-                meta: {
-                  access: ['super_admin'],
-                  icon: 'md-funnel',
-                  showAlways: true,
-                  title: '二级-2'
-                },
-                component: parentView,
-                children: [
-                  {
-                    path: 'level_2_2_1',
-                    name: 'level_2_2_1',
-                    meta: {
-                      icon: 'md-funnel',
-                      title: '三级'
-                    },
-                    component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
-                  },
-                  {
-                    path: 'level_2_2_2',
-                    name: 'level_2_2_2',
-                    meta: {
-                      icon: 'md-funnel',
-                      title: '三级'
-                    },
-                    component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-                  }
-                ]
-              },
-              {
-                path: 'level_2_2_2',
-                name: 'level_2_2_2',
-                meta: {
-                  icon: 'md-funnel',
-                  title: '三级'
-                },
-                component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-              }
-            ]
+            component: () => import('@/view/admin-center/general/company.vue')
           },
+          {
+            path: 'company-form',
+            name: 'Form Company',
+            meta: {
+              access: ['AGC01'],
+              hideInMenu: true,
+              icon: 'md-funnel',
+              title: 'Form Company'
+            },
+            component: () => import('@/view/admin-center/general/company-form.vue')
+          },
+          {
+            path: 'branch',
+            name: 'Branch',
+            meta: {
+              access: ['AGB01'],
+              icon: 'md-funnel',
+              title: 'Branch'
+            },
+            component: () => import('@/view/admin-center/general/branch.vue')
+          },
+          {
+            path: 'branch-form',
+            name: 'Form Branch',
+            meta: {
+              access: ['AGB01'],
+              hideInMenu: true,
+              icon: 'md-funnel',
+              title: 'Form Branch'
+            },
+            component: () => import('@/view/admin-center/general/branch-form.vue')
+          },
+          {
+            path: 'useraccount-form',
+            name: 'Form User Account',
+            meta: {
+              access: ['AGU01'],
+              hideInMenu: true,
+              icon: 'md-funnel',
+              title: 'Form User Account'
+            },
+            component: () => import('@/view/admin-center/general/useraccount-form.vue')
+          },
+          {
+            path: 'useraccount',
+            name: 'User Account',
+            meta: {
+              access: ['AGU01'],
+              icon: 'md-funnel',
+              title: 'User Account'
+            },
+            component: () => import('@/view/admin-center/general/useraccount.vue')
+          },
+          {
+            path: 'exchangerate',
+            name: 'Exchange Rate',
+            meta: {
+              access: ['AGB01'],
+              icon: 'md-funnel',
+              title: 'Currency'
+            },
+            component: () => import('@/view/admin-center/general/exchangerate.vue')
+          },
+          // {
+          //   path: 'exchangerate',
+          //   name: 'Exchange1 Rate',
+          //   meta: {
+          //     access: ['AGB01'],
+          //     icon: 'md-funnel',
+          //     title: 'Currency'
+          //   },
+          //   component: () => import('@/view/admin-center/general/exchangerate.vue')
+          // },
         ]
       },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: '/#/',
-      icon: 'ios-book'
-    }
+      // {
+      //   path: 'inventory',
+      //   name: 'Inventory',
+      //   meta: {
+      //     access: ['AGC01'],
+      //     icon: 'md-funnel',
+      //     showAlways: true,
+      //     title: 'inventory'
+      //   },
+      //   component: parentView,
+      //   children: [
+      //     {
+      //       path: 'warehouse',
+      //       name: 'Warehouse3',
+      //       meta: {
+      //         icon: 'md-funnel',
+      //         title: '三级'
+      //       },
+      //       component: () => import('@/view/admin-center/inventory/warehouse.vue')
+      //     },
+      //     {
+      //       path: 'warehouse1',
+      //       name: 'Warehouse1',
+      //       meta: {
+      //         icon: 'md-funnel',
+      //         title: '三级'
+      //       },
+      //       component: () => import('@/view/admin-center/inventory/warehouse1.vue')
+      //     },
+      //     {
+      //       path: 'warehouse1',
+      //       name: 'Warehouse1',
+      //       meta: {
+      //         icon: 'md-funnel',
+      //         title: '三级'
+      //       },
+      //       component: () => import('@/view/admin-center/inventory/warehouse1.vue')
+      //     },
+      //     {
+      //       path: 'warehouse2',
+      //       name: 'Warehouse2',
+      //       meta: {
+      //         icon: 'md-funnel',
+      //         title: '三级'
+      //       },
+      //       component: () => import('@/view/admin-center/inventory/warehouse1.vue')
+      //     },
+      //     {
+      //       path: 'level_2_2',
+      //       name: 'level_2_2',
+      //       meta: {
+      //         access: ['super_admin'],
+      //         icon: 'md-funnel',
+      //         showAlways: true,
+      //         title: '二级-2'
+      //       },
+      //       component: parentView,
+      //       children: [
+      //         {
+      //           path: 'level_2_2_1',
+      //           name: 'level_2_2_1',
+      //           meta: {
+      //             icon: 'md-funnel',
+      //             title: '三级'
+      //           },
+      //           component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+      //         },
+      //         {
+      //           path: 'level_2_2_2',
+      //           name: 'level_2_2_2',
+      //           meta: {
+      //             icon: 'md-funnel',
+      //             title: '三级'
+      //           },
+      //           component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       path: 'level_2_2_2',
+      //       name: 'level_2_2_2',
+      //       meta: {
+      //         icon: 'md-funnel',
+      //         title: '三级'
+      //       },
+      //       component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+      //     }
+      //   ]
+      // },
+    ]
   },
+  // Business Partner
+  {
+    path: '/business-partner',
+    name: 'Business Partner',
+    meta: {
+      icon: 'ios-stats',
+      title: 'EXCEL导入导出'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'customer',
+        name: 'Customer',
+        meta: {
+          access: ['AGB01'],
+          icon: 'md-add',
+          title: '导入EXCEL'
+        },
+        component: () => import('@/view/business-partner/customer.vue')
+      },
+      {
+        path: 'customer-form',
+        name: 'Form Customer',
+        meta: {
+          access: ['AGB01'],
+          hideInMenu: true,
+          icon: 'md-funnel',
+          title: 'Form Branch'
+        },
+        component: () => import('@/view/business-partner/customer-form.vue')
+      },
+      {
+        path: 'vendor',
+        name: 'Vendor',
+        meta: {
+          access: ['AGB02'],
+          icon: 'md-download',
+          title: '导出EXCEL'
+        },
+        component: () => import('@/view/business-partner/vendor.vue')
+      },
+      {
+        path: 'vendor-form',
+        name: 'Form Vendor',
+        meta: {
+          access: ['AGB02'],
+          hideInMenu: true,
+          icon: 'md-funnel',
+          title: 'Form Branch'
+        },
+        component: () => import('@/view/business-partner/vendor-form.vue')
+      },
+    ]
+  },
+  // Purchase
+  {
+    path: '/purchase',
+    name: 'Purchase',
+    meta: {
+      icon: 'ios-stats',
+      title: 'EXCEL导入导出'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'purchase',
+        name: 'Purchase',
+        meta: {
+          icon: 'md-add',
+          title: '导入EXCEL'
+        },
+        component: () => import('@/view/purchase/purchase-form.vue')
+      },
+    ]
+  },
+  // {
+  //   path: '',
+  //   name: 'doc',
+  //   meta: {
+  //     title: '文档',
+  //     href: '/#/',
+  //     icon: 'ios-book'
+  //   }
+  // },
   {
     path: '/join',
     name: 'join',

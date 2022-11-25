@@ -55,14 +55,14 @@ import { mapActions } from 'vuex'
       ]),     
       signin(){    
         let userName = this._data.userSignin.userName;
-        let password = this._data.userSignin.password;   
+        let password = this._data.userSignin.password;  
+        console.log('text',userName); 
         axios.post('/api/userAccount/SignIn', this._data.userSignin).then((response) => {
             if (response.data.isRejected == true) {              
-              console.log('isRejected');
+              console.log('isRejected1');
               return;
             }
-            else{     
-              console.log(response.data.items.userMap);
+            else{                   
               let userMap = response.data.items.userMap;
               this.handleLogin({ userName, password }).then(res => { 
                 localStorage.setItem('name', userMap.username);
@@ -75,7 +75,8 @@ import { mapActions } from 'vuex'
                     name: this.$config.homeName     
                   })
                 })
-              })                        
+              })  
+              console.log('Test');               
             }
           });
       }

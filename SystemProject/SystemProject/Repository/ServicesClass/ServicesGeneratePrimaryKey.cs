@@ -9,89 +9,109 @@ namespace SystemProject.Repository.ServicesClass
 {
     public class ServicesGeneratePrimaryKey
     {
-        private readonly DataContext _dataContect;
+        private readonly DataContext _dataContext;
         public ServicesGeneratePrimaryKey(IScopeFactory<DataContext> dataContext)
         {
-            _dataContect = dataContext.GetService();
+            _dataContext = dataContext.GetService();
         }
 
         public string GeneratePrimaryKey(TableName tableName)
         {
-            var keyTable = _dataContect.PRIMARYKEYS.FirstOrDefault(x => x.TableName == tableName) ?? new Models.Other.PrimaryKey();
+            var keyTable = _dataContext.PRIMARYKEYS.FirstOrDefault(x => x.TableName == tableName) ?? new Models.Other.PrimaryKey();
             long keyNumber = long.Parse(keyTable.KeyNumber) + 1;
             keyTable.KeyNumber = Convert.ToString(keyNumber);
             //OCURE
             if (tableName == TableName.OCURE)
             {
-                bool isValid = _dataContect.OCURE.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.OCURE.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.OCURE.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.OCURE.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
             //OUSR
             else if (tableName == TableName.OUSR)
             {
-                bool isValid = _dataContect.OUSR.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.OUSR.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.OUSR.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.OUSR.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
             //COMP
             else if (tableName == TableName.COMP)
             {
-                bool isValid = _dataContect.COMP.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.COMP.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.COMP.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.COMP.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
             //BRAN
             else if (tableName == TableName.BRAN)
             {
-                bool isValid = _dataContect.BRAN.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.BRAN.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.BRAN.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.BRAN.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
             //BRINFO
             else if (tableName == TableName.BRINFO)
             {
-                bool isValid = _dataContect.BRINFO.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.BRINFO.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.BRINFO.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.BRINFO.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
             //EXRATE
             else if (tableName == TableName.EXRATE)
             {
-                bool isValid = _dataContect.EXRATE.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.EXRATE.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.EXRATE.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.EXRATE.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
             //ROLES
             else if (tableName == TableName.ROLES)
             {
-                bool isValid = _dataContect.ROLES.Any(n => n.ID == keyTable.KeyNumber);
+                bool isValid = _dataContext.ROLES.Any(n => n.ID == keyTable.KeyNumber);
                 if (isValid)
                 {
-                    keyNumber = long.Parse(_dataContect.EXRATE.Max().ID) + 1;
+                    keyNumber = long.Parse(_dataContext.ROLES.Max().ID) + 1;
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
-            _dataContect.PRIMARYKEYS.Update(keyTable);
-            _dataContect.SaveChanges();
+            //VENDOR
+            else if (tableName == TableName.VENDOR)
+            {
+                bool isValid = _dataContext.VENDOR.Any(n => n.ID == keyTable.KeyNumber);
+                if (isValid)
+                {
+                    keyNumber = long.Parse(_dataContext.VENDOR.Max().ID) + 1;
+                    keyTable.KeyNumber = Convert.ToString(keyNumber);
+                }
+            }
+            //CUSMER
+            else if (tableName == TableName.CUSMER)
+            {
+                bool isValid = _dataContext.CUSMER.Any(n => n.ID == keyTable.KeyNumber);
+                if (isValid)
+                {
+                    keyNumber = long.Parse(_dataContext.CUSMER.Max().ID) + 1;
+                    keyTable.KeyNumber = Convert.ToString(keyNumber);
+                }
+            }
+            _dataContext.PRIMARYKEYS.Update(keyTable);
+            _dataContext.SaveChanges();
             return keyTable.KeyNumber.ToString();
         }
         public async Task<bool> Test()

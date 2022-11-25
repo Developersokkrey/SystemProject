@@ -47,17 +47,16 @@
    data () {
     return {  
       headers: {
-
          Authorization : localStorage.getItem('token'),
       },    
       branobjs:[],
       search: '',
       dialogDelete: false,
       datas: [
-        { text: 'Name', align: 'start', sortable: false, value: 'name',},
-        { text: 'Address', value: 'address' },
-        { text: 'Location', value: 'location'},              
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: this('Name'), align: 'start', sortable: false, value: 'name',},
+        { text: this('Address'), value: 'address' },
+        { text: this('Location'), value: 'location'},              
+        { text: this('Actions'), value: 'actions', sortable: false },
       ],
     }
   },

@@ -55,12 +55,12 @@
       search: '',
       dialogDelete: false,
       headers: [
-        { text: 'UserName',persistent:true, align: 'start',sortable: false, value: 'userName',},
-        { text: 'Gender', value: 'gender' },
-        { text: 'Branch', value: 'branch'},
-        { text: 'Rule', value: 'rule'},
-        { text: 'Status', value: 'status' },       
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: this.$t('UserName'),persistent:true, align: 'start',sortable: false, value: 'userName',},
+        { text: this.$t('Gender'), value: 'gender' },
+        { text: this.$t('Branch'), value: 'branch'},
+        { text: this.$t('Role'), value: 'rule'},
+        { text: this.$t('Status'), value: 'status' },       
+        { text: this.$t('Actions'), value: 'actions', sortable: false },
       ],
     }
   },

@@ -1,7 +1,10 @@
 ﻿using KEDI.Core.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 using SystemProject.DataApp;
 using SystemProject.Models.Branch;
+using SystemProject.Models.BusinessPartner;
 using SystemProject.Models.Company;
 using SystemProject.Models.UserAccount;
 using static SystemProject.Model.EnumService.EnumServices;
@@ -20,7 +23,7 @@ namespace SystemProject.Repository.ServicesClass
             _securityManager = securityManager;
         }
         #region OUSR
-        public void InsertOrUpdateOCURE(UserAccount userAccount)
+        public async Task InsertOrUpdateOCURE(UserAccount userAccount)
         {
             if(userAccount.ID == null)
             {
@@ -29,7 +32,7 @@ namespace SystemProject.Repository.ServicesClass
                 userAccount.ID = _servicesGeneratePrimaryKey.GeneratePrimaryKey(TableName.OUSR);
                 userAccount.PasswordHash = hash;
                 userAccount.ComID = _dataContext.COMP.FirstOrDefault().ID;
-                _dataContext.OUSR.Add(userAccount);
+                await _dataContext.OUSR.AddAsync(userAccount);
             }
             else
             {
@@ -38,51 +41,51 @@ namespace SystemProject.Repository.ServicesClass
                 userAccount.PasswordHash = hash;
                 _dataContext.OUSR.Update(userAccount);
             }
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
         }
         #endregion         
         #region OCURE
-        public void InsertOrUpdateOCURE(Currency currency)
+        public async Task InsertOrUpdateOCURE(Currency currency)
         {
             currency.ID = _servicesGeneratePrimaryKey.GeneratePrimaryKey(TableName.OCURE);
-            _dataContext.Add(currency);
-            _dataContext.SaveChanges();
+            await _dataContext.AddAsync(currency);
+            await _dataContext.SaveChangesAsync();
         }
         #endregion
         #region COMP
-        public void InsertOrUpdateCOMP(Company company,bool New)
+        public async Task InsertOrUpdateCOMP(Company company,bool New)
         {
             if (New)
             {
                 company.ID = _servicesGeneratePrimaryKey.GeneratePrimaryKey(TableName.COMP);    
-                _dataContext.Add(company);                
+                await _dataContext.AddAsync(company);                
             }
             else
             {
                 _dataContext.Update(company);                 
             }
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
         }
         #endregion
         #region BRAN
-        public void InsertOrUpdateBRAN(Branch branch)
+        public async Task InsertOrUpdateBRAN(Branch branch)
         {
              if(branch.ID == "0" || branch.ID == null)
             {
                 branch.ID = _servicesGeneratePrimaryKey.GeneratePrimaryKey(TableName.BRAN);
-                _dataContext.Add(branch);
+                await _dataContext.AddAsync(branch);
             }
             else
             {
                 _dataContext.Update(branch);
             }
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
         }
         #endregion
         #region BRINFO
         #endregion
         #region EXRATE
-        public void InsertOrUpdateEXRATE(string currency,bool New)
+        public async Task InsertOrUpdateEXRATE(string currency,bool New)
         {             
             if (New)
             {
@@ -91,18 +94,18 @@ namespace SystemProject.Repository.ServicesClass
                 exchangeRate.CurrID = currency;
                 exchangeRate.Rate1 = 0;
                 exchangeRate.Rate2 = 0;
-                _dataContext.EXRATE.Add(exchangeRate);
+                await _dataContext.EXRATE.AddAsync(exchangeRate);
             }
             else
             {
-                var exchangeRate = _dataContext.EXRATE.FirstOrDefault(w=>w.CurrID == currency)?? new ExchangeRate();
+                var exchangeRate = await _dataContext.EXRATE.FirstOrDefaultAsync(w=>w.CurrID == currency)?? new ExchangeRate();
                 if (exchangeRate.Rate1 != 0)
                 {
                     exchangeRate.Rate2 = 1 / exchangeRate.Rate1;
                 }
                 _dataContext.EXRATE.Update(exchangeRate);
             }             
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
         }
         #endregion
         #region ROLES
@@ -113,6 +116,35 @@ namespace SystemProject.Repository.ServicesClass
         #endregion
         #region USERPRIVI
         #endregion
-
+        #region VENDOR
+        public async Task InsertOrUpdateVENDOR(Vendor vendor)
+        {
+            if(vendor.ID == null)
+            {
+                vendor.ID = _servicesGeneratePrimaryKey.GeneratePrimaryKey(TableName.VENDOR);
+                await _dataContext.AddAsync(vendor);
+            }
+            else
+            {
+                _dataContext.Update(vendor);
+            }
+            await _dataContext.SaveChangesAsync();
+        }
+        #endregion
+        #region CUSMER
+        public async Task InsertOrUpdateCUSMER(Customer customer)
+        {
+            if (customer.ID == null)
+            {
+                customer.ID = _servicesGeneratePrimaryKey.GeneratePrimaryKey(TableName.CUSMER);
+                await _dataContext.AddAsync(customer);
+            }
+            else
+            {
+                _dataContext.Update(customer);
+            }
+            await _dataContext.SaveChangesAsync();
+        }
+        #endregion
     }
 }

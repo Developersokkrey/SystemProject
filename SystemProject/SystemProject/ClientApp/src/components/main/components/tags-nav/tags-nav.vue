@@ -271,6 +271,20 @@ export default {
         localStorage.setItem('branid', JSON.stringify(0));
          this.$router.push('branch-form');
       }
+      else if(this.currentRouteObj.name == 'Customer'){
+         this.$router.push('customer-form');
+      }
+      else if(this.currentRouteObj.name == 'Form Customer'){
+         localStorage.setItem('customerId', JSON.stringify(0));
+         this.$router.push('customer-form');
+      }
+      else if(this.currentRouteObj.name == 'Vendor'){
+         this.$router.push('vendor-form');
+      }
+      else if(this.currentRouteObj.name == 'Form Vendor'){
+         localStorage.setItem('vendorId', JSON.stringify(0));
+         this.$router.push('vendor-form');
+      }
       else{
         const current  = this.currentRouteObj.name;
         this.$router.push(current);

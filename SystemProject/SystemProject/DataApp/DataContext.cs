@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.AccessControl;
 using SystemProject.Models.Branch;
+using SystemProject.Models.BusinessPartner;
 using SystemProject.Models.Company;
 using SystemProject.Models.Other;
 using SystemProject.Models.UserAccount;
@@ -22,5 +24,7 @@ namespace SystemProject.DataApp
         public DbSet<Function> FUNCTI { get; set; }
         public DbSet<UsersPrivilege> USERPRIVI { get; set; }
         public DbSet<PrimaryKey> PRIMARYKEYS { get; set; }
+        public DbSet<Customer> CUSMER { get; set; }
+        public DbSet<Vendor> VENDOR { get; set; }
     }
 }

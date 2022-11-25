@@ -28,7 +28,7 @@ namespace SystemProject.Controllers
         readonly SecurityManager _securityManager;
         private readonly IConfiguration iconfiguration;
         private readonly ServicesInsertOrUpdate _servicesInsertOrUpdate;
-        public UserAccountController(DataContext dataContext, SecurityManager securityManager,IConfiguration configuration, ServicesInsertOrUpdate servicesInsertOrUpdate)
+        public UserAccountController(DataContext dataContext, SecurityManager securityManager, IConfiguration configuration, ServicesInsertOrUpdate servicesInsertOrUpdate)
         {
             _dataContext = dataContext;
             _securityManager = securityManager;
@@ -41,13 +41,13 @@ namespace SystemProject.Controllers
         {
             if (usid == "0")
             {
-                UserAccount userAccount = new();                
+                UserAccount userAccount = new();
                 userAccount.Roles = _dataContext.ROLES.ToList();
                 return Ok(userAccount);
             }
             else
-            {                
-                var userAccount = _dataContext.OUSR.FirstOrDefault(w => w.ID == usid)?? new UserAccount();
+            {
+                var userAccount = _dataContext.OUSR.FirstOrDefault(w => w.ID == usid) ?? new UserAccount();
                 userAccount.Roles = _dataContext.ROLES.ToList();
                 return Ok(userAccount);
             }
@@ -61,7 +61,7 @@ namespace SystemProject.Controllers
             using (var t = _dataContext.Database.BeginTransaction())
             {
                 if (ModelState.IsValid)
-                {                      
+                {
                     _servicesInsertOrUpdate.InsertOrUpdateOCURE(userAccount);
                     t.Commit();
                     ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
@@ -120,11 +120,11 @@ namespace SystemProject.Controllers
             var userobjs = from u in _dataContext.OUSR
                            join b in _dataContext.BRAN on u.BranID equals b.ID
                            join r in _dataContext.ROLES on u.RoleID equals r.ID
-                           select new 
+                           select new
                            {
-                               ID = u.ID,         
+                               ID = u.ID,
                                UserName = u.Username,
-                               Rule = r.Name,                                   
+                               Rule = r.Name,
                                Gender = ((Genders)u.Gender).ToString(),
                                Status = ((UserStatus)u.Status).ToString(),
                                Branch = b.Name,
@@ -144,23 +144,24 @@ namespace SystemProject.Controllers
             else
             {
                 ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
-                var user = _dataContext.OUSR.FirstOrDefault(u => u.Username.ToLower() == signIn.Username.ToLower())?? new UserAccount();
+                var user = _dataContext.OUSR.FirstOrDefault(u => u.Username.ToLower() == signIn.Username.ToLower()) ?? new UserAccount();
                 bool isVerified = false;
-                if(user != null) { 
+                if (!String.IsNullOrEmpty(user.ID))
+                {
                     isVerified = false;
                     string[] tokens = user.PasswordHash.Split('.');
                     string hash = tokens[0];
                     string salt = tokens[1];
                     isVerified = HashSecurity.Verify(signIn.Password, hash, salt);
-                }                
+                }
                 if (isVerified)
                 {
-                    UserMap userMap = new(); 
+                    UserMap userMap = new();
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var tokenKey = Encoding.UTF8.GetBytes(iconfiguration["JWT:Key"]);
                     var tokenDescriptor = new SecurityTokenDescriptor
                     {
-                      Subject = new ClaimsIdentity(new Claim[]
+                        Subject = new ClaimsIdentity(new Claim[]
                       {
                         new Claim(ClaimTypes.Name, signIn.Username)
                       }),
@@ -171,10 +172,10 @@ namespace SystemProject.Controllers
                     //add userMap
                     var access = from usp in _dataContext.USERPRIVI.Where(w => w.Enable == true && w.UserID == user.ID)
                                  join func in _dataContext.FUNCTI on usp.FuncID equals func.ID
-                                 select func.Code;                      
+                                 select func.Code;
                     userMap.Username = user.Username;
                     userMap.UserID = user.ID;
-                    userMap.Access = access.ToArray(); 
+                    userMap.Access = access.ToArray();
                     userMap.Token = tokenHandler.WriteToken(token);
                     userMap.Avatar = "https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png";
                     msg.AddItem(userMap, "userMap");
