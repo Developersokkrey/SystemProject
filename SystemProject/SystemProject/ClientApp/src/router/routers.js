@@ -128,107 +128,97 @@ export default [
             },
             component: () => import('@/view/admin-center/general/exchangerate.vue')
           },
-          // {
-          //   path: 'exchangerate',
-          //   name: 'Exchange1 Rate',
-          //   meta: {
-          //     access: ['AGB01'],
-          //     icon: 'md-funnel',
-          //     title: 'Currency'
-          //   },
-          //   component: () => import('@/view/admin-center/general/exchangerate.vue')
-          // },
         ]
       },
-      // {
-      //   path: 'inventory',
-      //   name: 'Inventory',
-      //   meta: {
-      //     access: ['AGC01'],
-      //     icon: 'md-funnel',
-      //     showAlways: true,
-      //     title: 'inventory'
-      //   },
-      //   component: parentView,
-      //   children: [
-      //     {
-      //       path: 'warehouse',
-      //       name: 'Warehouse3',
-      //       meta: {
-      //         icon: 'md-funnel',
-      //         title: '三级'
-      //       },
-      //       component: () => import('@/view/admin-center/inventory/warehouse.vue')
-      //     },
-      //     {
-      //       path: 'warehouse1',
-      //       name: 'Warehouse1',
-      //       meta: {
-      //         icon: 'md-funnel',
-      //         title: '三级'
-      //       },
-      //       component: () => import('@/view/admin-center/inventory/warehouse1.vue')
-      //     },
-      //     {
-      //       path: 'warehouse1',
-      //       name: 'Warehouse1',
-      //       meta: {
-      //         icon: 'md-funnel',
-      //         title: '三级'
-      //       },
-      //       component: () => import('@/view/admin-center/inventory/warehouse1.vue')
-      //     },
-      //     {
-      //       path: 'warehouse2',
-      //       name: 'Warehouse2',
-      //       meta: {
-      //         icon: 'md-funnel',
-      //         title: '三级'
-      //       },
-      //       component: () => import('@/view/admin-center/inventory/warehouse1.vue')
-      //     },
-      //     {
-      //       path: 'level_2_2',
-      //       name: 'level_2_2',
-      //       meta: {
-      //         access: ['super_admin'],
-      //         icon: 'md-funnel',
-      //         showAlways: true,
-      //         title: '二级-2'
-      //       },
-      //       component: parentView,
-      //       children: [
-      //         {
-      //           path: 'level_2_2_1',
-      //           name: 'level_2_2_1',
-      //           meta: {
-      //             icon: 'md-funnel',
-      //             title: '三级'
-      //           },
-      //           component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
-      //         },
-      //         {
-      //           path: 'level_2_2_2',
-      //           name: 'level_2_2_2',
-      //           meta: {
-      //             icon: 'md-funnel',
-      //             title: '三级'
-      //           },
-      //           component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       path: 'level_2_2_2',
-      //       name: 'level_2_2_2',
-      //       meta: {
-      //         icon: 'md-funnel',
-      //         title: '三级'
-      //       },
-      //       component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
-      //     }
-      //   ]
-      // },
+      {
+        path: 'inventory',
+        name: 'Inventory',
+        meta: {
+          access: ['AGC01'],
+          icon: 'md-funnel',
+          showAlways: true,
+          title: 'inventory'
+        },
+        component: parentView,
+        children: [
+          // {
+          //   path: 'warehouse',
+          //   name: 'Warehouse3',
+          //   meta: {
+          //     icon: 'md-funnel',
+          //     title: '三级'
+          //   },
+          //   component: () => import('@/view/admin-center/inventory/warehouse.vue')
+          // },
+          // {
+          //   path: 'warehouse1',
+          //   name: 'Warehouse1',
+          //   meta: {
+          //     icon: 'md-funnel',
+          //     title: '三级'
+          //   },
+          //   component: () => import('@/view/admin-center/inventory/warehouse1.vue')
+          // },
+          // {
+          //   path: 'warehouse1',
+          //   name: 'Warehouse1',
+          //   meta: {
+          //     icon: 'md-funnel',
+          //     title: '三级'
+          //   },
+          //   component: () => import('@/view/admin-center/inventory/warehouse1.vue')
+          // },
+          // {
+          //   path: 'warehouse2',
+          //   name: 'Warehouse2',
+          //   meta: {
+          //     icon: 'md-funnel',
+          //     title: '三级'
+          //   },
+          //   component: () => import('@/view/admin-center/inventory/warehouse1.vue')
+          // },
+          // {
+          //   path: 'level_2_2',
+          //   name: 'level_2_2',
+          //   meta: {
+          //     access: ['super_admin'],
+          //     icon: 'md-funnel',
+          //     showAlways: true,
+          //     title: '二级-2'
+          //   },
+          //   component: parentView,
+          //   children: [
+          //     {
+          //       path: 'level_2_2_1',
+          //       name: 'level_2_2_1',
+          //       meta: {
+          //         icon: 'md-funnel',
+          //         title: '三级'
+          //       },
+          //       component: () => import('@/view/multilevel/level-2-2/level-2-2-1.vue')
+          //     },
+          //     {
+          //       path: 'level_2_2_2',
+          //       name: 'level_2_2_2',
+          //       meta: {
+          //         icon: 'md-funnel',
+          //         title: '三级'
+          //       },
+          //       component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+          //     }
+          //   ]
+          // },
+          // {
+          //   path: 'level_2_2_2',
+          //   name: 'level_2_2_2',
+          //   meta: {
+          //     icon: 'md-funnel',
+          //     title: '三级'
+          //   },
+          //   component: () => import('@/view/multilevel/level-2-2/level-2-2-2.vue')
+          // }
+        ]
+      },
     ]
   },
   // Business Partner
