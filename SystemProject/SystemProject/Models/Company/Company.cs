@@ -8,6 +8,7 @@ namespace SystemProject.Models.Company
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string ID { get; set; }
+        public string Code {get;set;}
         public string Name { get; set; }
         public string Logo { get; set; }
         public string Address { get; set; }

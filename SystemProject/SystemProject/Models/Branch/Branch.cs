@@ -8,6 +8,7 @@ namespace SystemProject.Models.Branch
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string ID { get; set; }
+        public string Code {get;set;}
         public string Name { get; set; }
         public string Address { get; set; }
         public string Location { get; set; }

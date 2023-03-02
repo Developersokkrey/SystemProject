@@ -33,7 +33,7 @@
 					</span>
 					<input v-model="userSignin.password" type="password" class="border-solid border border-gray-400 h-8 rounded-r-lg outline-none focus:ring-1 ring-blue-400 w-full pl-1" :placeholder="$t('Password')" required="false">
 				</div>
-				<button type="button" @click="signin" class="px-4 py-2 rounded bg-blue-700 text-white hover:bg-blue-500 my-4 w-full">Login</button>
+				<button type="button" @click="signin" class="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-700 my-4 w-full">Login</button>
 			</div>
 		</form>
   </div>

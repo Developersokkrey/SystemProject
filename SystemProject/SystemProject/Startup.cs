@@ -69,13 +69,14 @@ namespace SystemProject
                 configuration.RootPath = "ClientApp";
             });
             services.AddDbContext<DataContext>(option =>
-            option.UseNpgsql(Configuration["ConnectionStrings:WebApiDatabase"]));
-            //option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
+            // option.UseNpgsql(Configuration["ConnectionStrings:WebApiDatabase"]));
+            option.UseSqlServer(Configuration["UsersConnection:ConnectionString"]));
             services.AddMvc().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddTransient<SecurityManager>();
             services.AddTransient<ServicesGeneratePrimaryKey>();
-            services.AddTransient<ServicesInsertOrUpdate>();         
+            services.AddTransient<ServicesInsertOrUpdate>();  
+            services.AddTransient<UserAccountRepo>();       
             services.AddSingleton<IScopeFactory<DataContext>, ScopeFactory<DataContext>>();
             services.AddHostedService<ContextTracker>();
         }
@@ -86,7 +87,7 @@ namespace SystemProject
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("v1/swagger.json", "Khmer EDI API");
+                c.SwaggerEndpoint("v1/swagger.json", "TaskAssignment");//swagger/index.html
             });
             if (env.IsDevelopment())
             {

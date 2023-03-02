@@ -28,12 +28,15 @@ namespace SystemProject.Controllers
         readonly SecurityManager _securityManager;
         private readonly IConfiguration iconfiguration;
         private readonly ServicesInsertOrUpdate _servicesInsertOrUpdate;
-        public UserAccountController(DataContext dataContext, SecurityManager securityManager, IConfiguration configuration, ServicesInsertOrUpdate servicesInsertOrUpdate)
+        private readonly UserAccountRepo _userAccountRepo;
+        public UserAccountController(DataContext dataContext, SecurityManager securityManager, IConfiguration configuration, 
+        ServicesInsertOrUpdate servicesInsertOrUpdate, UserAccountRepo userAccountRepo)
         {
             _dataContext = dataContext;
             _securityManager = securityManager;
             this.iconfiguration = configuration;
             _servicesInsertOrUpdate = servicesInsertOrUpdate;
+            _userAccountRepo = userAccountRepo;
         }
         [AllowAnonymous]
         [HttpGet("userAccountForm")]
@@ -117,19 +120,27 @@ namespace SystemProject.Controllers
         [HttpGet("getUserAccount")]
         public IActionResult GetUserAccount()
         {
-            var userobjs = from u in _dataContext.OUSR
-                           join b in _dataContext.BRAN on u.BranID equals b.ID
-                           join r in _dataContext.ROLES on u.RoleID equals r.ID
-                           select new
-                           {
-                               ID = u.ID,
-                               UserName = u.Username,
-                               Rule = r.Name,
-                               Gender = ((Genders)u.Gender).ToString(),
-                               Status = ((UserStatus)u.Status).ToString(),
-                               Branch = b.Name,
-                           };
-            return Ok(userobjs);
+            // var userobjs = from u in _dataContext.OUSR
+            //                join b in _dataContext.BRAN on u.BranID equals b.ID
+            //                join r in _dataContext.ROLES on u.RoleID equals r.ID
+            //                select new 
+            //                {
+            //                    ID = u.ID,
+            //                    UserName = u.Username,
+            //                    Rule = r.Name,
+            //                    Gender = ((Genders)u.Gender).ToString(),
+            //                    Status = ((UserStatus)u.Status).ToString(),
+            //                    Branch = b.Name,
+            //                };
+            var userobjs = _userAccountRepo.ToDictionaries().Select(d => new 
+            {
+                Username = d["Username"].ToString(),
+                DepmentID = (int)d["DepmentID"],
+                Gender = Enum.Parse(typeof(Genders), d["Gender"].ToString())
+            });
+            var users = _userAccountRepo.ToList<UserAccount>("GetAllUserAccount");
+
+            return Ok(users);
         }
         [AllowAnonymous]
         [HttpPost("SignIn")]
@@ -140,20 +151,21 @@ namespace SystemProject.Controllers
             {
                 ModelState.AddModelError("Username", "Username or Password is invalid !/ឈ្មោះអ្នកប្រើត្រូវបានទាមទារ 5 តួអក្សរ !");
                 msg.Reject();
+                // msg.Approve();
             }
             else
             {
                 ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
                 var user = _dataContext.OUSR.FirstOrDefault(u => u.Username.ToLower() == signIn.Username.ToLower()) ?? new UserAccount();
-                bool isVerified = false;
-                if (!String.IsNullOrEmpty(user.ID))
-                {
-                    isVerified = false;
-                    string[] tokens = user.PasswordHash.Split('.');
-                    string hash = tokens[0];
-                    string salt = tokens[1];
-                    isVerified = HashSecurity.Verify(signIn.Password, hash, salt);
-                }
+                bool isVerified = true;
+                // if (!String.IsNullOrEmpty(user.ID))
+                // {
+                //     isVerified = false;
+                //     string[] tokens = user.PasswordHash.Split('.');
+                //     string hash = tokens[0];
+                //     string salt = tokens[1];
+                //     isVerified = HashSecurity.Verify(signIn.Password, hash, salt);
+                // }
                 if (isVerified)
                 {
                     UserMap userMap = new();

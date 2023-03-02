@@ -4,15 +4,15 @@
     {
         public enum UserRules
         {
-            None=0,
-            SuperAdmin=1,
-            Admin=2,
-            Manager=3,
-            User=4
+            SuperAdmin=1,            
+            Manager=2,
+            Admin=3,
+            Supervisor=4,
+            Staff=5,
         }
         public enum UserStatus
         {
-            None=0,
+            None=0,  
             Active=1,
             Inactive=2,
             Pending=3,

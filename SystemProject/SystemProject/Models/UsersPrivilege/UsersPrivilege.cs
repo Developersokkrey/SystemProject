@@ -11,7 +11,8 @@ namespace SystemProject.Models.UsersPrivilege
         public string ID { get; set; }
         public string UserID { get; set; }
         public string RolePriviID { get; set; }
-        public string FuncID { get; set; }          
+        public string FuncID { get; set; }  
+         public int DepmentID { get;set;}   
         public bool Enable { get; set; } = false;
     }
 }

@@ -26,5 +26,6 @@ namespace SystemProject.DataApp
         public DbSet<PrimaryKey> PRIMARYKEYS { get; set; }
         public DbSet<Customer> CUSMER { get; set; }
         public DbSet<Vendor> VENDOR { get; set; }
+        public DbSet<Department> DEPMENT {get; set;}
     }
 }

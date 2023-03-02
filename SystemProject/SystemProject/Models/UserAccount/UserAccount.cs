@@ -10,7 +10,9 @@ namespace SystemProject.Models.UserAccount
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string ID { get; set; }
+        public string ID { get; set; } 
+        public string EmpCode {get; set;}
+        public string EmpName {get;set;}
         public string Username { get; set; }
         [NotMapped]
         public string Password { get; set; }
@@ -18,10 +20,11 @@ namespace SystemProject.Models.UserAccount
         public string ConfirmPassword { get; set; }
         public string PasswordHash { get; set; }
         public string RoleID { get; set; }
-        public string ComID { get; set; }
+         public string ComID { get; set; }
         public string BranID { get; set; }
         public Genders Gender{ get; set; }
         public UserStatus Status { get; set; }
+        public int DepmentID {get;set; }
         [NotMapped]
         public List<Roles> Roles { get; set; }
     }      
