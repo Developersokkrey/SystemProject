@@ -1,6 +1,0 @@
-CREATE PROCEDURE [DBO].[GetDepartmentByID]
-@DepartID nvarchar(450)
-AS
-BEGIN 
-	SELECT * FROM DEPMENT WHERE ID='@DepartID'
-END
