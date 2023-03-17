@@ -101,5 +101,6 @@ export default {
   'No.':"ល.រ",
   'To':"ទៅ",
   'Rate': "អត្រា",
+  'Department' : "នាយកដ្ឋាន",
 }
  

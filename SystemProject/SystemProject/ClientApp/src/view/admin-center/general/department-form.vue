@@ -2,33 +2,53 @@
   <div>
     <div role="alert">
       <div class="bg-gray-400 text-white font-bold rounded-t px-4 py-1">
-        {{$t('Branch')}}
+        {{$t('Department')}}
       </div>      
     </div>
     <form class="bg-white p-5 rounded-lg shadow-lg min-w-full">
-      <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
-        <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Name') }}</label>
-          <input id="border-username" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="branch.name" type="text" :placeholder="$t('Name')" autocomplete="off"/>
+      <div class="md:flex md:items-center mb-12">
+        <div class="md:w-1/12">
+          <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0" for="inline-full-name">{{ $t('Code') }}</label>
+        </div>
+        <div class="md:w-3/12">
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200" id="inline-full-name"  v-model="department.code" type="text" :placeholder="$t('Code')">
+        </div>
+        <div class="md:w-1/12"></div>
+        <div class="md:w-1/12">
+          <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0" for="inline-full-name">{{$t('Name')}}</label>
+        </div>
+        <div class="md:w-3/12">
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200" id="inline-full-name" type="text"  v-model="department.name" :placeholder="$t('Name')">
+        </div>
+        <div class="md:w-1/12"></div>
+        <div class="flex pr-3 items-center md:w-1/12">
+          <input checked id="checked-checkbox" type="checkbox"  v-model="department.enable" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+          <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('Enable') }}</label>
         </div>
       </div>
-      <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
+      <!-- <div class="flex-wrap -mx-2 space-y-4 md:space-y-0 md:w-1/2">
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Address')}}</label>
-          <input id="border-password" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="branch.address" type="text" :placeholder="$t('Address')" />
+          <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Code') }}</label>          
         </div>
         <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Location')}}</label>
-          <input id="border-confirm" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="branch.location" type="text" :placeholder="$t('Location')" />
+          <input id="border-username" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="department.code" type="text" :placeholder="$t('Code')" autocomplete="off"/>
         </div>
-      </div>      
+      </div> -->
+      <!-- <div class="flex-wrap -mx-2 space-y-4 md:space-y-0 md:w-1/2">
+        <div class="w-full px-2 md:w-1/2">
+          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Name')}}</label>          
+        </div>
+        <div class="w-full px-2 md:w-1/2">          
+          <input id="border-password" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="department.name" type="text" :placeholder="$t('Name')" />
+        </div>
+      </div>       -->
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 pt-7 md:w-1/2 flex space-x-4">
           <div>
-            <button type="button" @click="saveData" class="px-4 py-1.5 bg-blue-600 font-medium text-xs leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Save')}}</button>
+            <button type="button" @click="saveData" class="px-4 py-1.5 bg-elf-green-700 font-medium text-xs leading-tight rounded shadow-md hover:bg-elf-green-700 hover:shadow-lg focus:bg-elf-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Save')}}</button>
           </div>
           <div>
-            <button type="button" @click="clearData" class="px-4 py-1.5 bg-yellow-600 font-medium text-xs leading-tight rounded shadow-md hover:bg-yellow-700 hover:shadow-lg focus:bg-yellow-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Clear')}}</button>
+            <button type="button" @click="clearData" class="px-4 py-1.5 bg-thunderbird-700 font-medium text-xs leading-tight rounded shadow-md hover:bg-thunderbird-700 hover:shadow-lg focus:bg-thunderbird-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" style="color: white">{{$t('Clear')}}</button>
           </div>
         </div>
       </div>
@@ -92,13 +112,14 @@
   export default {
     name: "App",
     data: () => ({           
-      branch:[],
+      department:[],
     }),
     methods: {
       saveData() {        
-        let _this = this;         
-        axios.post('/api/branch/CreateBranch/branch', this.branch).then((response) => {          
-          let message = response.data.data;          
+        let _this = this;   
+        console.log(localStorage.getItem('token'));      
+        axios.post('/api/department/CreateDepartment/department', this.department,{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then((response) => {          
+          let message = response.data.data;            
           if (response.data.isRejected == true) {            
           }
           else {            
@@ -107,20 +128,21 @@
       },
       clearData() { 
         const _this = this;      
-        localStorage.setItem('branid', JSON.stringify(0));  
-        var bid = localStorage.getItem('branid');      
-        axios.get('/api/branch/GetBranchEdit',{params:{branid: bid}}).then(response => {           
-          _this.branch = response.data;         
+        localStorage.setItem('depmentid', JSON.stringify(0));  
+        var depid = localStorage.getItem('depmentid');      
+        axios.get('/api/department/GetDepartmentEdit',{params:{branid: depid}},{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
+          _this.department = response.data; 
       })
       }
     },
     mounted() {
       const _this = this; 
-      var bid = localStorage.getItem('branid');   
-      axios
-      .get('/api/branch/GetBranchEdit',{params:{branid: bid}}).then(response => {           
-          _this.branch = response.data;
-      })
+      var depid = localStorage.getItem('depmentid');   
+      // axios
+      // .get('/api/department/GetDepartmentEdit',{params:{depmentid: depid}},{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
+      //     _this.department = response.data;
+      //     console.log(_this.department);     
+      // })
     },
   };
 </script>

@@ -4,7 +4,7 @@
    <div class="pb-1" role="alert">
       <div class="bg-gray-400 text-white font-bold rounded-t px-4 py-0.5 w-full flex">
         <div class="w-full md:w-2/2 flex">
-          {{$t('Branch')}}
+          {{$t('Department')}}
         </div>
          <div class="w-full md:w-2/2 flex">           
           <input v-model="search" class="placeholder:italic text-gray-600 font-normal bg-white w-full border border-slate-300 rounded-md pt-0.5 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search..." type="text" name="search"/>
@@ -49,7 +49,7 @@
       headers: {
          Authorization : localStorage.getItem('token'),
       },    
-      branobjs:[],
+      dapartmentjs:[],
       search: '',
       dialogDelete: false,
       datas: [
@@ -66,10 +66,10 @@
       //   },        
       // },
       mounted(){         
-        localStorage.setItem('branid', JSON.stringify(0));              
+        localStorage.setItem('depmentid', JSON.stringify(0));              
         const _this = this;                  
-        axios.get('/api/branch/GetBranch',{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
-          _this.branobjs = response.data;
+        axios.get('/api/department/GetAllDepartment',{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
+          _this.dapartmentjs = response.data;
       })
       },
       methods: {
@@ -77,8 +77,8 @@
           // console.log(item);
           // var usid = { '_uerid': item,};
           // Put the object into storage
-          localStorage.setItem('branid', JSON.stringify(item));
-          this.$router.push('branch-form');
+          localStorage.setItem('depmentid', JSON.stringify(item));
+          this.$router.push('department-form');
         },
         // deleteItem (item) {         
         //   this.editedIndex = this.desserts.indexOf(item)
