@@ -110,6 +110,16 @@ namespace SystemProject.Repository.ServicesClass
                     keyTable.KeyNumber = Convert.ToString(keyNumber);
                 }
             }
+            //DEPMENT
+            else if(tableName == TableName.DEPMENT)
+            {
+                bool isValid = _dataContext.DEPMENT.Any(n => n.ID == keyTable.KeyNumber);
+                if (isValid)
+                {
+                    keyNumber = long.Parse(_dataContext.DEPMENT.Max().ID) + 1;
+                    keyTable.KeyNumber = Convert.ToString(keyNumber);
+                }
+            }
             _dataContext.PRIMARYKEYS.Update(keyTable);
             _dataContext.SaveChanges();
             return keyTable.KeyNumber.ToString();

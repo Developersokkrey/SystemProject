@@ -120,27 +120,27 @@ namespace SystemProject.Controllers
         [HttpGet("getUserAccount")]
         public IActionResult GetUserAccount()
         {
-            // var userobjs = from u in _dataContext.OUSR
-            //                join b in _dataContext.BRAN on u.BranID equals b.ID
-            //                join r in _dataContext.ROLES on u.RoleID equals r.ID
-            //                select new 
-            //                {
-            //                    ID = u.ID,
-            //                    UserName = u.Username,
-            //                    Rule = r.Name,
-            //                    Gender = ((Genders)u.Gender).ToString(),
-            //                    Status = ((UserStatus)u.Status).ToString(),
-            //                    Branch = b.Name,
-            //                };
-            var userobjs = _userAccountRepo.ToDictionaries().Select(d => new 
-            {
-                Username = d["Username"].ToString(),
-                DepmentID = (int)d["DepmentID"],
-                Gender = Enum.Parse(typeof(Genders), d["Gender"].ToString())
-            });
-            var users = _userAccountRepo.ToList<UserAccount>("GetAllUserAccount");
+            var userobjs = from u in _dataContext.OUSR
+                           join b in _dataContext.BRAN on u.BranID equals b.ID
+                           join r in _dataContext.ROLES on u.RoleID equals r.ID
+                           select new
+                           {
+                               ID = u.ID,
+                               UserName = u.Username,
+                               Rule = r.Name,
+                               Gender = ((Genders)u.Gender).ToString(),
+                               Status = ((UserStatus)u.Status).ToString(),
+                               Branch = b.Name,
+                           };
+            //var userobjs = _userAccountRepo.ToDictionaries().Select(d => new 
+            //{
+            //    Username = d["Username"].ToString(),
+            //    DepmentID = (int)d["DepmentID"],
+            //    Gender = Enum.Parse(typeof(Genders), d["Gender"].ToString())
+            //});
+            //var users = _userAccountRepo.ToList<UserAccount>("GetAllUserAccount");
 
-            return Ok(users);
+            return Ok(userobjs);
         }
         [AllowAnonymous]
         [HttpPost("SignIn")]

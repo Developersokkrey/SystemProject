@@ -22,6 +22,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using SystemProject.Repository.ServicesClass;
 using KEDI.Core.Premise;
 using KEDI.Core.Premise.DependencyInjection;
+using SystemProject.Repository;
 
 namespace SystemProject
 {
@@ -76,7 +77,8 @@ namespace SystemProject
             services.AddTransient<SecurityManager>();
             services.AddTransient<ServicesGeneratePrimaryKey>();
             services.AddTransient<ServicesInsertOrUpdate>();  
-            services.AddTransient<UserAccountRepo>();       
+            services.AddTransient<UserAccountRepo>();   
+            services.AddTransient<DepartmentRepo>();
             services.AddSingleton<IScopeFactory<DataContext>, ScopeFactory<DataContext>>();
             services.AddHostedService<ContextTracker>();
         }

@@ -32,8 +32,8 @@ namespace SystemProject.Controllers
             {
                 if (ModelState.IsValid)
                 {                      
-                    _servicesInsertOrUpdate.InsertOrUpdateOCURE(currency);                                                               
-                    _servicesInsertOrUpdate.InsertOrUpdateEXRATE(currency.ID,true);
+                    await _servicesInsertOrUpdate.InsertOrUpdateOCURE(currency);                                                               
+                    await _servicesInsertOrUpdate.InsertOrUpdateEXRATE(currency.ID,true);
                     t.Commit();
                     ModelState.AddModelError("success", "Currency save successfully./ការរក្សាទុករូបិយប័ណ្ណដោយជោគជ័យ។");
                     msg.Approve();
@@ -51,7 +51,7 @@ namespace SystemProject.Controllers
                 {
                     foreach (var item in exchange)
                     {                         
-                        _servicesInsertOrUpdate.InsertOrUpdateEXRATE(item.CurrID,false);
+                       await _servicesInsertOrUpdate.InsertOrUpdateEXRATE(item.CurrID,false);
                     }
                     t.Commit();
                     ModelState.AddModelError("success", "ExchangeRate save successfully./ការរក្សាទុករូបិយប័ណ្ណដោយជោគជ័យ។");
@@ -83,7 +83,7 @@ namespace SystemProject.Controllers
             {
                 if (ModelState.IsValid)
                 {                              
-                    _servicesInsertOrUpdate.InsertOrUpdateCOMP(comp, true);
+                    await _servicesInsertOrUpdate.InsertOrUpdateCOMP(comp, true);
                     t.Commit();
                     ModelState.AddModelError("success", "Username save successfully./រក្សាទុកឈ្មោះអ្នកប្រើប្រាស់ដោយជោគជ័យ។");
                     msg.Approve();

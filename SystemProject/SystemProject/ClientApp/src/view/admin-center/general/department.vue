@@ -12,7 +12,29 @@
       </div>            
     </div>
     <v-card>
-      <v-data-table fixed-header height="450" :headers="datas" :items="branobjs" :search="search" dense>
+      <v-data-table
+        :headers="headers"
+        :items="dapartmentjs"
+        fixed-header height="450" :search="search" dense
+      >
+        <template v-slot:item.enable="{ item }">
+          <v-simple-checkbox v-model="item.enable"></v-simple-checkbox>
+        </template>
+        <template v-slot:item.actions="{ item }">
+            <v-icon small class="mr-2" color="indigo" @click="editItem(item.id)">
+              mdi-pencil
+            </v-icon>
+            <v-icon small color="red lighten-2" @click="deleteItem(item)">
+              mdi-delete
+            </v-icon>
+          </template>
+      </v-data-table>
+      <!-- <v-data-table fixed-header height="450" :headers="headers" :items="dapartmentjs" :search="search" dense>
+        <template v-slot:items.enable="{ item }">
+        <v-checkbox-btn
+          v-model="item.enable" 
+        ></v-checkbox-btn>
+        </template>
          <template>
             <v-toolbar  flat>
               <v-dialog v-model="dialogDelete">
@@ -20,8 +42,8 @@
                   <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <!-- <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn> -->
-                    <!-- <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn> -->
+                    <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn> 
+                    <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
                 </v-card>
@@ -36,7 +58,8 @@
               mdi-delete
             </v-icon>
           </template>
-      </v-data-table>
+      </v-data-table> -->
+
     </v-card>
   </v-app>
 </div>
@@ -45,18 +68,15 @@
     import axios from 'axios' 
     export default {
    data () {
-    return {  
-      headers: {
-         Authorization : localStorage.getItem('token'),
-      },    
+    return {      
       dapartmentjs:[],
       search: '',
       dialogDelete: false,
-      datas: [
-        { text: this('Name'), align: 'start', sortable: false, value: 'name',},
-        { text: this('Address'), value: 'address' },
-        { text: this('Location'), value: 'location'},              
-        { text: this('Actions'), value: 'actions', sortable: false },
+      headers: [
+        { text: this.$t('Code'), align: 'start', sortable: false, value: 'code',},
+        { text: this.$t('Name'), value: 'name' },
+        { text: this.$t('Enable'), value: 'enable'},              
+        { text: this.$t('Actions'), value: 'actions', sortable: false },
       ],
     }
   },
@@ -65,21 +85,26 @@
       //     val || this.closeDelete()
       //   },        
       // },
-      mounted(){         
-        localStorage.setItem('depmentid', JSON.stringify(0));              
+      mounted(){     
+        // var i18nLng = localStorage.getItem('i18nextLng');
+        // localStorage.setItem('i18nextLng', this._i18n.locale);
+        // this._i18n.fallbackLocale = this._i18n.locale;
+        // console.log("i18nLng =", i18nLng);    
+        // localStorage.setItem('depmentid', JSON.stringify(0));              
         const _this = this;                  
-        axios.get('/api/department/GetAllDepartment',{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
+        axios.get('/api/department/GetDepartmentList',{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
           _this.dapartmentjs = response.data;
       })
       },
-      methods: {
-        editItem (item) {
+      methods: {        
+        editItem (item) {          
           // console.log(item);
           // var usid = { '_uerid': item,};
           // Put the object into storage
-          localStorage.setItem('depmentid', JSON.stringify(item));
+          localStorage.setItem('depmentid',item);
           this.$router.push('department-form');
         },
+
         // deleteItem (item) {         
         //   this.editedIndex = this.desserts.indexOf(item)
         //   this.editedItem = Object.assign({}, item)

@@ -47,10 +47,11 @@ importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
 Vue.use(Notifications);
 // localStorage.setItem('usid', JSON.stringify(0));
+
 /* eslint-disable no-new */
 new Vue({
  el: '#app',
- router,
+ router,  
  i18n,
  store,
  vuetify,

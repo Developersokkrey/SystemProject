@@ -5,7 +5,7 @@
 <template>
   <div class="login">
     <form class="justify-center mt-56 mr-60 items-center w-full shadow rounded-lg bg-white px-4 flex flex-col md:w-1/5 lg:w-1/5 m-auto" @keyup.enter="signin">
-    <h2 class="text-2xl my-4">Login</h2>
+    <h2 class="text-2xl my-4">{{$t('Authentication')}}</h2>
 			<div class="w-full p-2 justify-start flex flex-col">
         <div class="flex flex-ror">
           <label class="block text-blueGray-600 text-xs font-bold mb-2" for="grid-password">{{$t('Username')}} :</label>

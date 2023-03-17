@@ -269,7 +269,6 @@ import { resolveObjectURL } from 'buffer';
         }
         self.user = _user;   
         self.user_rules = response.data.roles;
-        console.log(self.user);
       });    
   }
 

@@ -39,6 +39,7 @@
             USERPRIVI = 10,
             VENDOR = 11,
             CUSMER = 12,
+            DEPMENT = 13,
         }
 
     }

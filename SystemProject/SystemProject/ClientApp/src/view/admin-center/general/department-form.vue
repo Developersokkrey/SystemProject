@@ -11,14 +11,14 @@
           <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0" for="inline-full-name">{{ $t('Code') }}</label>
         </div>
         <div class="md:w-3/12">
-          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200" id="inline-full-name"  v-model="department.code" type="text" :placeholder="$t('Code')">
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200" autocomplete="off" id="inline-full-name"  v-model="department.code" type="text" :placeholder="$t('Code')">
         </div>
         <div class="md:w-1/12"></div>
         <div class="md:w-1/12">
           <label class="block text-gray-500 font-bold md:text-left mb-1 md:mb-0" for="inline-full-name">{{$t('Name')}}</label>
         </div>
         <div class="md:w-3/12">
-          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200" id="inline-full-name" type="text"  v-model="department.name" :placeholder="$t('Name')">
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200" autocomplete="off" id="inline-full-name" type="text"  v-model="department.name" :placeholder="$t('Name')">
         </div>
         <div class="md:w-1/12"></div>
         <div class="flex pr-3 items-center md:w-1/12">
@@ -26,22 +26,6 @@
           <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $t('Enable') }}</label>
         </div>
       </div>
-      <!-- <div class="flex-wrap -mx-2 space-y-4 md:space-y-0 md:w-1/2">
-        <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md">{{ $t('Code') }}</label>          
-        </div>
-        <div class="w-full px-2 md:w-1/2">
-          <input id="border-username" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="department.code" type="text" :placeholder="$t('Code')" autocomplete="off"/>
-        </div>
-      </div> -->
-      <!-- <div class="flex-wrap -mx-2 space-y-4 md:space-y-0 md:w-1/2">
-        <div class="w-full px-2 md:w-1/2">
-          <label class="text-gray-800 font-semibold block my-3 text-md">{{$t('Name')}}</label>          
-        </div>
-        <div class="w-full px-2 md:w-1/2">          
-          <input id="border-password" class="w-full h-8 px-2 text-sm rounded-lg focus:outline-none border-solid border" v-model="department.name" type="text" :placeholder="$t('Name')" />
-        </div>
-      </div>       -->
       <div class="flex flex-wrap -mx-2 space-y-4 md:space-y-0">
         <div class="w-full px-2 pt-7 md:w-1/2 flex space-x-4">
           <div>
@@ -84,19 +68,19 @@
     <div class="vt-bot fixed inset-x-2 bottom-5 z-50 flex px-4 py-6 pointer-events-none p-4 items-start justify-end">
       <div class="max-w-sm max-h-96">
         <notification v-slot="{notifications}">
-          <div class="flex max-w-sm w-full mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-2"
+          <div class="flex max-w-sm w-full mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-2 md-12"
                v-for="notification in notifications"
                :key="notification.id">
-            <div class="flex max-w-sm justify-center items-center w-12 bg-red-500">
+            <div class="flex max-w-sm justify-center items-center w-12 bg-red-500 md:w-0.5/12">
               <svg class="h-6 w-6 fill-current text-white"
                    viewBox="0 0 40 40"
                    xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z"></path>
               </svg>
             </div>
-            <div class="-mx-3 py-2 px-4">
-              <div class="mx-3">                 
-                <p class="text-gray-600 text-sm"><span class="text-red-500 font-semibold">{{notification.title}}</span> {{notification.text}}</p>
+            <div class="-mx-3 py-2 justify-start items-start px-4 md:w-11/12">
+              <div class="mx-3justify-start items-start">                 
+                <p class="text-gray-600 text-sm left-0 justify-start items-start"><span class="text-red-500 font-semibold">{{notification.title}}</span> {{notification.text}}</p>
               </div>
             </div>
           </div>
@@ -112,37 +96,88 @@
   export default {
     name: "App",
     data: () => ({           
-      department:[],
+      department:{}
     }),
     methods: {
       saveData() {        
         let _this = this;   
-        console.log(localStorage.getItem('token'));      
-        axios.post('/api/department/CreateDepartment/department', this.department,{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then((response) => {          
-          let message = response.data.data;            
-          if (response.data.isRejected == true) {            
+        axios.post('/api/department/CreateDepartment/department', this.department,{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then((response) => { 
+        clearNotify(false);         
+        let message = response.data.data;           
+          if (response.data.isRejected == true) {   
+            var keys = Object.getOwnPropertyNames(message);
+            let msg = "";
+            var error_title = ""
+            for (let i = 0; i < keys.length; i++) {
+              let errors = (typeof message[keys[i]] === "string") ? message[keys[i]].split("/") : ["", ""];
+              if (this._i18n.locale == 'en-US') {
+                error_title = "Erorr :";
+                msg = errors[0];
+              }
+              else if (this._i18n.locale == 'zh-TW') {
+                error_title = "កំហុស​ :";
+                msg = errors[1];
+              }
+              _this.$notify(
+                {
+                  group: "bottom",
+                  title: error_title,
+                  text: msg
+                },
+                10000
+              );
+            }
           }
-          else {            
+          else {      
+            var error_title = ""
+            var keys = Object.getOwnPropertyNames(message);
+            let msg = "";
+            let errors = (typeof message[keys] === "string") ? message[keys].split("/") : ["", ""];
+            if (this._i18n.locale == 'en-US') {
+              error_title = "Success :";
+              msg = errors[0];
+            }
+            else if (this._i18n.locale == 'zh-TW') {
+              error_title = "ជោគជ័យ​";
+              msg = errors[1];
+            }
+            this.$notify(
+              {
+                group: "top",
+                title: error_title,
+                text: msg
+              },
+              5000
+            );             
+            resetDepart(axios, this);      
           }        
         }); 
       },
       clearData() { 
         const _this = this;      
-        localStorage.setItem('depmentid', JSON.stringify(0));  
-        var depid = localStorage.getItem('depmentid');      
-        axios.get('/api/department/GetDepartmentEdit',{params:{branid: depid}},{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
-          _this.department = response.data; 
-      })
+        localStorage.setItem('depmentid', 0);  
+        resetDepart(axios, this);
       }
     },
     mounted() {
-      const _this = this; 
-      var depid = localStorage.getItem('depmentid');   
-      // axios
-      // .get('/api/department/GetDepartmentEdit',{params:{depmentid: depid}},{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
-      //     _this.department = response.data;
-      //     console.log(_this.department);     
-      // })
+      resetDepart(axios, this);
     },
   };
+  function clearNotify(enabled = true) {
+    let notify = document.getElementsByClassName('vt-bot');
+    for (let i = 0; i < notify.length; i++) {
+      notify[i].classList.remove("hidden");
+      if (enabled) {
+        notify[i].classList.add("hidden");
+      }      
+    }
+  }
+
+  function resetDepart(axios, _this){
+    var depid = localStorage.getItem('depmentid');
+    axios.get('/api/department/GetDepartmentEdit',{params:{depmentid: depid}},{headers: {Authorization : "Bearer "+localStorage.getItem('token')}}).then(response => {           
+          _this.department = response.data;   
+          console.log(_this.department);
+      })
+  }
 </script>

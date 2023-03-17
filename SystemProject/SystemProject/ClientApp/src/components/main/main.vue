@@ -172,15 +172,12 @@ export default {
       route: { name, params, query, meta }
     })
     this.setBreadCrumb(this.$route)
-    // 设置初始语言
     this.setLocal(this.$i18n.locale)
-    // 如果当前打开页面不在标签栏中，跳到homeName页
     if (!this.tagNavList.find(item => item.name === this.$route.name)) {
       this.$router.push({
         name: this.$config.homeName
       })
     }
-    // 获取未读消息条数
     this.getUnreadMessageCount()
   }
 }
